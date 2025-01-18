@@ -1,0 +1,40 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+}
+
+.red-container {
+    background-color: #ff5c5c; /* Rojo */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.gray-box {
+    background-color: #808080; /* Gris */
+    width: 150px;
+    height: 100px;
+}
+
+.gray-box.left {
+    margin-right: 20px; /* Separación del cuadro negro */
+}
+
+.gray-box.right {
+    margin-left: 20px; /* Separación del cuadro negro */
+}
+
+.black-box {
+    background-color: #000000; /* Negro */
+    width: 200px;
+    height: 100px;
+}

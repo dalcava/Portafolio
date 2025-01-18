@@ -1,0 +1,308 @@
+/* Definición de las fuentes Publica Sans */
+@font-face {
+    font-family: 'Publica Sans';
+    src: url('./Recursos/Fuentes/Publica/PublicaSans-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Publica Sans';
+    src: url('./Recursos/Fuentes/Publica/PublicaSans-Bold.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Publica Sans';
+    src: url('./Recursos/Fuentes/Publica/PublicaSans-ExtraLight.otf') format('opentype');
+    font-weight: 100;
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Publica Sans";
+}
+
+:root {
+    --Azul-claro: #95DEFF;
+    --Azul-oscuro: #004B6B;
+    --Azul-muy-oscuro: #052240;
+    --blanco: #F6F6F6;
+    --Magenta-claro: #FD3567;
+    --Magenta: #BC244A;
+    --Magenta-oscuro: #750037;
+
+    --font-size-XS: 14px;
+    /*Parrafos*/
+    --font-size-S: 16px;
+    --font-size-M: 18px;
+    --font-size-L: 24px;
+    /*Suvtítulos*/
+    --font-size-XL: 32px;
+    /*Títulos*/
+    --font-size-XXL: 72px;
+    --font-size-XXXL: 96px;
+
+    /* media queries */ 
+    --mobile: 768px;
+    --tablet: 1024px;
+    --desktop: 1440px;
+    --desktopXL: 1920px;
+}
+
+body{  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--blanco);
+    color: #ffffff;
+    overflow: hidden;
+    flex-direction: column;
+}
+.swiper {
+    position: relative;
+    width: 100%;
+    height: 480px;
+    clip-path: polygon(
+        0% 0%, 0% calc(50% + 180px), /* Inicio de la izquierda */
+        32% calc(50% + 180px), 32% calc(50% + 72px + 180px), /* Fin del rectángulo izquierdo */
+        0% calc(50% + 72px + 180px), 100% 105%, /* Continúa normal */
+        100% 100%, 100% calc(50% + 72px + 180px), /* Inicio de la derecha */
+        calc(100% - 16%) calc(50% + 72px + 180px), calc(100% - 16%) calc(50% + 180px), /* Fin del rectángulo derecho */
+        100% calc(50% + 180px), 100% 0% /* Finaliza el clipping */
+    );
+    border-radius: 0px; /* Aplica bordes redondeados globalmente */
+    overflow: hidden; /* Asegura que el recorte respete el border-radius */
+    transition: all 0.3s ease-out;
+}
+
+.swiper-3d {
+    perspective: 2600px;
+}
+
+.swiper-slide {
+    position: relative;
+    width: 1506px;
+    aspect-ratio: 3/4;
+    border-radius: 2px;
+}
+.swiper-slide img {
+    display: block;
+    width: 95%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+    user-select: none;
+    transform: translateX(312px);
+}
+.swiper-horizontal>.swiper-scrollbar, .swiper-scrollbar.swiper-scrollbar-horizontal {
+    position: absolute;
+    left: var(--swiper-scrollbar-sides-offset, 1%);
+    bottom: var(--swiper-scrollbar-bottom, 4px);
+    top: var(--swiper-scrollbar-top, auto);
+    z-index: 50;
+    height: var(--swiper-scrollbar-size, 4px);
+    width: calc(100% - 2* var(--swiper-scrollbar-sides-offset, 1%));
+    display: none;
+}
+.title {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translate(-490%, -1096%);
+    width: max-content;
+    text-align: center;
+    padding: 10px 18px;
+    background: rgba(46, 39, 39, 0);
+}
+
+.title span {
+    color: var(--blanco);
+    font-family: "Publica Sans";
+    font-size: var(--font-size-S);
+    font-style: normal;
+    font-weight: 265;
+    line-height: normal;
+}
+
+.swiper-slide-active .title span{
+    color: var(--Azul-muy-oscuro);
+}
+
+.boolean-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.custom-box-left,
+.custom-box-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 517px;
+    height: 72px;
+    background: transparent; /* No es necesario pintar */
+    z-index: 10;
+    pointer-events: none; /* No bloqueará la interacción con el slider */
+}
+
+
+.control-container {
+    display: flex;
+    width: 100%;
+    transform: translateY(-32px);
+}
+.pagination-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    left: 50px;
+    gap: 20px;
+    z-index: 10;
+    width: 100%;
+}
+
+.swiper-pagination {
+    display: flex;
+    gap: 10px; /* Espacio entre los bullets */
+}
+
+.swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
+    bottom: var(--swiper-pagination-bottom, 8px);
+    top: var(--swiper-pagination-top, auto);
+    left: 0;
+    width: 100%;
+    width: auto;
+}
+
+.swiper-pagination-bullet {
+    width: 14px;
+    height: 14px;
+    background-color: var(--Azul-muy-oscuro);
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 1;
+}
+
+/* Bullet activo */
+.swiper-pagination-bullet-active {
+    background-color: var(--Magenta); /* Color del bullet activo */
+    transform: scale(1.2); /* Aumenta ligeramente el tamaño del bullet activo */
+    opacity: 1; /* Totalmente visible */
+    border-radius: 8px;
+    transition: transform 0.4s ease-out;
+}
+.swiper-pagination-bullet:hover {
+    background-color: var(--Magenta-oscuro); /* Color del bullet activo */
+    transform: scaleX(1.75) scaleY(1.5) translateX(2px); /* Aumenta ligeramente el tamaño del bullet activo */
+    opacity: 1; /* Totalmente visible */
+    transition: transform 0.24s ease-out background-color 0.24 ease-in;
+    border-radius: 4px;
+}
+
+.next-project-btn {
+    background: none;
+    border: none;
+    color: #052240;
+    font-family: "Publica Sans", sans-serif;
+    font-size: var(--font-size-S);
+    font-weight: 400;
+    line-height: 1.5;
+    cursor: pointer;
+    text-transform: capitalize;
+    transition: color 0.3s ease;
+    /* transform: translateX(340px); */
+    pointer-events: auto;
+    position: relative;
+    left: 62%;
+}
+
+.next-project-btn:hover {
+    color: var(--Magenta); /* Cambia de color al pasar el cursor */
+}
+
+.swiper-button-container {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    position: relative;
+    gap: 56px;
+    z-index: 10;
+    width: 212%;
+    padding-right: 4%;
+}
+.swiper-button-prev{
+    background: none;
+    border: none;
+    color: var(--blanco);
+    font-family: "Publica Sans", sans-serif;
+    font-size: var(--font-size-S);
+    font-weight: 400;
+    line-height: 1.5;
+    cursor: pointer;
+    text-transform: capitalize;
+    transition: color 0.3s ease;
+    /* transform: translateX(340px); */
+    pointer-events: auto;
+    position: relative;
+    scale: .75;
+}
+.swiper-button-next {
+    background: none;
+    border: none;
+    color: var(--blanco);
+    font-family: "Publica Sans", sans-serif;
+    font-size: var(--font-size-S);
+    font-weight: 400;
+    line-height: 1.5;
+    cursor: pointer;
+    text-transform: capitalize;
+    transition: color 0.3s ease;
+    /* transform: translateX(340px); */
+    pointer-events: auto;
+    position: relative;
+    scale: .75;
+}
+/* Styling for the SVG inside buttons */
+.swiper-button-prev img,
+.swiper-button-next img {
+    width: 20px; /* Adjust SVG size */
+    height: 20px;
+    fill: var(--Azul-muy-oscuro); /* Default color */
+    transition: fill 0.3s ease;
+}
+
+/* Hover effect for SVGs */
+.swiper-button-prev:hover img,
+.swiper-button-next:hover img {
+    fill: var(--Magenta); /* Change SVG color on hover */
+}
+
+.swiper-pause {
+
+}
+
+@media (max-width: 1100px) {
+
+}
+
+@media (max-width: 900px) {
+
+}
+
+@media (max-width: 700px) {
+
+}
+
+@media (max-width: 500px) {
+    
+}

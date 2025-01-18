@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+        />
+        <link rel="stylesheet" href="style.css">
+        <title>Swiper Example</title>
+    </head>
+<body>
+    <canvas id="canvas1"></canvas>
+    
+    <div class="boolean-container">
+        <div class="swiper">
+            <!-- Swiper content -->
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="./Recursos/Kinetic rush-static.jpg" alt="Static Image 1" class="static-img">
+                    <img src="./Recursos/Kinetic rush-active.gif" alt="Active GIF 1" class="active-gif">
+                    <div class="title"><span>Nombre del proyecto</span></div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="./Recursos/Control-static.png" alt="Static Image 2" class="static-img">
+                    <img src="./Recursos/Control-active.gif" alt="Active GIF 2" class="active-gif">
+                    <div class="title"><span>Nombre del proyecto</span></div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="./Recursos/Portada.png" alt="Static Image 3" class="static-img">
+                    <img src="./Recursos/AvalPay-Active.gif" alt="Active GIF 3" class="active-gif">
+                    <div class="title"><span>Nombre del proyecto</span></div>
+                <div class="swiper-slide">
+                    <img src="./Recursos/Portada.png" alt="Static Image 3" class="static-img">
+                    <img src="./Recursos/AvalPay-Active.gif" alt="Active GIF 3" class="active-gif">
+                    <div class="title"><span>Nombre del proyecto</span></div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- If we need pagination -->
+    <div class="control-container">
+        <!-- Pagination and "Next project" button -->
+        <div class="pagination-container">
+            <div class="swiper-pagination"></div>
+            <button class="next-project-btn">Next project</button>
+        </div> 
+    
+        <!-- Navigation buttons -->
+        <div class="swiper-button-container">
+            <!-- Left Arrow -->
+            <div class="swiper-button-prev">
+                <img src="/Recursos/arrow-left.svg" alt="Previous" class="new-icon">
+            </div>
+    
+            <!-- Play/Pause Button -->
+            <div class="swiper-pause">
+                <img src="/Recursos/Button-Pause.svg" alt="Pause">
+            </div>
+    
+            <!-- Right Arrow -->
+            <div class="swiper-button-next">
+                <img src="/Recursos/arrow-right.svg" alt="Next" class="new-icon">
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- If we need scrollbar -->
+    <div class="swiper-scrollbar"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

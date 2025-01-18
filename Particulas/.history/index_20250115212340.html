@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pantalla Completa</title>
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="canvas1"></canvas>
+
+    <!-- Contenedor principal -->
+    <div class="main-container">
+        <!-- Sección superior -->
+        <div class="header">
+            <div class="user-info">
+                <img src="user-photo.jpg" alt="Foto del usuario" class="user-photo">
+                <div class="user-details">
+                    <h1>David López</h1>
+                    <p>UX Designer</p>
+                </div>
+            </div>
+            <div class="icons">
+                <i class="icon">📱</i>
+                <i class="icon">👤</i>
+                <i class="icon">📞</i>
+                <i class="icon">💡</i>
+            </div>
+        </div>
+
+        <!-- Descripción -->
+        <div class="description">
+            <p>Lorem ipsum dolor sit amet consectetur. Rhoncus a quis feugiat cursus.</p>
+        </div>
+
+        <!-- Slider -->
+        <div id="slider-container">
+            <p class="project-title">Nombre del proyecto</p>
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <!-- Slide 1 -->
+                    <div class="swiper-slide">
+                        <div class="slide-content">
+                            <div class="left-preview">
+                                <img src="preview1.jpg" alt="Previsualización izquierda">
+                            </div>
+                            <div class="main-content">
+                                <img src="main1.jpg" alt="Imagen principal">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="swiper-slide">
+                        <div class="slide-content">
+                            <div class="left-preview">
+                                <img src="preview2.jpg" alt="Previsualización izquierda">
+                            </div>
+                            <div class="main-content">
+                                <img src="main2.jpg" alt="Imagen principal">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Paginación -->
+                <div class="swiper-pagination"></div>
+                <!-- Botones de navegación -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+            <p class="next-project">Next project</p>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <img src="logo.png" alt="Logo" class="logo">
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        const swiper = new Swiper('.swiper-container', {
+            slidesPerView: 1,
+            loop: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+    </script>
+</body>
+</html>
