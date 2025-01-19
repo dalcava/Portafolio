@@ -190,7 +190,7 @@ var swiper = new Swiper(".swiper", {
     slidesPerView: "auto",
     coverflowEffect: {
         rotate: 0, // No rotation
-        stretch: -190, // Adjusts slide spacing
+        stretch: -1750, // Adjusts slide spacing
         depth: 855, // Perspective depth
         modifier: 1,
         slideShadows: false, // No shadows
@@ -237,7 +237,7 @@ swiper.on('slideChangeTransitionStart', () => {
         if (!image) return;
 
         // Calculate the percentage offset for the image
-        const offset = (index - activeIndex) * -50; // 50% speed
+        const offset = (index - activeIndex) * 15; // 50% speed
         image.style.transition = 'transform 0.6s ease-out'; // Smooth transition
         image.style.transform = `translateX(${offset}%)`; // Offset the image
     });

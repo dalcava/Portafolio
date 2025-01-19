@@ -125,10 +125,6 @@ body{
     transition: transform 0.4s ease; /* Suaviza el efecto de zoom */
     transform: scale(1.1); /* Ajusta el zoom al 10% */
 }
-/* Estilo de las imágenes activas dentro del contenedor */
-.image-container .imagen-contenida:active {
-    transform: scale(1); /* Ajusta el zoom al 10% */
-}
 
 .distorted {
     filter: url(#wave-effect); /* Placeholder for SVG filter (to be added dynamically) */

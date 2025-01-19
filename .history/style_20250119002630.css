@@ -127,7 +127,7 @@ body{
 }
 /* Estilo de las imágenes activas dentro del contenedor */
 .image-container .imagen-contenida:active {
-    transform: scale(1); /* Ajusta el zoom al 10% */
+    transform: scale(.5); /* Ajusta el zoom al 10% */
 }
 
 .distorted {

@@ -227,28 +227,6 @@ var swiper = new Swiper(".swiper", {
     },
 });
 
-// Listen for changes to the active slide
-swiper.on('slideChangeTransitionStart', () => {
-    const activeIndex = swiper.activeIndex;
-
-    // Adjust the position of all slides based on the active slide
-    document.querySelectorAll('.swiper-slide').forEach((slide, index) => {
-        const image = slide.querySelector('.imagen-contenida');
-        if (!image) return;
-
-        // Calculate the percentage offset for the image
-        const offset = (index - activeIndex) * -50; // 50% speed
-        image.style.transition = 'transform 0.6s ease-out'; // Smooth transition
-        image.style.transform = `translateX(${offset}%)`; // Offset the image
-    });
-});
-
-// Ensure the images reset when transitioning back
-swiper.on('slideChangeTransitionEnd', () => {
-    document.querySelectorAll('.swiper-slide .imagen-contenida').forEach((image) => {
-        image.style.transition = ''; // Clear transition after the effect
-    });
-});
 
 
 // Handle Play/Pause Button Click

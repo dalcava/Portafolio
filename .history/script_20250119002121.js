@@ -190,7 +190,7 @@ var swiper = new Swiper(".swiper", {
     slidesPerView: "auto",
     coverflowEffect: {
         rotate: 0, // No rotation
-        stretch: -190, // Adjusts slide spacing
+        stretch: -175, // Adjusts slide spacing
         depth: 855, // Perspective depth
         modifier: 1,
         slideShadows: false, // No shadows
@@ -231,22 +231,29 @@ var swiper = new Swiper(".swiper", {
 swiper.on('slideChangeTransitionStart', () => {
     const activeIndex = swiper.activeIndex;
 
-    // Adjust the position of all slides based on the active slide
+    // Recorrer todos los slides
     document.querySelectorAll('.swiper-slide').forEach((slide, index) => {
         const image = slide.querySelector('.imagen-contenida');
         if (!image) return;
 
-        // Calculate the percentage offset for the image
-        const offset = (index - activeIndex) * -50; // 50% speed
-        image.style.transition = 'transform 0.6s ease-out'; // Smooth transition
-        image.style.transform = `translateX(${offset}%)`; // Offset the image
+        // Si la imagen es el slide que se está volviendo activo
+        if (index === activeIndex) {
+            // Mover la imagen al 50% de la velocidad del carrusel
+            image.style.transition = 'transform 0s ease-in'; // Animación suave
+            image.style.transform = `translateX(-5%)`; // Desplazamiento relativo
+        } else {
+            // Resetear cualquier transformación para las imágenes inactivas
+            image.style.transition = 'transform 0.6s ease-out';
+            image.style.transform = `translateX(0%)`;
+        }
     });
 });
 
-// Ensure the images reset when transitioning back
+// Al finalizar la transición, reseteamos la transformación de las imágenes
 swiper.on('slideChangeTransitionEnd', () => {
     document.querySelectorAll('.swiper-slide .imagen-contenida').forEach((image) => {
-        image.style.transition = ''; // Clear transition after the effect
+        image.style.transition = ''; // Limpia las transiciones después del efecto
+        image.style.transform = 'translateX(0%)'; // Resetear la posición al final
     });
 });
 

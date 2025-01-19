@@ -180,6 +180,15 @@ window.addEventListener('touchend', function() {
 //------------------------------- Aquí empieza swiper ----------------------------------------------------- 
 //---------------------------------------------------------------------------------------------------------
 
+// Ensure initial positions for all images
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.swiper-slide .imagen-contenida').forEach((image) => {
+        image.style.transform = 'translateX(0%)'; // Set initial position
+        image.style.transition = ''; // Ensure no transition on load
+    });
+});
+
+// Swiper configuration
 var swiper = new Swiper(".swiper", {
     effect: "coverflow",
     grabCursor: true,
@@ -237,7 +246,7 @@ swiper.on('slideChangeTransitionStart', () => {
         if (!image) return;
 
         // Calculate the percentage offset for the image
-        const offset = (index - activeIndex) * -50; // 50% speed
+        const offset = (index - activeIndex) * 15; // 50% speed
         image.style.transition = 'transform 0.6s ease-out'; // Smooth transition
         image.style.transform = `translateX(${offset}%)`; // Offset the image
     });
