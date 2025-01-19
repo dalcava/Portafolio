@@ -275,7 +275,7 @@ swiper.on('slideChangeTransitionEnd', () => {
 });
 
 // Handle Play/Pause Button Click
-/* const playPauseButton = document.querySelector(".swiper-pause");
+const playPauseButton = document.querySelector(".swiper-pause");
 let isPlaying = false; // State to track if the GIF is playing
 
 playPauseButton.addEventListener("click", () => {
@@ -296,7 +296,7 @@ playPauseButton.addEventListener("click", () => {
             activeGif.style.opacity = "0"; // Hide GIF
         }
     }
-});  */
+});
 
 // Add click events for navigation buttons to reset autoplay
 document.querySelector(".swiper-button-prev").addEventListener("click", function () {
@@ -459,15 +459,19 @@ document.addEventListener("mousemove", (e) => {
         customCursor.style.zIndex = "0";
     }
     // Check if the target is a swiper slide
-    else if (target.classList.contains("active-gif" || "imagen-contenida")) {
+    else if (target.classList.contains("swiper-slide")) {
         const rect = target.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
 
         // Adjust cursor position and appearance
+        customCursor.style.left = `${centerX}px`;
+        customCursor.style.top = `${centerY}px`;
+        customCursor.style.transform = `translate(-50%, -50%) scale(1.25)`;
         customCursor.style.backgroundColor = "#BC244A";
         customCursor.style.borderRadius = "24px";
         customCursor.style.transition = "transform 0.15s ease-out, width 0.1s ease, background-color 0.3s ease, border-radius 0.3s ease";
+        customCursor.style.zIndex = "0";
     }
     // Check if the element has a pointer cursor
     else if (window.getComputedStyle(target).cursor === "pointer") {

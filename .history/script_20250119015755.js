@@ -215,7 +215,7 @@ var swiper = new Swiper(".swiper", {
         disableOnInteraction: false,
         reverseDirection: true,
     },
-    simulateTouch: true, // Enable touch interactions
+    simulateTouch: false, // Enable touch interactions
     allowTouchMove: true, // Allow touch move for touch devices
 });
 
@@ -275,7 +275,7 @@ swiper.on('slideChangeTransitionEnd', () => {
 });
 
 // Handle Play/Pause Button Click
-/* const playPauseButton = document.querySelector(".swiper-pause");
+const playPauseButton = document.querySelector(".swiper-pause");
 let isPlaying = false; // State to track if the GIF is playing
 
 playPauseButton.addEventListener("click", () => {
@@ -296,7 +296,7 @@ playPauseButton.addEventListener("click", () => {
             activeGif.style.opacity = "0"; // Hide GIF
         }
     }
-});  */
+});
 
 // Add click events for navigation buttons to reset autoplay
 document.querySelector(".swiper-button-prev").addEventListener("click", function () {
@@ -349,54 +349,8 @@ document.querySelectorAll(".swiper-slide").forEach((slide) => {
 
 // Create the custom cursor element
 const customCursor = document.createElement("div");
-const customCursorExist = document.querySelector(".custom-cursor");
-if (!customCursorExist) {
-    console.error("Custom cursor element is missing in the DOM.");
-}
 customCursor.classList.add("custom-cursor");
 document.body.appendChild(customCursor);
-
-const interactiveElements = document.querySelectorAll(".next-project-btn, .swiper-button-next, .swiper-button-prev, .swiper-pagination-bullet");
-
-document.addEventListener("mousemove", (e) => {
-    let isNearInteractive = false;
-
-    interactiveElements.forEach((element) => {
-        const rect = element.getBoundingClientRect();
-
-        // Check proximity to the element (adjust radius for "magnetic" effect)
-        const proximityRadius = 300; // Large radius for detection
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        const distance = Math.sqrt(
-            Math.pow(e.clientX - centerX, 2) + Math.pow(e.clientY - centerY, 2)
-        );
-
-        if (distance < proximityRadius) {
-            isNearInteractive = true;
-
-            // Stronger pull effect near the element
-            const pullStrength = Math.min(50, 1 - distance / proximityRadius); // Stronger near the center
-            const targetX = centerX + (e.clientX - centerX) * pullStrength;
-            const targetY = centerY + (e.clientY - centerY) * pullStrength;
-
-            customCursor.style.left = `${targetX}px`;
-            customCursor.style.top = `${targetY}px`;
-            customCursor.style.transform = `translate(-50%, -50%) scale(1.5)`;
-            customCursor.style.backgroundColor = "rgba(255, 255, 255, 0.1)";
-            customCursor.style.transition = "transform 0.2s ease-out, background-color 0.3s ease";
-        }
-    });
-
-    if (!isNearInteractive) {
-        // Reset cursor to default behavior
-        customCursor.style.left = `${e.clientX}px`;
-        customCursor.style.top = `${e.clientY}px`;
-        customCursor.style.transform = `translate(-50%, -50%) scale(1)`;
-        customCursor.style.backgroundColor = "#BC244A"; // Default color
-        customCursor.style.transition = "transform 0.2s ease-out, background-color 0.3s ease";
-    }
-});
 
 // Update the position of the custom cursor
 document.addEventListener("mousemove", (e) => {
@@ -421,79 +375,47 @@ document.addEventListener("mouseover", (e) => {
 document.addEventListener("mousemove", (e) => {
     const target = e.target;
 
-    if (!customCursor) return;
-
-    // Update cursor position
+    // Actualiza la posición del cursor
     customCursor.style.left = `${e.clientX}px`;
     customCursor.style.top = `${e.clientY}px`;
 
-    // Check if the target is "Next Project" button
+    // Verifica si es el botón "Next Project"
     if (target.classList.contains("next-project-btn")) {
         const rect = target.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
 
-        // Center the cursor and adjust its appearance
+        // Centra el cursor y ajusta el tamaño
         customCursor.style.left = `${centerX}px`;
         customCursor.style.top = `${centerY}px`;
-        customCursor.style.transform = `translate(-50%, -50%) scale(1.25)`;
-        customCursor.style.width = "98px";
-        customCursor.style.backgroundColor = "#BC244A";
-        customCursor.style.borderRadius = "24px";
-        customCursor.style.transition = "transform 0.15s ease-out, width 0.1s ease, background-color 0.3s ease, border-radius 0.3s ease";
+        customCursor.style.transform = `translate(-50%, -50%) scale(1.5)`;
+        customCursor.style.width = "88px"
+        customCursor.style.backgroundColor = "#052240";
+        customCursor.style.borderRadius = "24px%";
+        customCursor.transition= "transform 0.15s ease-out, width 0.5s ease-out, background-color 0.3s ease, border-radius 0.3s ease, z-index 0.3s ease"
         customCursor.style.zIndex = "0";
     }
-    // Check if the target is a pagination bullet
-    else if (target.classList.contains("swiper-pagination-bullet")) {
-        const rect = target.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-
-        // Adjust cursor position and appearance
-        customCursor.style.left = `${centerX}px`;
-        customCursor.style.top = `${centerY}px`;
-        customCursor.style.transform = `translate(-50%, -50%) scale(1.25)`;
-        customCursor.style.backgroundColor = "#BC244A";
-        customCursor.style.borderRadius = "24px";
-        customCursor.style.transition = "transform 0.15s ease-out, width 0.1s ease, background-color 0.3s ease, border-radius 0.3s ease";
-        customCursor.style.zIndex = "0";
-    }
-    // Check if the target is a swiper slide
-    else if (target.classList.contains("active-gif" || "imagen-contenida")) {
-        const rect = target.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-
-        // Adjust cursor position and appearance
-        customCursor.style.backgroundColor = "#BC244A";
-        customCursor.style.borderRadius = "24px";
-        customCursor.style.transition = "transform 0.15s ease-out, width 0.1s ease, background-color 0.3s ease, border-radius 0.3s ease";
-    }
-    // Check if the element has a pointer cursor
+    // Verifica si el elemento tiene cursor pointer
     else if (window.getComputedStyle(target).cursor === "pointer") {
         const rect = target.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
 
-        // Adjust cursor appearance for pointer elements
+        // Ajusta el cursor alrededor del elemento con cursor pointer
         customCursor.style.transform = `translate(-50%, -50%) scale(1.5)`;
         customCursor.style.left = `${centerX}px`;
         customCursor.style.top = `${centerY}px`;
-        customCursor.style.backgroundColor = "#BC244A";
-        customCursor.style.borderRadius = "24px";
-        customCursor.style.transition = "transform 0.15s ease-out, background-color 0.3s ease, border-radius 0.3s ease";
-        customCursor.style.zIndex = "0";
+        customCursor.style.backgroundColor = "rgba(255, 255, 255, 0.1)";
     } else {
-        // Reset the cursor for non-interactive elements
+        // Resetea el cursor
         customCursor.style.transform = `translate(-50%, -50%) scale(1)`;
-        customCursor.style.backgroundColor = "#BC244A"; // Default color
-        customCursor.style.borderRadius = "12px"; // Default shape
-        customCursor.style.width = "40px";
+        customCursor.style.backgroundColor = "#BC244A"; // Color predeterminado
+        customCursor.style.borderRadius = "12px"; // Sin borde
+        customCursor.style.width = "40px"
+        customCursor.transition= "transform 0.25s ease-out, background-color 0.3s ease, border-radius 0.3s ease, z-index 0.3s ease"
         customCursor.style.zIndex = "1000";
-        customCursor.style.transition = "transform 0.25s ease-out, background-color 0.3s ease, border-radius 0.3s ease, z-index 0.3s ease";
     }
 });
-
 
 // Ensure the pointer effect is removed on mouse leave
 document.addEventListener("mouseout", () => {

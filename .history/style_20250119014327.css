@@ -72,10 +72,10 @@ body{
     height: 480px;
     clip-path: polygon(
         0% 0%, 0% calc(50% + 180px), /* Inicio de la izquierda */
-        24% calc(50% + 180px), 24% calc(50% + 72px + 180px), /* Fin del rectángulo izquierdo */
+        32% calc(50% + 180px), 32% calc(50% + 72px + 180px), /* Fin del rectángulo izquierdo */
         0% calc(50% + 72px + 180px), 100% 105%, /* Continúa normal */
         100% 100%, 100% calc(50% + 72px + 180px), /* Inicio de la derecha */
-        calc(100% - 10%) calc(50% + 72px + 180px), calc(100% - 10%) calc(50% + 180px), /* Fin del rectángulo derecho */
+        calc(100% - 16%) calc(50% + 72px + 180px), calc(100% - 16%) calc(50% + 180px), /* Fin del rectángulo derecho */
         100% calc(50% + 180px), 100% 0% /* Finaliza el clipping */
     );
     border-radius: 0px; /* Aplica bordes redondeados globalmente */
@@ -207,13 +207,11 @@ body{
     gap: 20px;
     z-index: 10;
     width: 100%;
-    cursor: none;
 }
 
 .swiper-pagination {
     display: flex;
     gap: 10px; /* Espacio entre los bullets */
-    cursor: none;
 }
 
 .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
@@ -222,7 +220,6 @@ body{
     left: 0;
     width: 100%;
     width: auto;
-    cursor: none;
 }
 
 .swiper-pagination-bullet {
@@ -232,7 +229,6 @@ body{
     border-radius: 2px;
     transition: transform 0.3s ease, opacity 0.3s ease;
     opacity: 1;
-    cursor: none;
 }
 
 /* Bullet activo */
@@ -242,15 +238,13 @@ body{
     opacity: 1; /* Totalmente visible */
     border-radius: 8px;
     transition: transform 0.4s ease-out;
-    cursor: none;
 }
 .swiper-pagination-bullet:hover {
-    background-color: var(--blanco); /* Color del bullet activo */
+    background-color: var(--Magenta-oscuro); /* Color del bullet activo */
     transform: scaleX(1.75) scaleY(1.5) translateX(2px); /* Aumenta ligeramente el tamaño del bullet activo */
     opacity: 1; /* Totalmente visible */
     transition: transform 0.24s ease-out background-color 0.24 ease-in;
     border-radius: 4px;
-    cursor: none;
 }
 
 .next-project-btn {
@@ -261,18 +255,17 @@ body{
     font-size: var(--font-size-S);
     font-weight: 400;
     line-height: 1.5;
-    cursor: none;
+    cursor: pointer;
     text-transform: capitalize;
     transition: color 0.3s ease;
     /* transform: translateX(340px); */
     pointer-events: auto;
     position: relative;
-    left: 42%;
+    left: 65%;
 }
 
 .next-project-btn:hover {
-    color: var(--blanco); /* Cambia de color al pasar el cursor */
-    transition: color 0s;
+    color: var(--Magenta); /* Cambia de color al pasar el cursor */
 }
 
 .swiper-button-container {
@@ -289,33 +282,27 @@ body{
 .swiper-button-prev, .swiper-button-next {
     background: none;
     border: none;
-    color: rgb(255, 255, 255, 0);
-    cursor: none;
+    color: var(--blanco);
+    cursor: pointer;
     width: 40px;
     height: 24px;
     display: block;
+    cursor: none;
     transition: transform 0.3s ease, background-color 0.3s ease;
     pointer-events: auto;
     position: relative;
     transform: scale(.75);
+    cursor: pointer;
 }
-/* .swiper-pause img {
+.swiper-pause img {
     width: 24px;
     height: 24px;
     cursor: pointer;
-} */
+}
 .swiper-pause:hover img {
     transform: scale(1.25);
     transition: transform 0.15s ease-in;
 }
-
-.swiper-button-prev img:hover,
-.swiper-button-next img:hover,
-.swiper-pause img:hover {
-    filter: brightness(0) invert(1); /* Inverts the color */
-    cursor: pointer;
-}
-
 .new-icon {
     width: 24px; /* Ensure SVG scales properly */
     height: auto;
@@ -371,7 +358,7 @@ body{
     pointer-events: none;
     z-index: 9999; /* Ensure it's on top by default */
     transform: translate(-50%, -50%);
-    transition: transform 0.25s ease-out, width 0.25s ease-out, background-color 0.3s ease, border-radius 0.3s ease, z-index 0.3s ease;
+    transition: transform 0.1s ease-out, background-color 0.3s ease, border-radius 0.3s ease, z-index 0.3s ease;
 
     display: flex;
     align-items: center;
@@ -399,42 +386,31 @@ body{
         height: 400px;
         clip-path: polygon(
             0% 0%, 0% calc(43% + 180px), /* Inicio de la izquierda */
-            20% calc(43% + 180px), 20% calc(43% + 72px + 180px), /* Fin del rectángulo izquierdo */
+            32% calc(43% + 180px), 32% calc(43% + 72px + 180px), /* Fin del rectángulo izquierdo */
             0% calc(43% + 72px + 180px), 100% 105%, /* Continúa normal */
             100% 100%, 100% calc(43% + 72px + 180px), /* Inicio de la derecha */
-            calc(100% - 10%) calc(43% + 72px + 180px), calc(100% - 10%) calc(43% + 180px), /* Fin del rectángulo derecho */
+            calc(100% - 16%) calc(43% + 72px + 180px), calc(100% - 16%) calc(43% + 180px), /* Fin del rectángulo derecho */
             100% calc(43% + 180px), 100% 0% /* Finaliza el clipping */
         );
     }
-    .swiper-slide img {
-        transform: translateX(389px);
-    }
-    .image-container {
-        transform: translateX(389px);
-    }
-    
     .control-container {
         transform: translateY(-35px);
-        padding-top: 7px;
+    }
+    .next-project-btn {
+        left: 58%;
+        cursor: none;
     }
     .swiper-button-container {
         gap: 48px;
     }
     .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
-        transform: scale(0.65);
-        cursor: none;
+        transform: scale(0.75);
     }
     .swiper-button-prev, .swiper-button-next {
         transform: scale(.5);
     }
     .swiper-pause img {
         transform: scale(0.75) translateX(-2px) translateY(-3px);
-    }
-    .pagination-container {
-        left: -12px;
-    }
-    .next-project-btn {
-        left: 37%;
     }
 }
 

@@ -72,7 +72,7 @@ body{
     height: 480px;
     clip-path: polygon(
         0% 0%, 0% calc(50% + 180px), /* Inicio de la izquierda */
-        24% calc(50% + 180px), 24% calc(50% + 72px + 180px), /* Fin del rectángulo izquierdo */
+        26% calc(50% + 180px), 26% calc(50% + 72px + 180px), /* Fin del rectángulo izquierdo */
         0% calc(50% + 72px + 180px), 100% 105%, /* Continúa normal */
         100% 100%, 100% calc(50% + 72px + 180px), /* Inicio de la derecha */
         calc(100% - 10%) calc(50% + 72px + 180px), calc(100% - 10%) calc(50% + 180px), /* Fin del rectángulo derecho */
@@ -267,7 +267,7 @@ body{
     /* transform: translateX(340px); */
     pointer-events: auto;
     position: relative;
-    left: 42%;
+    left: 45%;
 }
 
 .next-project-btn:hover {
@@ -399,29 +399,21 @@ body{
         height: 400px;
         clip-path: polygon(
             0% 0%, 0% calc(43% + 180px), /* Inicio de la izquierda */
-            20% calc(43% + 180px), 20% calc(43% + 72px + 180px), /* Fin del rectángulo izquierdo */
+            17% calc(43% + 180px), 17% calc(43% + 72px + 180px), /* Fin del rectángulo izquierdo */
             0% calc(43% + 72px + 180px), 100% 105%, /* Continúa normal */
             100% 100%, 100% calc(43% + 72px + 180px), /* Inicio de la derecha */
-            calc(100% - 10%) calc(43% + 72px + 180px), calc(100% - 10%) calc(43% + 180px), /* Fin del rectángulo derecho */
+            calc(100% - 16%) calc(43% + 72px + 180px), calc(100% - 16%) calc(43% + 180px), /* Fin del rectángulo derecho */
             100% calc(43% + 180px), 100% 0% /* Finaliza el clipping */
         );
     }
-    .swiper-slide img {
-        transform: translateX(389px);
-    }
-    .image-container {
-        transform: translateX(389px);
-    }
-    
     .control-container {
         transform: translateY(-35px);
-        padding-top: 7px;
     }
     .swiper-button-container {
         gap: 48px;
     }
     .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
-        transform: scale(0.65);
+        transform: scale(0.75);
         cursor: none;
     }
     .swiper-button-prev, .swiper-button-next {
@@ -431,10 +423,7 @@ body{
         transform: scale(0.75) translateX(-2px) translateY(-3px);
     }
     .pagination-container {
-        left: -12px;
-    }
-    .next-project-btn {
-        left: 37%;
+        left: -8px;
     }
 }
 

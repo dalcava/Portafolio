@@ -459,7 +459,7 @@ document.addEventListener("mousemove", (e) => {
         customCursor.style.zIndex = "0";
     }
     // Check if the target is a swiper slide
-    else if (target.classList.contains("active-gif" || "imagen-contenida")) {
+    else if (target.classList.contains("active-gif")) {
         const rect = target.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;

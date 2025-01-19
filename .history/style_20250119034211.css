@@ -399,7 +399,7 @@ body{
         height: 400px;
         clip-path: polygon(
             0% 0%, 0% calc(43% + 180px), /* Inicio de la izquierda */
-            20% calc(43% + 180px), 20% calc(43% + 72px + 180px), /* Fin del rectángulo izquierdo */
+            17% calc(43% + 180px), 17% calc(43% + 72px + 180px), /* Fin del rectángulo izquierdo */
             0% calc(43% + 72px + 180px), 100% 105%, /* Continúa normal */
             100% 100%, 100% calc(43% + 72px + 180px), /* Inicio de la derecha */
             calc(100% - 10%) calc(43% + 72px + 180px), calc(100% - 10%) calc(43% + 180px), /* Fin del rectángulo derecho */
@@ -415,7 +415,6 @@ body{
     
     .control-container {
         transform: translateY(-35px);
-        padding-top: 7px;
     }
     .swiper-button-container {
         gap: 48px;

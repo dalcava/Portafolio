@@ -459,12 +459,14 @@ document.addEventListener("mousemove", (e) => {
         customCursor.style.zIndex = "0";
     }
     // Check if the target is a swiper slide
-    else if (target.classList.contains("active-gif" || "imagen-contenida")) {
+    else if (target.classList.contains("active-gif")) {
         const rect = target.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
 
         // Adjust cursor position and appearance
+        customCursor.style.left = `${centerX}px`;
+        customCursor.style.top = `${centerY}px`;
         customCursor.style.backgroundColor = "#BC244A";
         customCursor.style.borderRadius = "24px";
         customCursor.style.transition = "transform 0.15s ease-out, width 0.1s ease, background-color 0.3s ease, border-radius 0.3s ease";
