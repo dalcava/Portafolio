@@ -346,36 +346,21 @@ document.addEventListener("touchmove", (e) => {
 });
 
 // Remove the cursor on touch end
-// Show or hide the custom cursor during touch events
-document.addEventListener("touchstart", (e) => {
-    customCursor.style.display = "block"; // Show custom cursor on touch start
-    const touch = e.touches[0];
-    if (touch) {
-        customCursor.style.left = `${touch.clientX}px`;
-        customCursor.style.top = `${touch.clientY}px`;
-    }
-});
-
-document.addEventListener("touchmove", (e) => {
-    const touch = e.touches[0];
-    if (touch) {
-        customCursor.style.left = `${touch.clientX}px`;
-        customCursor.style.top = `${touch.clientY}px`;
-    }
-});
-
 document.addEventListener("touchend", () => {
-    customCursor.style.display = "none"; // Hide custom cursor on touch end
+    customCursor.style.display = "none"; // Hide the custom cursor on touch end
 });
 
-// Enable touch interactions for the mask effect
+document.addEventListener("touchstart", () => {
+    customCursor.style.display = "block"; // Show the custom cursor on touch start
+});
+
+// Ensure touch interactions trigger the mask effect
 document.querySelectorAll(".swiper-slide").forEach((slide) => {
     const staticImg = slide.querySelector(".static-img"); // Static image
     const activeGif = slide.querySelector(".active-gif"); // Active GIF
 
-    // Trigger mask effect during touchmove
     slide.addEventListener("touchmove", (e) => {
-        if (!activeGif) return; // Skip if no active GIF
+        if (!activeGif) return;
 
         const touch = e.touches[0];
         const rect = slide.getBoundingClientRect();
@@ -383,20 +368,19 @@ document.querySelectorAll(".swiper-slide").forEach((slide) => {
         const y = ((touch.clientY - rect.top) / rect.height) * 75; // Y percentage
 
         activeGif.style.maskImage = `radial-gradient(circle at ${x}% ${y}%, black 20%, transparent 21%)`;
-        activeGif.style.webkitMaskImage = `radial-gradient(circle at ${x}% ${y}%, black 28%, transparent 28%)`;
-        activeGif.style.opacity = "1"; // Show GIF
-        staticImg.style.opacity = "1"; // Keep static image in the background
+        activeGif.style.webkitMaskImage = `radial-gradient(circle at ${x}% ${y}%, black 20%, transparent 21%)`;
+        activeGif.style.opacity = "1";
+        staticImg.style.opacity = "1";
     });
 
-    // Reset the mask effect on touchend
     slide.addEventListener("touchend", () => {
-        if (!activeGif) return; // Skip if no active GIF
+        if (!activeGif) return;
 
         activeGif.style.transition = "mask-image 1s ease-out, -webkit-mask-image 1s ease-out";
-        activeGif.style.maskImage = "none"; // Remove mask
-        activeGif.style.webkitMaskImage = "none"; // Remove mask
-        activeGif.style.opacity = "0"; // Hide GIF
-        staticImg.style.opacity = "1"; // Ensure static image remains visible
+        activeGif.style.maskImage = "none";
+        activeGif.style.webkitMaskImage = "none";
+        activeGif.style.opacity = "0"; // Hide the GIF
+        staticImg.style.opacity = "1"; // Ensure the static image remains visible
     });
 });
 

@@ -379,11 +379,11 @@ document.querySelectorAll(".swiper-slide").forEach((slide) => {
 
         const touch = e.touches[0];
         const rect = slide.getBoundingClientRect();
-        const x = ((touch.clientX - rect.left) / rect.width) * 75; // X percentage
-        const y = ((touch.clientY - rect.top) / rect.height) * 75; // Y percentage
+        const x = ((touch.clientX - rect.left) / rect.width) * 100; // X percentage
+        const y = ((touch.clientY - rect.top) / rect.height) * 100; // Y percentage
 
         activeGif.style.maskImage = `radial-gradient(circle at ${x}% ${y}%, black 20%, transparent 21%)`;
-        activeGif.style.webkitMaskImage = `radial-gradient(circle at ${x}% ${y}%, black 28%, transparent 28%)`;
+        activeGif.style.webkitMaskImage = `radial-gradient(circle at ${x}% ${y}%, black 20%, transparent 21%)`;
         activeGif.style.opacity = "1"; // Show GIF
         staticImg.style.opacity = "1"; // Keep static image in the background
     });

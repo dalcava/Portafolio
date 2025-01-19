@@ -391,9 +391,6 @@ body{
     .next-project-btn {
         left: 58%;
     }
-    .swiper-button-container {
-        gap: 48px;
-    }
     .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
         transform: scale(0.75);
     }

@@ -386,26 +386,11 @@ body{
         );
     }
     .control-container {
-        transform: translateY(-35px);
-    }
-    .next-project-btn {
-        left: 58%;
-    }
-    .swiper-button-container {
-        gap: 48px;
-    }
-    .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
-        transform: scale(0.75);
-    }
-    .swiper-button-prev, .swiper-button-next {
-        transform: scale(.5);
-    }
-    .swiper-pause img {
-        transform: scale(0.75) translateX(-2px) translateY(-3px);
+        transform: translateY(-36px);
     }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1100px) {
 
 }
 

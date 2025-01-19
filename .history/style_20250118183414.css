@@ -367,45 +367,17 @@ body{
     border-radius: 50%; /* Turn into a circle */
 }
 
+/*--mobile: 768px;
+--tablet: 1024px;
+--desktop: 1440px;
+--desktopXL: 1920px;
+*/
 
-@media (max-width: 1440px) {
-    .boolean-container {
-        padding-top: 200px;
-    }   
-    .swiper {
-        position: relative;
-        width: 100%;
-        height: 400px;
-        clip-path: polygon(
-            0% 0%, 0% calc(43% + 180px), /* Inicio de la izquierda */
-            32% calc(43% + 180px), 32% calc(43% + 72px + 180px), /* Fin del rectángulo izquierdo */
-            0% calc(43% + 72px + 180px), 100% 105%, /* Continúa normal */
-            100% 100%, 100% calc(43% + 72px + 180px), /* Inicio de la derecha */
-            calc(100% - 16%) calc(43% + 72px + 180px), calc(100% - 16%) calc(43% + 180px), /* Fin del rectángulo derecho */
-            100% calc(43% + 180px), 100% 0% /* Finaliza el clipping */
-        );
-    }
-    .control-container {
-        transform: translateY(-35px);
-    }
-    .next-project-btn {
-        left: 58%;
-    }
-    .swiper-button-container {
-        gap: 48px;
-    }
-    .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
-        transform: scale(0.75);
-    }
-    .swiper-button-prev, .swiper-button-next {
-        transform: scale(.5);
-    }
-    .swiper-pause img {
-        transform: scale(0.75) translateX(-2px) translateY(-3px);
-    }
+@media (max-width: var(--desktop)) {
+
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1100px) {
 
 }
 
