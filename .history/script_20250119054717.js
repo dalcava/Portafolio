@@ -91,9 +91,9 @@ class Particle {
         // Calculate gradient color
         if (distance < mouse.radius) {
             let t = distance / mouse.radius; // Normalize distance (0 near the mouse, 1 at the edge)
-            this.color = interpolateColor('#BC244A', '#F6F6F6', t); // Interpolate color
+            this.color = interpolateColor('#f6f6f6', '#DEE1E4', t);
         } else {
-            this.color = '#E4E7E9'; // Default color
+            this.color = '#DEE1E4'; // Default color
         }
     
         // Repel away from mouse if within radius

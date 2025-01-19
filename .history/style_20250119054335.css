@@ -66,7 +66,7 @@ body {
     overflow: hidden;
     flex-direction: column;
     cursor: none;
-    gap: 32px;
+    gap: 56px;
 }
 
 /* Header Section */
@@ -91,7 +91,7 @@ body {
     cursor: none;
     background-color: var(--Magenta);
     margin-left: 48px;
-    transform: translateY(56px);
+    transform: translateY(72px);
 }
 
 .header-content {
@@ -105,7 +105,7 @@ body {
     position: relative;
     z-index: 10;
     width: 66%;
-    height: 144px;
+    height: 160px;
 }
 /* Icon Buttons */
 .icon-buttons {

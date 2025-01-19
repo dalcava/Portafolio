@@ -91,7 +91,7 @@ body {
     cursor: none;
     background-color: var(--Magenta);
     margin-left: 48px;
-    transform: translateY(56px);
+    transform: translateY(72px);
 }
 
 .header-content {
