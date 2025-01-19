@@ -228,20 +228,11 @@ var swiper = new Swiper(".swiper", {
 });
 
 // Listen for changes to the active slide
-// Ensure initial positions for all images
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.swiper-slide .imagen-contenida').forEach((image) => {
-        image.style.transform = 'translateX(0%)'; // Set initial position
-        image.style.transition = 'transform 0.5s ease-out'; // Ensure smooth transitions
-    });
-});
-
-// Handle slide transitions
 swiper.on('slideChangeTransitionStart', () => {
     const activeIndex = swiper.activeIndex;
     const previousIndex = swiper.previousIndex;
 
-    // Loop through all slides
+    // Recorrer todos los slides
     document.querySelectorAll('.swiper-slide').forEach((slide, index) => {
         const image = slide.querySelector('.imagen-contenida');
         if (!image) return;
@@ -251,20 +242,19 @@ swiper.on('slideChangeTransitionStart', () => {
             if (activeIndex > previousIndex) {
                 // Going to the next slide
                 image.style.transition = 'transform 0.5s ease-out'; // Smooth transition
-                image.style.transform = `translateX(-1%)`; // Shift slightly left
+                image.style.transform = `translateX(-2%)`; // Shift to the right
             } else if (activeIndex < previousIndex) {
                 // Going to the previous slide
                 image.style.transition = 'transform 0.5s ease-out'; // Smooth transition
-                image.style.transform = `translateX(1%)`; // Shift slightly right
+                image.style.transform = `translateX(2%)`; // Shift to the left
             }
         } else {
             // Reset inactive slides
-            image.style.transition = 'transform 1.5s ease-out';
+            image.style.transition = 'transform 0.5s ease-out';
             image.style.transform = 'translateX(0%)';
         }
     });
 });
-
 
 swiper.on('slideChangeTransitionEnd', () => {
     // Reset all images to their original position at the end of the transition

@@ -108,23 +108,6 @@ body{
     cursor: none;
 }
 
-.image-container {
-    position: relative;
-    width: 100%; /* Asegura que ocupe todo el espacio asignado */
-    height: 100%;
-    overflow: hidden; /* Evita que el zoom de la imagen salga del contenedor */
-    border-radius: 2px; /* Bordes redondeados */
-    transform: translateX(312px);
-}
-
-/* Estilo de las imágenes dentro del contenedor */
-.image-container .imagen-contenida {
-    width: 100%; /* Ocupa todo el ancho del contenedor */
-    height: 100%; /* Ocupa toda la altura del contenedor */
-    object-fit: cover; /* Asegura que las imágenes llenen el espacio sin deformarse */
-    transition: transform 0.4s ease; /* Suaviza el efecto de zoom */
-}
-
 .distorted {
     filter: url(#wave-effect); /* Placeholder for SVG filter (to be added dynamically) */
 }

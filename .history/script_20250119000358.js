@@ -209,7 +209,7 @@ var swiper = new Swiper(".swiper", {
         prevEl: ".swiper-button-prev", // Left arrow button
     },
     autoplay: {
-        delay: 12000, // Moves every 12 seconds
+        delay: 12000, // Moves every 8 seconds
         disableOnInteraction: false, // Prevents autoplay from stopping after interaction
         reverseDirection: true, // Makes autoplay go in reverse
     },
@@ -228,52 +228,26 @@ var swiper = new Swiper(".swiper", {
 });
 
 // Listen for changes to the active slide
-// Ensure initial positions for all images
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.swiper-slide .imagen-contenida').forEach((image) => {
-        image.style.transform = 'translateX(0%)'; // Set initial position
-        image.style.transition = 'transform 0.5s ease-out'; // Ensure smooth transitions
-    });
-});
-
-// Handle slide transitions
 swiper.on('slideChangeTransitionStart', () => {
     const activeIndex = swiper.activeIndex;
-    const previousIndex = swiper.previousIndex;
 
-    // Loop through all slides
+    // Recorrer todos los slides
     document.querySelectorAll('.swiper-slide').forEach((slide, index) => {
         const image = slide.querySelector('.imagen-contenida');
         if (!image) return;
 
+        // Si la imagen es el slide que se está volviendo activo
         if (index === activeIndex) {
-            // Slide is becoming active
-            if (activeIndex > previousIndex) {
-                // Going to the next slide
-                image.style.transition = 'transform 0.5s ease-out'; // Smooth transition
-                image.style.transform = `translateX(-1%)`; // Shift slightly left
-            } else if (activeIndex < previousIndex) {
-                // Going to the previous slide
-                image.style.transition = 'transform 0.5s ease-out'; // Smooth transition
-                image.style.transform = `translateX(1%)`; // Shift slightly right
-            }
+            // Mover la imagen al 50% de la velocidad del carrusel
+            image.style.transition = 'transform 0.25s ease-out'; // Animación suave
+            image.style.transform = `translateX(-10%)`; // Desplazamiento relativo
         } else {
-            // Reset inactive slides
-            image.style.transition = 'transform 1.5s ease-out';
-            image.style.transform = 'translateX(0%)';
+            // Resetear cualquier transformación para las imágenes inactivas
+            image.style.transition = 'transform 0.6s ease-out';
+            image.style.transform = `translateX(0%)`;
         }
     });
 });
-
-
-swiper.on('slideChangeTransitionEnd', () => {
-    // Reset all images to their original position at the end of the transition
-    document.querySelectorAll('.swiper-slide .imagen-contenida').forEach((image) => {
-        image.style.transition = ''; // Clear transitions
-        image.style.transform = 'translateX(0%)'; // Reset transform
-    });
-});
-
 
 // Al finalizar la transición, reseteamos la transformación de las imágenes
 swiper.on('slideChangeTransitionEnd', () => {

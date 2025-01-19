@@ -115,6 +115,7 @@ body{
     overflow: hidden; /* Evita que el zoom de la imagen salga del contenedor */
     border-radius: 2px; /* Bordes redondeados */
     transform: translateX(312px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para resaltar el contenedor */
 }
 
 /* Estilo de las imágenes dentro del contenedor */
@@ -123,6 +124,7 @@ body{
     height: 100%; /* Ocupa toda la altura del contenedor */
     object-fit: cover; /* Asegura que las imágenes llenen el espacio sin deformarse */
     transition: transform 0.4s ease; /* Suaviza el efecto de zoom */
+    transform: scale(1.1); /* Ajusta el zoom al 10% */
 }
 
 .distorted {

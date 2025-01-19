@@ -259,7 +259,7 @@ swiper.on('slideChangeTransitionStart', () => {
             }
         } else {
             // Reset inactive slides
-            image.style.transition = 'transform 1.5s ease-out';
+            image.style.transition = 'transform 0.5s ease-out';
             image.style.transform = 'translateX(0%)';
         }
     });

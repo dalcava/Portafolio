@@ -108,21 +108,24 @@ body{
     cursor: none;
 }
 
-.image-container {
+.image-frame {
     position: relative;
-    width: 100%; /* Asegura que ocupe todo el espacio asignado */
+    width: 100%;
     height: 100%;
-    overflow: hidden; /* Evita que el zoom de la imagen salga del contenedor */
-    border-radius: 2px; /* Bordes redondeados */
-    transform: translateX(312px);
+    overflow: hidden; /* Asegura que el zoom no se salga del marco */
+    border: 4px solid var(--Azul-oscuro); /* Borde del marco */
+    border-radius: 8px; /* Bordes redondeados */
 }
 
-/* Estilo de las imágenes dentro del contenedor */
-.image-container .imagen-contenida {
-    width: 100%; /* Ocupa todo el ancho del contenedor */
-    height: 100%; /* Ocupa toda la altura del contenedor */
-    object-fit: cover; /* Asegura que las imágenes llenen el espacio sin deformarse */
-    transition: transform 0.4s ease; /* Suaviza el efecto de zoom */
+.image-frame img {
+    transition: transform 0.3s ease-in-out; /* Suaviza el zoom */
+    width: 100%; /* Asegura que las imágenes llenen el marco */
+    height: 100%;
+    object-fit: cover; /* Mantiene el contenido dentro del marco */
+}
+
+.image-frame:hover img {
+    transform: scale(1.1); /* Aplica un zoom del 10% */
 }
 
 .distorted {

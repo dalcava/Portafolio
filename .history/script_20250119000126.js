@@ -190,7 +190,7 @@ var swiper = new Swiper(".swiper", {
     slidesPerView: "auto",
     coverflowEffect: {
         rotate: 0, // No rotation
-        stretch: -175, // Adjusts slide spacing
+        stretch: -150, // Adjusts slide spacing
         depth: 855, // Perspective depth
         modifier: 1,
         slideShadows: false, // No shadows
@@ -209,7 +209,7 @@ var swiper = new Swiper(".swiper", {
         prevEl: ".swiper-button-prev", // Left arrow button
     },
     autoplay: {
-        delay: 12000, // Moves every 12 seconds
+        delay: 12000, // Moves every 8 seconds
         disableOnInteraction: false, // Prevents autoplay from stopping after interaction
         reverseDirection: true, // Makes autoplay go in reverse
     },
@@ -228,58 +228,25 @@ var swiper = new Swiper(".swiper", {
 });
 
 // Listen for changes to the active slide
-// Ensure initial positions for all images
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.swiper-slide .imagen-contenida').forEach((image) => {
-        image.style.transform = 'translateX(0%)'; // Set initial position
-        image.style.transition = 'transform 0.5s ease-out'; // Ensure smooth transitions
-    });
-});
-
-// Handle slide transitions
 swiper.on('slideChangeTransitionStart', () => {
     const activeIndex = swiper.activeIndex;
-    const previousIndex = swiper.previousIndex;
 
-    // Loop through all slides
+    // Adjust the position of all slides based on the active slide
     document.querySelectorAll('.swiper-slide').forEach((slide, index) => {
         const image = slide.querySelector('.imagen-contenida');
         if (!image) return;
 
-        if (index === activeIndex) {
-            // Slide is becoming active
-            if (activeIndex > previousIndex) {
-                // Going to the next slide
-                image.style.transition = 'transform 0.5s ease-out'; // Smooth transition
-                image.style.transform = `translateX(-1%)`; // Shift slightly left
-            } else if (activeIndex < previousIndex) {
-                // Going to the previous slide
-                image.style.transition = 'transform 0.5s ease-out'; // Smooth transition
-                image.style.transform = `translateX(1%)`; // Shift slightly right
-            }
-        } else {
-            // Reset inactive slides
-            image.style.transition = 'transform 1.5s ease-out';
-            image.style.transform = 'translateX(0%)';
-        }
+        // Calculate the percentage offset for the image
+        const offset = (index - activeIndex) * 15; // 50% speed
+        image.style.transition = 'transform 0.6s ease-out'; // Smooth transition
+        image.style.transform = `translateX(${offset}%)`; // Offset the image
     });
 });
 
-
-swiper.on('slideChangeTransitionEnd', () => {
-    // Reset all images to their original position at the end of the transition
-    document.querySelectorAll('.swiper-slide .imagen-contenida').forEach((image) => {
-        image.style.transition = ''; // Clear transitions
-        image.style.transform = 'translateX(0%)'; // Reset transform
-    });
-});
-
-
-// Al finalizar la transición, reseteamos la transformación de las imágenes
+// Ensure the images reset when transitioning back
 swiper.on('slideChangeTransitionEnd', () => {
     document.querySelectorAll('.swiper-slide .imagen-contenida').forEach((image) => {
-        image.style.transition = ''; // Limpia las transiciones después del efecto
-        image.style.transform = 'translateX(0%)'; // Resetear la posición al final
+        image.style.transition = ''; // Clear transition after the effect
     });
 });
 

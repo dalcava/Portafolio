@@ -176,111 +176,59 @@ window.addEventListener('touchend', function() {
     mouse.y = undefined;
 });
 
-//---------------------------------------------------------------------------------------------------------
-//------------------------------- Aquí empieza swiper ----------------------------------------------------- 
-//---------------------------------------------------------------------------------------------------------
+
+
+
 
 var swiper = new Swiper(".swiper", {
     effect: "coverflow",
     grabCursor: true,
-    centeredSlides: true, // Centers slides
-    initialSlide: 1, // Sets the initial slide
+    centeredSlides: true,
+    initialSlide: 1,
     speed: 600,
     preventClicks: true,
     slidesPerView: "auto",
     coverflowEffect: {
-        rotate: 0, // No rotation
-        stretch: -175, // Adjusts slide spacing
-        depth: 855, // Perspective depth
+        rotate: 0,
+        stretch: -110,
+        depth: 855,
         modifier: 1,
-        slideShadows: false, // No shadows
+        slideShadows: false,
     },
     breakpoints: {
         768: {
-            stretch: -240, // Adjusts stretch for larger screens
+            stretch: -240,
         },
     },
     pagination: {
-        el: ".swiper-pagination", // Selector for the pagination element
-        clickable: true, // Makes the dots clickable
+        el: ".swiper-pagination",
+        clickable: true,
     },
     navigation: {
-        nextEl: ".swiper-button-next", // Right arrow button
-        prevEl: ".swiper-button-prev", // Left arrow button
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
     },
     autoplay: {
-        delay: 12000, // Moves every 12 seconds
-        disableOnInteraction: false, // Prevents autoplay from stopping after interaction
-        reverseDirection: true, // Makes autoplay go in reverse
+        delay: 12000,
+        disableOnInteraction: false,
+        reverseDirection: true,
     },
     on: {
-        slideChangeTransitionStart: function () {
-            // Reset all slides to show static images
-            document.querySelectorAll(".swiper-slide").forEach(slide => {
-                const staticImg = slide.querySelector(".static-img");
-                const activeGif = slide.querySelector(".active-gif");
-
-                if (staticImg) staticImg.style.opacity = "1";
-                if (activeGif) activeGif.style.opacity = "0";
+        setTranslate: function () {
+            const slides = document.querySelectorAll(".swiper-slide");
+            slides.forEach((slide, index) => {
+                const slideOffset = slide.swiperSlideOffset;
+                const translateValue = -slideOffset / 4; // Ajusta el divisor para controlar la intensidad del efecto
+                slide.style.transform = `translate3d(${translateValue}px, 0, 0) scale(0.9)`;
+            });
+        },
+        setTransition: function (speed) {
+            const slides = document.querySelectorAll(".swiper-slide");
+            slides.forEach((slide) => {
+                slide.style.transition = `${speed}ms ease-out`;
             });
         },
     },
-});
-
-// Listen for changes to the active slide
-// Ensure initial positions for all images
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.swiper-slide .imagen-contenida').forEach((image) => {
-        image.style.transform = 'translateX(0%)'; // Set initial position
-        image.style.transition = 'transform 0.5s ease-out'; // Ensure smooth transitions
-    });
-});
-
-// Handle slide transitions
-swiper.on('slideChangeTransitionStart', () => {
-    const activeIndex = swiper.activeIndex;
-    const previousIndex = swiper.previousIndex;
-
-    // Loop through all slides
-    document.querySelectorAll('.swiper-slide').forEach((slide, index) => {
-        const image = slide.querySelector('.imagen-contenida');
-        if (!image) return;
-
-        if (index === activeIndex) {
-            // Slide is becoming active
-            if (activeIndex > previousIndex) {
-                // Going to the next slide
-                image.style.transition = 'transform 0.5s ease-out'; // Smooth transition
-                image.style.transform = `translateX(-1%)`; // Shift slightly left
-            } else if (activeIndex < previousIndex) {
-                // Going to the previous slide
-                image.style.transition = 'transform 0.5s ease-out'; // Smooth transition
-                image.style.transform = `translateX(1%)`; // Shift slightly right
-            }
-        } else {
-            // Reset inactive slides
-            image.style.transition = 'transform 1.5s ease-out';
-            image.style.transform = 'translateX(0%)';
-        }
-    });
-});
-
-
-swiper.on('slideChangeTransitionEnd', () => {
-    // Reset all images to their original position at the end of the transition
-    document.querySelectorAll('.swiper-slide .imagen-contenida').forEach((image) => {
-        image.style.transition = ''; // Clear transitions
-        image.style.transform = 'translateX(0%)'; // Reset transform
-    });
-});
-
-
-// Al finalizar la transición, reseteamos la transformación de las imágenes
-swiper.on('slideChangeTransitionEnd', () => {
-    document.querySelectorAll('.swiper-slide .imagen-contenida').forEach((image) => {
-        image.style.transition = ''; // Limpia las transiciones después del efecto
-        image.style.transform = 'translateX(0%)'; // Resetear la posición al final
-    });
 });
 
 

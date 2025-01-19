@@ -113,8 +113,9 @@ body{
     width: 100%; /* Asegura que ocupe todo el espacio asignado */
     height: 100%;
     overflow: hidden; /* Evita que el zoom de la imagen salga del contenedor */
-    border-radius: 2px; /* Bordes redondeados */
-    transform: translateX(312px);
+    border: 4px solid var(--Azul-oscuro); /* Puedes personalizar este borde */
+    border-radius: 12px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para resaltar el contenedor */
 }
 
 /* Estilo de las imágenes dentro del contenedor */
@@ -123,6 +124,11 @@ body{
     height: 100%; /* Ocupa toda la altura del contenedor */
     object-fit: cover; /* Asegura que las imágenes llenen el espacio sin deformarse */
     transition: transform 0.4s ease; /* Suaviza el efecto de zoom */
+}
+
+/* Efecto de zoom al pasar el mouse */
+.image-container:hover .imagen-contenida {
+    transform: scale(1.1); /* Ajusta el zoom al 10% */
 }
 
 .distorted {
