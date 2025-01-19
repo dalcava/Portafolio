@@ -438,13 +438,6 @@ body{
 
 
 @media (max-width: 1440px) {
-    .header-content {
-        text-align: left;
-        display: flex
-    ;
-        gap: 24%;
-    }
-
     .swiper {
         position: relative;
         width: 100%;

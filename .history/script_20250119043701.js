@@ -490,12 +490,11 @@ document.addEventListener("mousemove", (e) => {
         const centerY = rect.top + rect.height / 2;
     
         // Adjust cursor appearance for text elements
-        customCursor.style.transform = `translate(-50%, -50%)`; // Slightly smaller for text
-        customCursor.style.width = "4px";
-        customCursor.style.height = "58px";
+        customCursor.style.transform = `translate(-50%, -50%) scale(1.2)`; // Slightly smaller for text
+        customCursor.style.width = "8px";
         customCursor.style.backgroundColor = "#BC244A"; // Different color for text
         customCursor.style.borderRadius = "8px"; // Slightly rounded for text
-        customCursor.style.transition = "transform 0.15s ease-out, width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-radius 0.3s ease";
+        customCursor.style.transition = "transform 0.15s ease-out, background-color 0.3s ease, border-radius 0.3s ease";
         customCursor.style.zIndex = "1"; // Ensure it appears above background
     }
     
@@ -505,9 +504,8 @@ document.addEventListener("mousemove", (e) => {
         customCursor.style.backgroundColor = "#BC244A"; // Default color
         customCursor.style.borderRadius = "12px"; // Default shape
         customCursor.style.width = "40px";
-        customCursor.style.height = "40px";
         customCursor.style.zIndex = "1000";
-        customCursor.style.transition = "transform 0.25s ease-out, width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-radius 0.3s ease, z-index 0.3s ease";
+        customCursor.style.transition = "transform 0.25s ease-out, background-color 0.3s ease, border-radius 0.3s ease, z-index 0.3s ease";
     }
 });
 

@@ -491,7 +491,7 @@ document.addEventListener("mousemove", (e) => {
     
         // Adjust cursor appearance for text elements
         customCursor.style.transform = `translate(-50%, -50%)`; // Slightly smaller for text
-        customCursor.style.width = "4px";
+        customCursor.style.width = "8px";
         customCursor.style.height = "58px";
         customCursor.style.backgroundColor = "#BC244A"; // Different color for text
         customCursor.style.borderRadius = "8px"; // Slightly rounded for text

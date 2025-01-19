@@ -89,6 +89,7 @@ body{
 .main-text {
     display: flex;
     flex-direction: column;
+    cursor: text;
 }
 .main-title {
     font-family: "Publica Sans";

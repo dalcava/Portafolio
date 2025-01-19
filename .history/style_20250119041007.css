@@ -62,61 +62,11 @@ body{
     align-items: center;
     min-height: 100vh;
     background-color: var(--blanco);
-    color: var(--blanco);
+    color: #ffffff;
     overflow: hidden;
     flex-direction: column;
     cursor: none;
 }
-
-/* Header Section */
-.header-section {
-    position: relative;
-    z-index: 5; /* Asegúrate de que esté por encima del canvas */
-    width: 100%;
-    padding: 60px 80px; /* Aumenta el padding si es necesario */
-    background-color: var(--Transparente);
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-
-.header-content {
-    text-align: left;
-    display: flex;
-    gap: 33%;
-}
-.main-text {
-    display: flex;
-    flex-direction: column;
-}
-.main-title {
-    font-family: "Publica Sans";
-    font-size: var(--font-size-XXL);
-    font-weight: bold;
-    color: var(--Azul-muy-oscuro);
-    line-height: 1.2;
-    width: 433px;
-}
-
-.subtitle {
-    font-size: var(--font-size-L);
-    font-weight: normal;
-    color: var(--Magenta-claro);
-    margin-top: 10px;
-}
-
-.description {
-    font-size: var(--font-size-M);
-    font-weight: 300;
-    color: var(--Azul-oscuro);
-    line-height: 1.5;
-    margin-top: 20px;
-    max-width: 600px;
-}
-
-
-/*----------------------- Ajustes del carrusel y sus botones --------------------------------------------- */
 .swiper {
     position: relative;
     width: 100%;
@@ -129,7 +79,6 @@ body{
         calc(100% - 10%) calc(50% + 72px + 180px), calc(100% - 10%) calc(50% + 180px), /* Fin del rectángulo derecho */
         100% calc(50% + 180px), 100% 0% /* Finaliza el clipping */
     );
-    border-radius: 4px; /* Aplica bordes redondeados globalmente */
     overflow: hidden; /* Asegura que el recorte respete el border-radius */
     transition: all 0.3s ease-out;
     cursor: none;
@@ -222,6 +171,7 @@ body{
     width: 100%;
     height: 100%;
     overflow: hidden;
+    padding-top: 240px;
 }
 
 .custom-box-left,
@@ -438,13 +388,9 @@ body{
 
 
 @media (max-width: 1440px) {
-    .header-content {
-        text-align: left;
-        display: flex
-    ;
-        gap: 24%;
-    }
-
+    .boolean-container {
+        padding-top: 200px;
+    }   
     .swiper {
         position: relative;
         width: 100%;

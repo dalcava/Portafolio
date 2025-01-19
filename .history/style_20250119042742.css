@@ -222,6 +222,7 @@ body{
     width: 100%;
     height: 100%;
     overflow: hidden;
+    padding-top: 240px;
 }
 
 .custom-box-left,
@@ -438,13 +439,9 @@ body{
 
 
 @media (max-width: 1440px) {
-    .header-content {
-        text-align: left;
-        display: flex
-    ;
-        gap: 24%;
-    }
-
+    .boolean-container {
+        padding-top: 200px;
+    }   
     .swiper {
         position: relative;
         width: 100%;
