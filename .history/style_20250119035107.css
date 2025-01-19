@@ -156,7 +156,7 @@ body{
 }
 
 .title span {
-    color: var(--Transparente);
+    color: var(--blanco);
     font-family: "Publica Sans";
     font-size: var(--font-size-S);
     font-style: normal;
