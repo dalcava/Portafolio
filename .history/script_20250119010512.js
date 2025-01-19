@@ -215,7 +215,7 @@ var swiper = new Swiper(".swiper", {
         disableOnInteraction: false,
         reverseDirection: true,
     },
-    simulateTouch: false, // Enable touch interactions
+    simulateTouch: true, // Enable touch interactions
     allowTouchMove: true, // Allow touch move for touch devices
 });
 

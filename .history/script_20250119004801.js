@@ -184,7 +184,7 @@ window.addEventListener('touchend', function() {
 
 var swiper = new Swiper(".swiper", {
     effect: "coverflow",
-    grabCursor: false, // Disable grab cursor for non-touch devices
+    grabCursor: true,
     centeredSlides: true,
     initialSlide: 1,
     speed: 600,
@@ -215,8 +215,6 @@ var swiper = new Swiper(".swiper", {
         disableOnInteraction: false,
         reverseDirection: true,
     },
-    simulateTouch: false, // Enable touch interactions
-    allowTouchMove: true, // Allow touch move for touch devices
 });
 
 // Initialize transforms to prevent leftover styles
@@ -235,21 +233,9 @@ swiper.on('slideChangeTransitionStart', () => {
         const image = slide.querySelector('.imagen-contenida');
         if (!image) return;
 
-        if (index === activeIndex) {
-            image.style.transition = 'transform 0.6s ease-out';
-            image.style.transform = 'translateX(0%)'; // Always center the active slide
-        } else {
-            const offset = (index - activeIndex) * -45; // Calculate offset
-            image.style.transition = 'transform 0.6s ease-out'; // Smooth transition
-            image.style.transform = `translateX(${offset}%)`; // Apply offset
-        }
-    });
-});
-
-// Reset image position on slide grab
-swiper.on('sliderMove', () => {
-    document.querySelectorAll('.swiper-slide .imagen-contenida').forEach((image) => {
-        image.style.transition = 'none'; // Disable transition during grab
+        const offset = (index - activeIndex) * -45; // Calculate offset
+        image.style.transition = 'transform 0.6s ease-out'; // Smooth transition
+        image.style.transform = `translateX(${offset}%)`; // Apply offset
     });
 });
 
@@ -308,41 +294,47 @@ document.querySelectorAll(".swiper-slide").forEach((slide) => {
     const staticImg = slide.querySelector(".static-img"); // Static image
     const activeGif = slide.querySelector(".active-gif"); // Active GIF
 
-    if (!activeGif || !staticImg) return; // Ensure both elements exist
+    let timeout;
 
-    // Listen for mouse movement globally
-    window.addEventListener("mousemove", (e) => {
+    // Apply the deformation effect on mousemove
+    slide.addEventListener("mousemove", (e) => {
+        if (!activeGif) return; // Skip if there's no active GIF
+
+        // Clear any existing timeout
+        clearTimeout(timeout);
+
         const rect = slide.getBoundingClientRect();
-        const isCursorInsideSlide =
-            e.clientX >= rect.left &&
-            e.clientX <= rect.right &&
-            e.clientY >= rect.top &&
-            e.clientY <= rect.bottom;
+        const x = ((e.clientX - rect.left) / rect.width) * 75; // Mouse X percentage
+        const y = ((e.clientY - rect.top) / rect.height) * 75; // Mouse Y percentage
 
-        if (isCursorInsideSlide) {
-            const x = ((e.clientX - rect.left) / rect.width) * 100 - 20; // Mouse X percentage
-            const y = ((e.clientY - rect.top) / rect.height) * 75 + 5; // Mouse Y percentage
+        // Adjust circle size and position with sharp edges
+        activeGif.style.maskImage = `radial-gradient(circle at ${x}% ${y}%, black 20%, transparent 21%)`;
+        activeGif.style.webkitMaskImage = `radial-gradient(circle at ${x}% ${y}%, black 28%, transparent 28%)`;
 
-            // Adjust circle size and position with sharp edges
-            activeGif.style.maskImage = `radial-gradient(circle at ${x}% ${y}%, black 20%, transparent 21%)`;
-            activeGif.style.webkitMaskImage = `radial-gradient(circle at ${x}% ${y}%, black 28%, transparent 28%)`;
-
-            // Ensure the GIF is visible, and the static image stays visible in the background
-            activeGif.style.opacity = "1";
-            staticImg.style.opacity = "1";
-        }
+        // Ensure the GIF is visible, and the static image stays visible in the background
+        activeGif.style.opacity = "1";
+        staticImg.style.opacity = "1";
     });
 
-    // Reset the mask on slide leave
+    // Reset the mask and visibility on mouse leave
     slide.addEventListener("mouseleave", () => {
-        if (!activeGif) return;
+        if (!activeGif) return; // Skip if there's no active GIF
 
-        // Smooth reset transition
-        activeGif.style.transition = "mask-image 1s ease-out, -webkit-mask-image 1s ease-out";
-        activeGif.style.maskImage = "none";
-        activeGif.style.webkitMaskImage = "none";
-        activeGif.style.opacity = "0"; // Hide the GIF
-        staticImg.style.opacity = "1"; // Show static image
+        timeout = setTimeout(() => {
+            // Reset the mask and hide the GIF
+            activeGif.style.transition = "mask-image 1s ease-out, -webkit-mask-image 1s ease-out"; // Smooth reset
+            activeGif.style.maskImage = "none";
+            activeGif.style.webkitMaskImage = "none";
+            activeGif.style.opacity = "0"; // Hide the GIF
+            staticImg.style.opacity = "1"; // Ensure the static image remains visible
+        }, 500); // Reset after 0.5 seconds
+    });
+
+    // Smooth mask application on mouse enter
+    slide.addEventListener("mouseenter", () => {
+        if (!activeGif) return; // Skip if there's no active GIF
+
+        activeGif.style.transition = "mask-image 0.5s ease-out, -webkit-mask-image 0.5s ease-out";
     });
 });
 

@@ -184,7 +184,7 @@ window.addEventListener('touchend', function() {
 
 var swiper = new Swiper(".swiper", {
     effect: "coverflow",
-    grabCursor: false, // Disable grab cursor for non-touch devices
+    grabCursor: true,
     centeredSlides: true,
     initialSlide: 1,
     speed: 600,
@@ -215,8 +215,6 @@ var swiper = new Swiper(".swiper", {
         disableOnInteraction: false,
         reverseDirection: true,
     },
-    simulateTouch: false, // Enable touch interactions
-    allowTouchMove: true, // Allow touch move for touch devices
 });
 
 // Initialize transforms to prevent leftover styles
@@ -235,21 +233,9 @@ swiper.on('slideChangeTransitionStart', () => {
         const image = slide.querySelector('.imagen-contenida');
         if (!image) return;
 
-        if (index === activeIndex) {
-            image.style.transition = 'transform 0.6s ease-out';
-            image.style.transform = 'translateX(0%)'; // Always center the active slide
-        } else {
-            const offset = (index - activeIndex) * -45; // Calculate offset
-            image.style.transition = 'transform 0.6s ease-out'; // Smooth transition
-            image.style.transform = `translateX(${offset}%)`; // Apply offset
-        }
-    });
-});
-
-// Reset image position on slide grab
-swiper.on('sliderMove', () => {
-    document.querySelectorAll('.swiper-slide .imagen-contenida').forEach((image) => {
-        image.style.transition = 'none'; // Disable transition during grab
+        const offset = (index - activeIndex) * -45; // Calculate offset
+        image.style.transition = 'transform 0.6s ease-out'; // Smooth transition
+        image.style.transform = `translateX(${offset}%)`; // Apply offset
     });
 });
 

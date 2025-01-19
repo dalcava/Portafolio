@@ -184,7 +184,7 @@ window.addEventListener('touchend', function() {
 
 var swiper = new Swiper(".swiper", {
     effect: "coverflow",
-    grabCursor: false, // Disable grab cursor for non-touch devices
+    grabCursor: true,
     centeredSlides: true,
     initialSlide: 1,
     speed: 600,
@@ -215,8 +215,6 @@ var swiper = new Swiper(".swiper", {
         disableOnInteraction: false,
         reverseDirection: true,
     },
-    simulateTouch: false, // Enable touch interactions
-    allowTouchMove: true, // Allow touch move for touch devices
 });
 
 // Initialize transforms to prevent leftover styles
@@ -235,21 +233,9 @@ swiper.on('slideChangeTransitionStart', () => {
         const image = slide.querySelector('.imagen-contenida');
         if (!image) return;
 
-        if (index === activeIndex) {
-            image.style.transition = 'transform 0.6s ease-out';
-            image.style.transform = 'translateX(0%)'; // Always center the active slide
-        } else {
-            const offset = (index - activeIndex) * -45; // Calculate offset
-            image.style.transition = 'transform 0.6s ease-out'; // Smooth transition
-            image.style.transform = `translateX(${offset}%)`; // Apply offset
-        }
-    });
-});
-
-// Reset image position on slide grab
-swiper.on('sliderMove', () => {
-    document.querySelectorAll('.swiper-slide .imagen-contenida').forEach((image) => {
-        image.style.transition = 'none'; // Disable transition during grab
+        const offset = (index - activeIndex) * -45; // Calculate offset
+        image.style.transition = 'transform 0.6s ease-out'; // Smooth transition
+        image.style.transform = `translateX(${offset}%)`; // Apply offset
     });
 });
 
@@ -320,12 +306,12 @@ document.querySelectorAll(".swiper-slide").forEach((slide) => {
             e.clientY <= rect.bottom;
 
         if (isCursorInsideSlide) {
-            const x = ((e.clientX - rect.left) / rect.width) * 100 - 20; // Mouse X percentage
-            const y = ((e.clientY - rect.top) / rect.height) * 75 + 5; // Mouse Y percentage
+            const x = ((e.clientX - rect.left) / rect.width) * 100 - 17; // Mouse X percentage
+            const y = ((e.clientY - rect.top) / rect.height) * 85; // Mouse Y percentage
 
             // Adjust circle size and position with sharp edges
             activeGif.style.maskImage = `radial-gradient(circle at ${x}% ${y}%, black 20%, transparent 21%)`;
-            activeGif.style.webkitMaskImage = `radial-gradient(circle at ${x}% ${y}%, black 28%, transparent 28%)`;
+            activeGif.style.webkitMaskImage = `radial-gradient(circle at ${x}% ${y}%, black 20%, transparent 21%)`;
 
             // Ensure the GIF is visible, and the static image stays visible in the background
             activeGif.style.opacity = "1";

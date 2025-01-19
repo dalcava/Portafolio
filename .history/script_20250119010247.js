@@ -184,7 +184,7 @@ window.addEventListener('touchend', function() {
 
 var swiper = new Swiper(".swiper", {
     effect: "coverflow",
-    grabCursor: false, // Disable grab cursor for non-touch devices
+    grabCursor: true,
     centeredSlides: true,
     initialSlide: 1,
     speed: 600,
@@ -215,8 +215,6 @@ var swiper = new Swiper(".swiper", {
         disableOnInteraction: false,
         reverseDirection: true,
     },
-    simulateTouch: false, // Enable touch interactions
-    allowTouchMove: true, // Allow touch move for touch devices
 });
 
 // Initialize transforms to prevent leftover styles
