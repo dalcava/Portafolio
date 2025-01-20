@@ -260,11 +260,11 @@ swiper.on('slideChangeTransitionStart', () => {
         if (!image) return;
 
         if (index === activeIndex) {
-            image.style.transition = 'transform 0.35s ease-out';
+            image.style.transition = 'transform 0.6s ease-out';
             image.style.transform = 'translateX(0%)'; // Always center the active slide
         } else {
             const offset = (index - activeIndex) * -45; // Calculate offset
-            image.style.transition = 'transform 0.6s ease-out'; // Smooth transition
+            image.style.transition = 'transform 0.1s ease-out'; // Smooth transition
             image.style.transform = `translateX(${offset}%)`; // Apply offset
         }
     });

@@ -260,10 +260,10 @@ swiper.on('slideChangeTransitionStart', () => {
         if (!image) return;
 
         if (index === activeIndex) {
-            image.style.transition = 'transform 0.35s ease-out';
+            image.style.transition = 'transform 0.6s ease-out';
             image.style.transform = 'translateX(0%)'; // Always center the active slide
         } else {
-            const offset = (index - activeIndex) * -45; // Calculate offset
+            const offset = (index - activeIndex) * -40; // Calculate offset
             image.style.transition = 'transform 0.6s ease-out'; // Smooth transition
             image.style.transform = `translateX(${offset}%)`; // Apply offset
         }
@@ -291,8 +291,8 @@ swiper.on('slideChangeTransitionEnd', () => {
             image.style.transform = 'translateX(0%)';
         } else {
             // Ensure inactive slides have the correct offset
-            const offset = (index - activeIndex) * -45;
-            image.style.transition = 'transform 0.1s ease-out';
+            const offset = (index - activeIndex) * -40;
+            image.style.transition = 'transform 0.6s ease-out';
             image.style.transform = `translateX(${offset}%)`;
         }
     });
