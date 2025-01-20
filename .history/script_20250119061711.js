@@ -187,7 +187,7 @@ var swiper = new Swiper(".swiper", {
     grabCursor: false, // Disable grab cursor for non-touch devices
     centeredSlides: true,
     initialSlide: 1,
-    speed: 500,
+    speed: 600,
     preventClicks: true,
     slidesPerView: "auto",
     coverflowEffect: {
@@ -239,7 +239,7 @@ swiper.on('slideChangeTransitionStart', () => {
             image.style.transition = 'transform 0.6s ease-out';
             image.style.transform = 'translateX(0%)'; // Always center the active slide
         } else {
-            const offset = (index - activeIndex) * -40; // Calculate offset
+            const offset = (index - activeIndex) * -45; // Calculate offset
             image.style.transition = 'transform 0.6s ease-out'; // Smooth transition
             image.style.transform = `translateX(${offset}%)`; // Apply offset
         }
@@ -582,6 +582,66 @@ document.querySelectorAll(".swiper-slide").forEach((slide) => {
         staticImg.style.opacity = "1"; // Ensure static image remains visible
     });
 });
+
+
+// PixiJS Integration for Metaballs in Slider
+const app = new PIXI.Application({
+    width: window.innerWidth,
+    height: window.innerHeight,
+    backgroundAlpha: 0,
+  });
+  document.body.appendChild(app.view);
+  
+  const sliderImages = document.querySelectorAll('.swiper-slide .imagen-contenida');
+  const metaballsContainer = new PIXI.Container();
+  const metaballsGraphics = new PIXI.Graphics();
+  
+  app.stage.addChild(metaballsContainer);
+  
+  sliderImages.forEach((img, index) => {
+    const texture = PIXI.Texture.from(img.src);
+    const sprite = new PIXI.Sprite(texture);
+  
+    sprite.width = img.offsetWidth;
+    sprite.height = img.offsetHeight;
+    sprite.x = img.getBoundingClientRect().left;
+    sprite.y = img.getBoundingClientRect().top;
+  
+    metaballsContainer.addChild(sprite);
+  
+    const mask = new PIXI.Graphics();
+    metaballsContainer.addChild(mask);
+    sprite.mask = mask;
+  });
+  
+  function drawMetaballs() {
+    metaballsGraphics.clear();
+  
+    const time = Date.now() * 0.002;
+    const ball1 = { x: 150 + Math.sin(time) * 100, y: 200, r: 80 };
+    const ball2 = { x: 300 + Math.cos(time) * 100, y: 200, r: 100 };
+  
+    metaballsGraphics.beginFill(0xffffff);
+  
+    [ball1, ball2].forEach((ball) => {
+      metaballsGraphics.drawCircle(ball.x, ball.y, ball.r);
+    });
+  
+    metaballsGraphics.endFill();
+  }
+  
+  app.ticker.add(() => {
+    drawMetaballs();
+    metaballsContainer.children.forEach((child, index) => {
+      if (index % 2 !== 0) {
+        child.clear();
+        child.beginFill(0xffffff);
+        child.drawCircle(150 + Math.sin(Date.now() * 0.002 + index) * 100, 200, 80);
+        child.endFill();
+      }
+    });
+  });
+  
 
 init();
 animate();

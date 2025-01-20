@@ -187,7 +187,7 @@ var swiper = new Swiper(".swiper", {
     grabCursor: false, // Disable grab cursor for non-touch devices
     centeredSlides: true,
     initialSlide: 1,
-    speed: 500,
+    speed: 200,
     preventClicks: true,
     slidesPerView: "auto",
     coverflowEffect: {
@@ -239,7 +239,7 @@ swiper.on('slideChangeTransitionStart', () => {
             image.style.transition = 'transform 0.6s ease-out';
             image.style.transform = 'translateX(0%)'; // Always center the active slide
         } else {
-            const offset = (index - activeIndex) * -40; // Calculate offset
+            const offset = (index - activeIndex) * -45; // Calculate offset
             image.style.transition = 'transform 0.6s ease-out'; // Smooth transition
             image.style.transform = `translateX(${offset}%)`; // Apply offset
         }

@@ -187,7 +187,7 @@ var swiper = new Swiper(".swiper", {
     grabCursor: false, // Disable grab cursor for non-touch devices
     centeredSlides: true,
     initialSlide: 1,
-    speed: 500,
+    speed: 600,
     preventClicks: true,
     slidesPerView: "auto",
     coverflowEffect: {
@@ -239,7 +239,7 @@ swiper.on('slideChangeTransitionStart', () => {
             image.style.transition = 'transform 0.6s ease-out';
             image.style.transform = 'translateX(0%)'; // Always center the active slide
         } else {
-            const offset = (index - activeIndex) * -40; // Calculate offset
+            const offset = (index - activeIndex) * -45; // Calculate offset
             image.style.transition = 'transform 0.6s ease-out'; // Smooth transition
             image.style.transform = `translateX(${offset}%)`; // Apply offset
         }
@@ -582,6 +582,114 @@ document.querySelectorAll(".swiper-slide").forEach((slide) => {
         staticImg.style.opacity = "1"; // Ensure static image remains visible
     });
 });
+
+
+// PixiJS Integration for Metaballs in Slider
+const app = new PIXI.Application({
+    width: window.innerWidth,
+    height: window.innerHeight,
+    backgroundAlpha: 0,
+  });
+  document.body.appendChild(app.view);
+  
+  const sliderImages = document.querySelectorAll('.swiper-slide .imagen-contenida');
+  const metaballsContainer = new PIXI.Container();
+  const metaballsGraphics = new PIXI.Graphics();
+  
+  app.stage.addChild(metaballsContainer);
+  
+  sliderImages.forEach((img, index) => {
+    const texture = PIXI.Texture.from(img.src);
+    const sprite = new PIXI.Sprite(texture);
+  
+    sprite.width = img.offsetWidth;
+    sprite.height = img.offsetHeight;
+    sprite.x = img.getBoundingClientRect().left;
+    sprite.y = img.getBoundingClientRect().top;
+  
+    metaballsContainer.addChild(sprite);
+  
+    const mask = new PIXI.Graphics();
+    metaballsContainer.addChild(mask);
+    sprite.mask = mask;
+  });
+  
+  function drawMetaballs() {
+    metaballsGraphics.clear();
+  
+    const time = Date.now() * 0.002;
+    const ball1 = { x: 150 + Math.sin(time) * 100, y: 200, r: 80 };
+    const ball2 = { x: 300 + Math.cos(time) * 100, y: 200, r: 100 };
+  
+    metaballsGraphics.beginFill(0xffffff);
+  
+    [ball1, ball2].forEach((ball) => {
+      metaballsGraphics.drawCircle(ball.x, ball.y, ball.r);
+    });
+  
+    metaballsGraphics.endFill();
+  }
+  
+  app.ticker.add(() => {
+    drawMetaballs();
+    metaballsContainer.children.forEach((child, index) => {
+      if (index % 2 !== 0) {
+        child.clear();
+        child.beginFill(0xffffff);
+        child.drawCircle(150 + Math.sin(Date.now() * 0.002 + index) * 100, 200, 80);
+        child.endFill();
+      }
+    });
+  });
+
+  // Crear un arreglo de metaballs con posiciones y radios iniciales
+const metaballs = [
+    { x: 200, y: 200, r: 80, speedX: 2, speedY: 1.5 },
+    { x: 300, y: 300, r: 100, speedX: -2, speedY: 1 },
+    { x: 400, y: 250, r: 90, speedX: 1.5, speedY: -1.2 },
+];
+
+// Dibujar y animar las metaballs
+function animateMetaballs() {
+    metaballsGraphics.clear(); // Limpiar el lienzo de las metaballs
+
+    // Animar cada metaball
+    metaballs.forEach((ball) => {
+        // Actualizar la posición
+        ball.x += ball.speedX;
+        ball.y += ball.speedY;
+
+        // Rebotar en los bordes del canvas
+        if (ball.x - ball.r < 0 || ball.x + ball.r > window.innerWidth) {
+            ball.speedX *= -1;
+        }
+        if (ball.y - ball.r < 0 || ball.y + ball.r > window.innerHeight) {
+            ball.speedY *= -1;
+        }
+
+        // Dibujar la metaball
+        metaballsGraphics.beginFill(0xffffff);
+        metaballsGraphics.drawCircle(ball.x, ball.y, ball.r);
+        metaballsGraphics.endFill();
+    });
+
+    // Usar las metaballs como máscara
+    metaballsContainer.children.forEach((child, index) => {
+        if (index % 2 !== 0) { // Máscaras (índices impares)
+            child.clear();
+            metaballs.forEach((ball) => {
+                child.beginFill(0xffffff);
+                child.drawCircle(ball.x, ball.y, ball.r);
+                child.endFill();
+            });
+        }
+    });
+}
+
+// Agregar la animación al ticker de PixiJS
+app.ticker.add(animateMetaballs);
+
+
 
 init();
 animate();

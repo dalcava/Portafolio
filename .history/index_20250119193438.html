@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/7.2.4/pixi.min.js"></script>
     <title>Portafolio</title>
 </head>
 <body>
@@ -42,7 +41,7 @@
         <div class="tittle-content">
             <div class="main-text">
                 <h1 class="main-title">David López</h1>
-                <h2 class="main-subtitle">UX Designer</h2>
+                <h2 class="subtitle">UX Designer</h2>
             </div>
             <p class="description">
                 Lorem ipsum dolor sit amet consectetur. Rhoncus a quis feugiat cursus fusce viverra sodales. Sem ad fusce nec et mollis praesent at vel. Sit non eget congue integer nunc erat quis aliquam.
@@ -59,60 +58,35 @@
                         <img src="./Slider/Recursos/Kinetic rush-static.jpg" alt="Static Image 1" class="imagen-contenida">
                     </div>
                     <img src="./Slider/Recursos/Kinetic rush-active.gif" alt="Active GIF 1" class="active-gif">
-                    <div class="title">
-                        <span>Nombre del proyecto</span>
-                    </div>
-                    <div class="subtitle">
-                        <span>Subtítulo del proyecto</span>
-                    </div>
+                    <div class="title"><span>Nombre del proyecto</span></div>
                 </div>
                 <div class="swiper-slide">
                     <div class="image-container static-img">
                         <img src="./Slider/Recursos/Control-static.png" alt="Static Image 2" class="imagen-contenida">
                     </div>
                     <img src="./Slider/Recursos/Control-active.gif" alt="Active GIF 2" class="active-gif">
-                    <div class="title">
-                        <span>Nombre del proyecto</span>
-                    </div>
-                    <div class="subtitle">
-                        <span>Subtítulo del proyecto</span>
-                    </div>
+                    <div class="title"><span>Nombre del proyecto</span></div>
                 </div>
                 <div class="swiper-slide">
                     <div class="image-container static-img">
                         <img src="./Slider/Recursos/Portada.png" alt="Static Image 3" class="imagen-contenida">
                     </div>
                     <img src="./Slider/Recursos/AvalPay-Active.gif" alt="Active GIF 3" class="active-gif">
-                    <div class="title">
-                        <span>Nombre del proyecto</span>
-                    </div>
-                    <div class="subtitle">
-                        <span>Subtítulo del proyecto</span>
-                    </div>
+                    <div class="title"><span>Nombre del proyecto</span></div>
                 </div>
                 <div class="swiper-slide">
                     <div class="image-container static-img">
                         <img src="./Slider/Recursos/Duraznos intro.gif" alt="Static Image 3" class="imagen-contenida">
                     </div>
                     <img src="./Slider/Recursos/Duraznos active.gif" alt="Active GIF 3" class="active-gif">
-                    <div class="title">
-                        <span>Nombre del proyecto</span>
-                    </div>
-                    <div class="subtitle">
-                        <span>Subtítulo del proyecto</span>
-                    </div>
+                    <div class="title"><span>Nombre del proyecto</span></div>
                 </div>
                 <div class="swiper-slide">
                     <div class="image-container static-img">
                         <img src="./Slider/Recursos/Portada.png" alt="Static Image 4" class="imagen-contenida">
                     </div>
                     <img src="./Slider/Recursos/AvalPay-Active.gif" alt="Active GIF 4" class="active-gif">
-                    <div class="title">
-                        <span>Nombre del proyecto</span>
-                    </div>
-                    <div class="subtitle">
-                        <span>Subtítulo del proyecto</span>
-                    </div>
+                    <div class="title"><span>Nombre del proyecto</span></div>
                 </div>
                 
 
@@ -125,7 +99,7 @@
         <!-- Pagination and "Next project" button -->
         <div class="pagination-container">
             <div class="swiper-pagination"></div>
-<!--             <button class="next-project-btn">Open project</button> -->
+            <button class="next-project-btn">Open project</button>
         </div> 
     
         <!-- Navigation buttons -->
@@ -151,6 +125,19 @@
     <!-- If we need scrollbar -->
     <div class="swiper-scrollbar"></div>
     </div>
+
+    <svg style="display: none;">
+        <filter id="wave-effect">
+            <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" result="warp" />
+            <feDisplacementMap in="SourceGraphic" in2="warp" scale="30" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+    </svg>
+    <svg style="display: none;">
+        <filter id="water-ripple">
+            <feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="2" result="warp" />
+            <feDisplacementMap in="SourceGraphic" in2="warp" scale="5" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+    </svg>
 
 
 

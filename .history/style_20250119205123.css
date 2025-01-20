@@ -263,7 +263,7 @@ body {
     transform: translateX(312px);
 }
 
-.image-container::after {
+.imagen-contenida::after {
     content: "";
     position: absolute;
     top: 0;

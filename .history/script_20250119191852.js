@@ -187,7 +187,7 @@ var swiper = new Swiper(".swiper", {
     grabCursor: false, // Disable grab cursor for non-touch devices
     centeredSlides: true,
     initialSlide: 1,
-    speed: 500,
+    speed: 600,
     preventClicks: true,
     slidesPerView: "auto",
     coverflowEffect: {
@@ -211,7 +211,7 @@ var swiper = new Swiper(".swiper", {
         prevEl: ".swiper-button-prev",
     },
     autoplay: {
-        delay: 12000,
+        delay: 120000,
         disableOnInteraction: false,
         reverseDirection: true,
     },
@@ -239,7 +239,7 @@ swiper.on('slideChangeTransitionStart', () => {
             image.style.transition = 'transform 0.6s ease-out';
             image.style.transform = 'translateX(0%)'; // Always center the active slide
         } else {
-            const offset = (index - activeIndex) * -40; // Calculate offset
+            const offset = (index - activeIndex) * -45; // Calculate offset
             image.style.transition = 'transform 0.6s ease-out'; // Smooth transition
             image.style.transform = `translateX(${offset}%)`; // Apply offset
         }
@@ -582,6 +582,66 @@ document.querySelectorAll(".swiper-slide").forEach((slide) => {
         staticImg.style.opacity = "1"; // Ensure static image remains visible
     });
 });
+
+
+// Crear la aplicación PixiJS
+const app = new PIXI.Application({
+    width: window.innerWidth,
+    height: window.innerHeight,
+    backgroundAlpha: 0,
+});
+document.body.appendChild(app.view);
+
+// Contenedor para metaballs
+const metaballsContainer = new PIXI.Container();
+app.stage.addChild(metaballsContainer);
+
+// Crear metaballs dinámicas
+const metaballsGraphics = new PIXI.Graphics();
+metaballsContainer.addChild(metaballsGraphics);
+
+// Obtener las imágenes del slider
+const sliderImages = document.querySelectorAll('.swiper-slide .imagen-contenida');
+
+sliderImages.forEach((img) => {
+    const texture = PIXI.Texture.from(img.src);
+    const sprite = new PIXI.Sprite(texture);
+
+    // Configurar dimensiones del sprite
+    sprite.width = img.clientWidth;
+    sprite.height = img.clientHeight;
+    sprite.x = img.getBoundingClientRect().left;
+    sprite.y = img.getBoundingClientRect().top;
+
+    // Agregar el sprite al contenedor
+    metaballsContainer.addChild(sprite);
+
+    // Crear y asignar una máscara dinámica
+    const mask = new PIXI.Graphics();
+    metaballsContainer.addChild(mask);
+    sprite.mask = mask;
+
+    // Actualizar la máscara con las metaballs
+    app.ticker.add(() => {
+        mask.clear();
+        metaballsGraphics.clear();
+
+        const time = Date.now() * 0.002;
+        const ball1 = { x: 150 + Math.sin(time) * 100, y: 200, r: 80 };
+        const ball2 = { x: 300 + Math.cos(time) * 100, y: 250, r: 100 };
+
+        metaballsGraphics.beginFill(0xffffff);
+        [ball1, ball2].forEach((ball) => {
+            metaballsGraphics.drawCircle(ball.x, ball.y, ball.r);
+            mask.beginFill(0xffffff);
+            mask.drawCircle(ball.x, ball.y, ball.r);
+            mask.endFill();
+        });
+        metaballsGraphics.endFill();
+    });
+});
+
+
 
 init();
 animate();

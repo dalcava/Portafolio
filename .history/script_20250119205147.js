@@ -232,14 +232,14 @@ swiper.on('slideChangeTransitionStart', () => {
     const activeIndex = swiper.activeIndex;
 
     document.querySelectorAll('.swiper-slide').forEach((slide, index) => {
-        const image = slide.querySelector('.imagen-contenida');
+        const image = slide.querySelector('.image-container');
         if (!image) return;
 
         if (index === activeIndex) {
             image.style.transition = 'transform 0.6s ease-out';
             image.style.transform = 'translateX(0%)'; // Always center the active slide
         } else {
-            const offset = (index - activeIndex) * -40; // Calculate offset
+            const offset = (index - activeIndex) * -45; // Calculate offset
             image.style.transition = 'transform 0.6s ease-out'; // Smooth transition
             image.style.transform = `translateX(${offset}%)`; // Apply offset
         }

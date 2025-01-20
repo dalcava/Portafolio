@@ -192,7 +192,7 @@ body {
 .description {
     font-size: var(--font-size-S);
     font-weight: 300;
-    color: var(--Azul-muy-oscuro);
+    color: var(--Azul-oscuro);
     line-height: 1.5;
     margin-top: 20px;
     max-width: 600px;
@@ -206,7 +206,7 @@ body {
     height: 480px;
     clip-path: polygon(
         0% 0%, 0% calc(50% + 180px), /* Inicio de la izquierda */
-        17% calc(50% + 180px), 17% calc(50% + 72px + 180px), /* Fin del rectángulo izquierdo */
+        24% calc(50% + 180px), 24% calc(50% + 72px + 180px), /* Fin del rectángulo izquierdo */
         0% calc(50% + 72px + 180px), 100% 105%, /* Continúa normal */
         100% 100%, 100% calc(50% + 72px + 180px), /* Inicio de la derecha */
         calc(100% - 10%) calc(50% + 72px + 180px), calc(100% - 10%) calc(50% + 180px), /* Fin del rectángulo derecho */
@@ -247,10 +247,9 @@ body {
     display: block;
 }
 
-.swiper-slide-prev {
-    transition-duration: 0ms;
-    transform: translate3d(-190px, -70px, -855px) rotateX(0deg) rotateY(0deg) scale(1);
-    z-index: 0;
+.swiper-slide.swiper-slide-prev.swiper-slide-visible {
+    transform: translate3d(-190px, -80px, -855px) rotateX(0deg) rotateY(0deg) scale(1) !important;
+    height: 560px;
 }
 
 
@@ -589,7 +588,7 @@ body {
         height: 400px;
         clip-path: polygon(
             0% 0%, 0% calc(43% + 180px), /* Inicio de la izquierda */
-            11% calc(43% + 180px), 11% calc(43% + 72px + 180px), /* Fin del rectángulo izquierdo */
+            20% calc(43% + 180px), 20% calc(43% + 72px + 180px), /* Fin del rectángulo izquierdo */
             0% calc(43% + 72px + 180px), 100% 105%, /* Continúa normal */
             100% 100%, 100% calc(43% + 72px + 180px), /* Inicio de la derecha */
             calc(100% - 10%) calc(43% + 72px + 180px), calc(100% - 10%) calc(43% + 180px), /* Fin del rectángulo derecho */
@@ -602,14 +601,14 @@ body {
     .image-container {
         transform: translateX(389px);
     }
-    
-    .title {
-        transform: translate(-84%, -24%);
-    }
-    .subtitle {
-        transform: translate(-188%, 4%);
-    }
 
+    .swiper-slide.swiper-slide-prev.swiper-slide-visible {
+        transition-duration: 0ms;
+        transform: translate3d(-190px, -62px, -855px) rotateX(0deg) rotateY(0deg) scale(1) !important;
+        z-index: 0;
+        height: 464px;
+    }
+    
     .control-container {
         transform: translateY(-66px);
         padding-top: 7px;
