@@ -182,7 +182,7 @@ window.addEventListener('touchend', function() {
 var palabraFrente = document.querySelector("#nombreI");
 
 function crearPalabra() {
-    let palabras = ["UI/UX Designer", "Experience Architect", "3D Artist", "Animator", "Motion Designer", "Digital Illustrator", "3D Modeler", "Impostor", "Interaction Designer", "Prototyper", "Interface Creator", "Visual Storyteller", "Graphic Designer", "Product Designer", "obsessive compulsive", "VFX Artist", "User", "Digital Experience Manager", "Experience Illustrator", "Motion Graphics Designer", "Visual Concept Developer", "Parametric Designer", "Responsive Design Specialist", "Loves Cats"];
+    let palabras = ["UI/UX Designer", "Experience Architect", "3D Artist", "Animator", "Motion Designer", "Digital Illustrator", "3D Modeler", "Impostor", "Interaction Designer", "Prototyper", "Interface Creator", "Visual Storyteller", "Graphic Designer", "Product Designer", "Technical Artist", "VFX Specialist", "User", "Digital Experience Manager", "Experience Illustrator", "Motion Graphics Designer", "Visual Concept Developer", "Parametric Designer", "Responsive Design Specialist", "Loves Cats"];
     let palabraAleatoria = aleatorio(0, palabras.length - 1);
     palabraFrente.innerHTML = palabras[palabraAleatoria];
 }
@@ -194,8 +194,8 @@ function aleatorio(min, max) {
 
 crearPalabra();
 
-// Intervalo cada 2.4 seconds
-setInterval(crearPalabra, 2400);
+// Interval cada 4.8 seconds
+setInterval(crearPalabra, 4800);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -233,7 +233,7 @@ var swiper = new Swiper(".swiper", {
         prevEl: ".swiper-button-prev",
     },
     autoplay: {
-        delay: 8000,
+        delay: 12000,
         disableOnInteraction: false,
         reverseDirection: true,
     },

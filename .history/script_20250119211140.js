@@ -179,23 +179,16 @@ window.addEventListener('touchend', function() {
 //---------------------------------------------------------------------------------------------------------
 //------------------------------- Función subtítulo ------------------------------------------------------- 
 //---------------------------------------------------------------------------------------------------------
-var palabraFrente = document.querySelector("#nombreI");
-
-function crearPalabra() {
-    let palabras = ["UI/UX Designer", "Experience Architect", "3D Artist", "Animator", "Motion Designer", "Digital Illustrator", "3D Modeler", "Impostor", "Interaction Designer", "Prototyper", "Interface Creator", "Visual Storyteller", "Graphic Designer", "Product Designer", "obsessive compulsive", "VFX Artist", "User", "Digital Experience Manager", "Experience Illustrator", "Motion Graphics Designer", "Visual Concept Developer", "Parametric Designer", "Responsive Design Specialist", "Loves Cats"];
-    let palabraAleatoria = aleatorio(0, palabras.length - 1);
-    palabraFrente.innerHTML = palabras[palabraAleatoria];
+var palabraFrente = document.querySelector("#nombreI")
+setInterval(crearPalabra, 150);
+function crearPalabra () {
+    let palabras = ["Vida", "Diseño", "Arte", "Técnica", "Arquitectura", "Biofilia", "Habitar", "Espacio", "Vacíos", "Materia", "Flujo", "Soporte", "Tejido","Piel", "Vínculo", "Textura", "Fenómeno", "Hito", "Paradigmático", "Paramétrico", "Escala", "Fluidez", "Modular", "Ensamble", "Edificar", "Fachada", "Habitáculo", "Mansión", "Muro", "Pared", "Pilar", "Suelo", "Techumbre", "Ventana", "Color", "Composición", "Creatividad", "Dibujo", "Diseño", "Estilo", "Forma", "Funcionalidad", "Grafismo", "Ilustración", "Imágenes", "Innovación", "Interfaz", "Línea", "Logotipo", "Marca", "Medios", "Patrón", "Plantilla", "Proporción", "Adaptabilidad", "Comunicación", "Cooperación", "Creatividad", "Empatía", "Flexibilidad", "Liderazgo", "Negociación", "Organización", "Paciencia", "Ladrillo", "Cemento", "Arena", "Grava", "Piedra", "Mortero", "Adoquín", "Hormigón", "Yeso", "Cal", "Azulejo", "Madera", "Metal", "Vidrio", "Plástico"]
+    let palabraAleatoria = aleatorio (0, palabras.length -1)
+    palabraFrente.innerHTML = palabras [palabraAleatoria];
 }
-
-function aleatorio(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
+function aleatorio (min, max) {
+    return Math.floor(Math.random ()*(max-min+1)+min)
 }
-
-
-crearPalabra();
-
-// Intervalo cada 2.4 seconds
-setInterval(crearPalabra, 2400);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -233,7 +226,7 @@ var swiper = new Swiper(".swiper", {
         prevEl: ".swiper-button-prev",
     },
     autoplay: {
-        delay: 8000,
+        delay: 12000,
         disableOnInteraction: false,
         reverseDirection: true,
     },
