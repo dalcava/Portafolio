@@ -219,7 +219,7 @@ var swiper = new Swiper(".swiper", {
         modifier: 1,
         slideShadows: false,
     },
-    spaceBetween: 120,
+    spaceBetween: 150,
 
     breakpoints: {
         768: {

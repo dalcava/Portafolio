@@ -209,7 +209,7 @@ var swiper = new Swiper(".swiper", {
     grabCursor: false, // Disable grab cursor for non-touch devices
     centeredSlides: true,
     initialSlide: 1,
-    speed: 500,
+    speed: 400,
     preventClicks: true,
     slidesPerView: "auto",
     coverflowEffect: {

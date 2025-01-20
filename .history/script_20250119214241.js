@@ -205,7 +205,7 @@ setInterval(crearPalabra, 2400);
 // Initialize Swiper
 
 var swiper = new Swiper(".swiper", {
-    effect: "slide",
+    effect: "side",
     grabCursor: false, // Disable grab cursor for non-touch devices
     centeredSlides: true,
     initialSlide: 1,
@@ -219,8 +219,6 @@ var swiper = new Swiper(".swiper", {
         modifier: 1,
         slideShadows: false,
     },
-    spaceBetween: 120,
-
     breakpoints: {
         768: {
             stretch: -240,
