@@ -622,68 +622,33 @@ window.onload = () => {
 
     // Animate the main title
     timeline
-    .fromTo(
-        "#canvas1",
-        { opacity: 0, y: 0 }, // Start invisible and slightly below
-        { opacity: 1, y: 0, duration: 1.75, easeout: "power4.out", stagger: 0.5 } // Fade and move in
-         // Start overlapping with the previous animation
-    )
-    .fromTo(
-        ".icon-button",
-        { opacity: 0, y: 0 }, // Start invisible
-        { opacity: 1, y: 0, duration: 0.25, easeout: "power4.out", stagger: 0.1 },
-        "-=1" // Fade and move in
-         // Start overlapping with the previous animation
-    )
-/*     .fromTo(
-        ".icon-button",
-        { clipPath: "inset(100% 0 0 0)" },
-        { clipPath: "inset(0% 0 0 0)", duration: 1.2, ease: "power4.out" },
-        "-=2.5"
-    ) */
-    .fromTo(
-        ".main-title",
-        { clipPath: "inset(0 100% 0 0)" },
-        { clipPath: "inset(0 0% 0 0)", duration: 1.2, ease: "power4.out" },
-        "-=1"
-    )
-    .fromTo(
-        ".swiper-slide",
-        { opacity: 0, x: -300 }, // Start invisible and slightly below
-        { opacity: 1, x: 0, duration: 0.85, ease: "power4.out", stagger: 0.25 },
-        "=0" // Fade and move in
-         // Start overlapping with the previous animation
-    )
-    .fromTo(
-        ".main-subtitle",
-        { clipPath: "inset(100% 0 0 0)" },
-        { clipPath: "inset(0% 0 0 0)", duration: 1.2, ease: "power4.out" },
-        "-=1.20"
-    )
-    .fromTo(
-        ".title",
-        { clipPath: "inset(100% 0 0 0)" },
-        { clipPath: "inset(0% 0 0 0)", duration: 1.5, ease: "power4.out" },
-        "-=1.20" // Overlap animation
-    )
-    .fromTo(
-        ".subtitle",
-        { clipPath: "inset(100% 0 0 0)" },
-        { clipPath: "inset(0% 0 0 0)", duration: 1.5, ease: "power4.out" },
-        "-=1.20" // Overlap animation
-    )
-    .fromTo(
-        ".description",
-        { clipPath: "inset(100% 0 0 0)" },
-        { clipPath: "inset(0% 0 0 0)", duration: 1, ease: "power4.out"},
-        "-=1.75"
-    )
-    .fromTo(
-        ".control-container",
-        { opacity: 0, y: -200 }, // Start invisible and slightly below
-        { opacity: 1, y: -225, duration: 0.85, ease: "power4.out", stagger: 0.25 },
-        "-=2" // Fade and move in
-         // Start overlapping with the previous animation
-    )
+        .fromTo(
+            ".main-title",
+            { clipPath: "inset(100% 0 0 0)" },
+            { clipPath: "inset(0% 0 0 0)", duration: 1.2, ease: "power4.out" },
+        )
+        .fromTo(
+            ".subtitle",
+            { clipPath: "inset(100% 0 0 0)" },
+            { clipPath: "inset(0% 0 0 0)", duration: 1, ease: "power4.out" },
+            "-=1" // Overlap animation
+        )
+        .fromTo(
+            ".description",
+            { clipPath: "inset(100% 0 0 0)" },
+            { clipPath: "inset(0% 0 0 0)", duration: 1, ease: "power4.out"},
+            "-=0.75"
+        )
+/*         .fromTo(
+            ".swiper-slide",
+            { clipPath: "inset(100% 0 0 0)" }, // Start invisible and slightly below
+            { clipPath: "inset(0% 0 0 0)", duration: 1.5, ease: "power4.out", stagger: 0.5 }, // Fade and move in
+            "-=0.5" // Start overlapping with the previous animation
+        ); */
+        .fromTo(
+            ".swiper-slide",
+            { opacity: 0, y: 150 }, // Start invisible and slightly below
+            { opacity: 1, y: 0, duration: 1, ease: "power4.out", stagger: 0.5 }, // Fade and move in
+            "-=1" // Start overlapping with the previous animation
+        );
 };
-    

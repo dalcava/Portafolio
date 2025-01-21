@@ -109,6 +109,13 @@ body {
     height: 144px;
 }
 
+.clip-path-container {
+    clip-path: inset(100% 0 0 0); /* Start fully hidden */
+    -webkit-clip-path: inset(100% 0 0 0); /* Safari support */
+    transition: clip-path 1.2s ease-out, -webkit-clip-path 1.2s ease-out; /* Smooth transition */
+    overflow: hidden; /* Ensure no content bleeds out */
+}
+
 /* Icon Buttons */
 .icon-buttons {
     display: flex;
@@ -574,7 +581,7 @@ body {
     height: 128px;
     border: 1px solid rgba(246, 246, 246, 0.10);
     background: linear-gradient(180deg, rgba(144, 144, 144, 0.00) 0%, rgba(246, 246, 246, 0.01) 37.15%);
-    backdrop-filter: blur(3px);
+    backdrop-filter: blur(2px);
     transform: translateY(-92px);
     z-index: 1;
 }

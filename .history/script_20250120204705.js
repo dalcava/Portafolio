@@ -676,7 +676,7 @@ window.onload = () => {
         ".description",
         { clipPath: "inset(100% 0 0 0)" },
         { clipPath: "inset(0% 0 0 0)", duration: 1, ease: "power4.out"},
-        "-=1.75"
+        "-=1.60"
     )
     .fromTo(
         ".control-container",
