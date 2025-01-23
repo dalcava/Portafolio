@@ -3,7 +3,6 @@ const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-let scrollValue = 0; // Accumulator for wheel events
 let particlesArray;
 
 //get mouse position for desktop
@@ -632,7 +631,7 @@ window.addEventListener("wheel", (e) => {
     navigateSwiper(direction);
 });
 
-
+let scrollValue = 0; // Accumulator for wheel events
 const scrollLimit = 250; // Define the range (0 to 500)
 
 // Function to update body overflow
@@ -675,10 +674,6 @@ window.addEventListener("wheel", handleWheelScroll, { passive: false });
 ------------------------------------------------------------------------------------------------------------------ */
 
 window.onload = () => {
-    scrollValue = 0;
-    window.scrollTo(0, 0); // Ensures scroll position starts at the top
-    document.documentElement.scrollTop = 0; // Alternative for certain browsers  
-  
     // Add the "brillo" class to the icono element (if it exists)
     const icono = document.querySelector(".icon-button");
     if (icono) {
@@ -690,9 +685,7 @@ window.onload = () => {
         crearPalabra();
     }
 
-
-
-    //-------------- GSAP Timeline for Sequence -----------------
+    // GSAP Timeline for Sequence
     const timeline = gsap.timeline();
 
     timeline

@@ -3,7 +3,6 @@ const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-let scrollValue = 0; // Accumulator for wheel events
 let particlesArray;
 
 //get mouse position for desktop
@@ -194,6 +193,7 @@ function aleatorio(min, max) {
 
 
 crearPalabra();
+
 // Intervalo cada 2.4 seconds
 setInterval(crearPalabra, 2400);
 
@@ -600,6 +600,81 @@ document.querySelectorAll(".swiper-slide").forEach((slide) => {
 init();
 animate();
 
+window.onload = function() {
+    icono.classList.add("brillo");
+    crearPalabra();
+}
+
+window.onload = () => {
+    // GSAP Timeline for Sequence
+    const timeline = gsap.timeline();
+
+    // Animate the main title
+    timeline
+    .fromTo(
+        "#canvas1",
+        { opacity: 0, y: 0 }, // Start invisible and slightly below
+        { opacity: 1, y: 0, duration: 1.75, ease: "power4.out", stagger: 0.5 } // Fade and move in
+         // Start overlapping with the previous animation
+    )
+    .fromTo(
+        ".icon-button",
+        { opacity: 0, y: 0 }, // Start invisible
+        { opacity: 1, y: 0, duration: 0.25, ease: "power4.out", stagger: 0.1 },
+        "-=1" // Fade and move in
+         // Start overlapping with the previous animation
+    )
+/*     .fromTo(
+        ".icon-button",
+        { clipPath: "inset(100% 0 0 0)" },
+        { clipPath: "inset(0% 0 0 0)", duration: 1.2, ease: "power4.out" },
+        "-=2.5"
+    ) */
+    .fromTo(
+        ".main-title",
+        { clipPath: "inset(0 100% 0 0)" },
+        { clipPath: "inset(0 0% 0 0)", duration: 1.2, ease: "power4.out" },
+        "-=1"
+    )
+    .fromTo(
+        ".swiper-slide",
+        { opacity: 0, x: -300 }, // Start invisible and slightly below
+        { opacity: 1, x: 0, duration: 0.85, ease: "power4.out", stagger: 0.25 },
+        "=0" // Fade and move in
+         // Start overlapping with the previous animation
+    )
+    .fromTo(
+        ".main-subtitle",
+        { clipPath: "inset(100% 0 0 0)" },
+        { clipPath: "inset(0% 0 0 0)", duration: 1.2, ease: "power4.out" },
+        "-=1.20"
+    )
+    .fromTo(
+        ".title",
+        { clipPath: "inset(100% 0 0 0)" },
+        { clipPath: "inset(0% 0 0 0)", duration: 1.5, ease: "power4.out" },
+        "-=1.20" // Overlap animation
+    )
+    .fromTo(
+        ".subtitle",
+        { clipPath: "inset(100% 0 0 0)" },
+        { clipPath: "inset(0% 0 0 0)", duration: 1.5, ease: "power4.out" },
+        "-=1.20" // Overlap animation
+    )
+/*     .fromTo(
+        ".description",
+        { clipPath: "inset(100% 0 0 0)" },
+        { clipPath: "inset(0% 0 0 0)", duration: 1, ease: "power4.out"},
+        "-=1.75"
+    ) */
+    .fromTo(
+        ".control-container",
+        { opacity: 0, y: -200 }, // Start invisible and slightly below
+        { opacity: 1, y: -225, duration: 0.85, ease: "power4.out", stagger: 0.25 },
+        "-=2" // Fade and move in
+         // Start overlapping with the previous animation
+    )
+};
 
 
 /* ----------------------------------------------scroll animation ------------------------------------------------------------- */
@@ -632,7 +707,7 @@ window.addEventListener("wheel", (e) => {
     navigateSwiper(direction);
 });
 
-
+let scrollValue = 0; // Accumulator for wheel events
 const scrollLimit = 250; // Define the range (0 to 500)
 
 // Function to update body overflow
@@ -644,103 +719,46 @@ const toggleOverflow = (enable) => {
 // Function to handle wheel events
 const handleWheelScroll = (e) => {
     const direction = Math.sign(e.deltaY); // Determine scroll direction (+1 or -1)
-    const scrollTop = window.scrollY; // Get the vertical scroll position
-    const scrollHeight = document.documentElement.scrollHeight; // Total scrollable height
-    const clientHeight = window.innerHeight; // Viewport height
 
     // Accumulate scroll value within range
     scrollValue += direction * 10; // Adjust step size (10 in this case)
-    scrollValue = Math.max(0, Math.min(scrollValue, scrollLimit)); // Clamp to 0 – scollLimit
+    scrollValue = Math.max(0, Math.min(scrollValue, scrollLimit)); // Clamp to 0–500
 
-/*     if (scrollValue === 0) { */
+    if (scrollValue === 0) {
         toggleOverflow(false); // Lock scrolling when at the top
-    if (scrollValue >= scrollLimit || scrollTop>0) {
+    } else if (scrollValue < scrollLimit - 100) {
+        toggleOverflow(false); // Lock scrolling within the range
+    } else if (scrollValue >= scrollLimit) {
         toggleOverflow(true); // Unlock scrolling beyond the range
-    }
-    else if (scrollTop === 0) {
-        toggleOverflow(false); // Lock scrolling
     }
 
     // Debug: Log the current scrollValue
     console.log("Scroll Value:", scrollValue);
-    console.log("Scroll Position:", scrollTop);
 };
 
 // Add wheel event listener
 window.addEventListener("wheel", handleWheelScroll, { passive: false });
 
+// Function to handle scroll behavior
+const handleScrollPosition = () => {
+    const scrollTop = window.scrollY; // Get the vertical scroll position
+    const scrollHeight = document.documentElement.scrollHeight; // Total scrollable height
+    const clientHeight = window.innerHeight; // Viewport height
 
-
-/* -------------------------------------------------Window on load---------------------------------------------------
------------------------------------------------------------------------------------------------------------------- */
-
-window.onload = () => {
-    scrollValue = 0;
-    window.scrollTo(0, 0); // Ensures scroll position starts at the top
-    document.documentElement.scrollTop = 0; // Alternative for certain browsers  
-  
-    // Add the "brillo" class to the icono element (if it exists)
-    const icono = document.querySelector(".icon-button");
-    if (icono) {
-        icono.classList.add("brillo");
+    // If at the top of the page
+    if (scrollTop === 0) {
+        toggleOverflow(false); // Lock scrolling
+    }
+    // If at the bottom of the page
+    else if (scrollTop + clientHeight >= scrollHeight) {
+        toggleOverflow(true); // Unlock scrolling
+    } else {
+        toggleOverflow(true); // Enable normal scrolling within the content
     }
 
-    // Call the crearPalabra function
-    if (typeof crearPalabra === "function") {
-        crearPalabra();
-    }
-
-
-
-    //-------------- GSAP Timeline for Sequence -----------------
-    const timeline = gsap.timeline();
-
-    timeline
-        .fromTo(
-            "#canvas1",
-            { opacity: 0, y: 0 }, // Start invisible and slightly below
-            { opacity: 1, y: 0, duration: 1.75, ease: "power4.out", stagger: 0.5 } // Fade and move in
-        )
-        .fromTo(
-            ".icon-button",
-            { opacity: 0, y: 0 }, // Start invisible
-            { opacity: 1, y: 0, duration: 0.25, ease: "power4.out", stagger: 0.1 },
-            "-=1" // Fade and move in
-        )
-        .fromTo(
-            ".main-title",
-            { clipPath: "inset(0 100% 0 0)" },
-            { clipPath: "inset(0 0% 0 0)", duration: 1.2, ease: "power4.out" },
-            "-=1"
-        )
-        .fromTo(
-            ".swiper-slide",
-            { opacity: 0, x: -300 }, // Start invisible and slightly below
-            { opacity: 1, x: 0, duration: 0.85, ease: "power4.out", stagger: 0.25 },
-            "=0" // Fade and move in
-        )
-        .fromTo(
-            ".main-subtitle",
-            { clipPath: "inset(100% 0 0 0)" },
-            { clipPath: "inset(0% 0 0 0)", duration: 1.2, ease: "power4.out" },
-            "-=1.20"
-        )
-        .fromTo(
-            ".title",
-            { clipPath: "inset(100% 0 0 0)" },
-            { clipPath: "inset(0% 0 0 0)", duration: 1.5, ease: "power4.out" },
-            "-=1.20" // Overlap animation
-        )
-        .fromTo(
-            ".subtitle",
-            { clipPath: "inset(100% 0 0 0)" },
-            { clipPath: "inset(0% 0 0 0)", duration: 1.5, ease: "power4.out" },
-            "-=1.20" // Overlap animation
-        )
-        .fromTo(
-            ".control-container",
-            { opacity: 0, y: -200 }, // Start invisible and slightly below
-            { opacity: 1, y: -225, duration: 0.85, ease: "power4.out", stagger: 0.25 },
-            "-=2" // Fade and move in
-        );
+    // Debug: Log current scroll position
+    console.log("Scroll Top:", scrollTop, "Scroll Height:", scrollHeight, "Client Height:", clientHeight);
 };
+
+// Add scroll event listener
+window.addEventListener("scroll", handleScrollPosition);

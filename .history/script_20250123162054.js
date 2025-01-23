@@ -4,6 +4,7 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 let scrollValue = 0; // Accumulator for wheel events
+let window.scrollY = 0; // Accumulator for scroll events
 let particlesArray;
 
 //get mouse position for desktop
@@ -675,10 +676,6 @@ window.addEventListener("wheel", handleWheelScroll, { passive: false });
 ------------------------------------------------------------------------------------------------------------------ */
 
 window.onload = () => {
-    scrollValue = 0;
-    window.scrollTo(0, 0); // Ensures scroll position starts at the top
-    document.documentElement.scrollTop = 0; // Alternative for certain browsers  
-  
     // Add the "brillo" class to the icono element (if it exists)
     const icono = document.querySelector(".icon-button");
     if (icono) {

@@ -3,7 +3,6 @@ const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-let scrollValue = 0; // Accumulator for wheel events
 let particlesArray;
 
 //get mouse position for desktop
@@ -600,85 +599,7 @@ document.querySelectorAll(".swiper-slide").forEach((slide) => {
 init();
 animate();
 
-
-
-/* ----------------------------------------------scroll animation ------------------------------------------------------------- */
-gsap.registerPlugin(ScrollTrigger);
-
-let isAnimating = false;
-let scrollThrottle = 0; // Introduce a throttle to control the speed
-
-// Function to navigate Swiper slides
-const navigateSwiper = (direction) => {
-
-
-    if (direction > 0) {
-        swiper.slideNext(); // Scroll down → Next slide
-    } else if (direction < 0) {
-        swiper.slidePrev(); // Scroll up → Previous slide
-    }
-
-    // Allow animations to complete before the next interaction
-    setTimeout(() => (isAnimating = false), 1200); // Increased duration for slower interaction
-};
-
-// Scroll Event Listener with Throttling
-window.addEventListener("wheel", (e) => {
-    const now = Date.now();
-    if (now - scrollThrottle < 200) return; // Adjust the time delay here
-    scrollThrottle = now;
-
-    const direction = Math.sign(e.deltaY); // Determine scroll direction
-    navigateSwiper(direction);
-});
-
-
-const scrollLimit = 250; // Define the range (0 to 500)
-
-// Function to update body overflow
-const toggleOverflow = (enable) => {
-    document.body.style.overflow = enable ? "auto" : "hidden";
-    document.documentElement.style.overflow = enable ? "auto" : "hidden";
-};
-
-// Function to handle wheel events
-const handleWheelScroll = (e) => {
-    const direction = Math.sign(e.deltaY); // Determine scroll direction (+1 or -1)
-    const scrollTop = window.scrollY; // Get the vertical scroll position
-    const scrollHeight = document.documentElement.scrollHeight; // Total scrollable height
-    const clientHeight = window.innerHeight; // Viewport height
-
-    // Accumulate scroll value within range
-    scrollValue += direction * 10; // Adjust step size (10 in this case)
-    scrollValue = Math.max(0, Math.min(scrollValue, scrollLimit)); // Clamp to 0 – scollLimit
-
-/*     if (scrollValue === 0) { */
-        toggleOverflow(false); // Lock scrolling when at the top
-    if (scrollValue >= scrollLimit || scrollTop>0) {
-        toggleOverflow(true); // Unlock scrolling beyond the range
-    }
-    else if (scrollTop === 0) {
-        toggleOverflow(false); // Lock scrolling
-    }
-
-    // Debug: Log the current scrollValue
-    console.log("Scroll Value:", scrollValue);
-    console.log("Scroll Position:", scrollTop);
-};
-
-// Add wheel event listener
-window.addEventListener("wheel", handleWheelScroll, { passive: false });
-
-
-
-/* -------------------------------------------------Window on load---------------------------------------------------
------------------------------------------------------------------------------------------------------------------- */
-
 window.onload = () => {
-    scrollValue = 0;
-    window.scrollTo(0, 0); // Ensures scroll position starts at the top
-    document.documentElement.scrollTop = 0; // Alternative for certain browsers  
-  
     // Add the "brillo" class to the icono element (if it exists)
     const icono = document.querySelector(".icon-button");
     if (icono) {
@@ -690,9 +611,7 @@ window.onload = () => {
         crearPalabra();
     }
 
-
-
-    //-------------- GSAP Timeline for Sequence -----------------
+    // GSAP Timeline for Sequence
     const timeline = gsap.timeline();
 
     timeline
@@ -744,3 +663,73 @@ window.onload = () => {
             "-=2" // Fade and move in
         );
 };
+
+
+
+/* ----------------------------------------------scroll animation ------------------------------------------------------------- */
+gsap.registerPlugin(ScrollTrigger);
+
+let isAnimating = false;
+let scrollThrottle = 0; // Introduce a throttle to control the speed
+
+// Function to navigate Swiper slides
+const navigateSwiper = (direction) => {
+
+
+    if (direction > 0) {
+        swiper.slideNext(); // Scroll down → Next slide
+    } else if (direction < 0) {
+        swiper.slidePrev(); // Scroll up → Previous slide
+    }
+
+    // Allow animations to complete before the next interaction
+    setTimeout(() => (isAnimating = false), 1200); // Increased duration for slower interaction
+};
+
+// Scroll Event Listener with Throttling
+window.addEventListener("wheel", (e) => {
+    const now = Date.now();
+    if (now - scrollThrottle < 200) return; // Adjust the time delay here
+    scrollThrottle = now;
+
+    const direction = Math.sign(e.deltaY); // Determine scroll direction
+    navigateSwiper(direction);
+});
+
+let scrollValue = 0; // Accumulator for wheel events
+const scrollLimit = 250; // Define the range (0 to 500)
+
+// Function to update body overflow
+const toggleOverflow = (enable) => {
+    document.body.style.overflow = enable ? "auto" : "hidden";
+    document.documentElement.style.overflow = enable ? "auto" : "hidden";
+};
+
+// Function to handle wheel events
+const handleWheelScroll = (e) => {
+    const direction = Math.sign(e.deltaY); // Determine scroll direction (+1 or -1)
+    const scrollTop = window.scrollY; // Get the vertical scroll position
+    const scrollHeight = document.documentElement.scrollHeight; // Total scrollable height
+    const clientHeight = window.innerHeight; // Viewport height
+
+    // Accumulate scroll value within range
+    scrollValue += direction * 10; // Adjust step size (10 in this case)
+    scrollValue = Math.max(0, Math.min(scrollValue, scrollLimit)); // Clamp to 0 – scollLimit
+
+/*     if (scrollValue === 0) { */
+        toggleOverflow(false); // Lock scrolling when at the top
+    if (scrollValue >= scrollLimit || scrollTop>0) {
+        toggleOverflow(true); // Unlock scrolling beyond the range
+    }
+    else if (scrollTop === 0) {
+        toggleOverflow(false); // Lock scrolling
+    }
+
+    // Debug: Log the current scrollValue
+    console.log("Scroll Value:", scrollValue);
+    console.log("Scroll Position:", scrollTop);
+};
+
+// Add wheel event listener
+window.addEventListener("wheel", handleWheelScroll, { passive: false });
+

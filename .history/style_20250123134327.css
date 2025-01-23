@@ -1,7 +1,7 @@
 /* Definición de las fuentes Publica Sans */
 @font-face {
     font-family: 'Publica Sans';
-    src: url('./Slider/Recursos/Fuentes/Publica/PublicaSans-Medium.otf') format('opentype');
+    src: url('./Slider/Recursos/Fuentes/Publica/PublicaSans-Regular.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
 }
@@ -69,13 +69,6 @@ body {
     gap: 24px;
     overflow-x: hidden;
 }
-
-
-
-/* body, html {
-    overflow: none;
-}
- */
 
 /* Header Section */
 
@@ -193,12 +186,11 @@ body {
     position: relative;
     z-index: 5;
     width: 100%;
-    padding: 0px 48px;
+    padding: 32px 48px;
     background-color: var(--Transparente);
     display: flex;
     flex-direction: column;
     gap: 0px;
-    transform: translateY(-120px);
 }
 
 
@@ -401,7 +393,6 @@ body {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    overflow: hidden; /* Ensure content within doesn't overflow */
 }
 
 .custom-box-left,
@@ -632,6 +623,7 @@ body {
     content: '';
     width: 40px; /* Adjust the size */
     height: 40px;
+    background-image: url('./path/to/eye-icon.svg'); /* Replace with the path to your SVG */
     background-repeat: no-repeat;
     background-size: contain;
     display: block;
