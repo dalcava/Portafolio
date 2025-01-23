@@ -340,7 +340,7 @@ body {
     position: absolute;
     bottom: 5px;
     left: 50%;
-    transform: translate(-98%, -157%);
+    transform: translate(-98%, -117%);
     width: max-content;
     text-align: center;
     padding: 10px 18px;
@@ -366,7 +366,7 @@ body {
     position: absolute;
     bottom: 5px;
     left: 50%;
-    transform: translate(-219%, -228%);
+    transform: translate(-219%, -148%);
     width: max-content;
     text-align: center;
     padding: 10px 18px;
@@ -448,7 +448,7 @@ body {
 .swiper-pagination-bullet {
     width: 14px;
     height: 14px;
-    background-color: var(--Magenta-oscuro);
+    background-color: var(--Magenta-claro);
     border-radius: 50%;
     transition: transform 0.3s ease, opacity 0.3s ease;
     opacity: 1;
@@ -457,7 +457,7 @@ body {
 
 /* Bullet activo */
 .swiper-pagination-bullet-active {
-    background-color: var(--Magenta-claro); /* Color del bullet activo */
+    background-color: var(--Magenta); /* Color del bullet activo */
     transform: scale(1.2); /* Aumenta ligeramente el tamaño del bullet activo */
     opacity: 1; /* Totalmente visible */
     border-radius: 8px;

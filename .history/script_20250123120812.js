@@ -219,7 +219,7 @@ var swiper = new Swiper(".swiper", {
         modifier: 1,
         slideShadows: false,
     },
-    spaceBetween: 8,
+    spaceBetween: 10,
 
     breakpoints: {
         768: {
@@ -235,7 +235,7 @@ var swiper = new Swiper(".swiper", {
         prevEl: ".swiper-button-prev",
     },
     autoplay: {
-        delay: 80000,
+        delay: 8000,
         disableOnInteraction: false,
         reverseDirection: true,
     },

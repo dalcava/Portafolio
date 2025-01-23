@@ -1,3 +1,81 @@
+window.onload = function() {
+    icono.classList.add("brillo");
+    crearPalabra();
+}
+
+window.onload = () => {
+    // GSAP Timeline for Sequence
+    const timeline = gsap.timeline();
+
+    // Animate the main title
+    timeline
+    .fromTo(
+        "#canvas1",
+        { opacity: 0, y: 0 }, // Start invisible and slightly below
+        { opacity: 1, y: 0, duration: 1.75, easeout: "power4.out", stagger: 0.5 } // Fade and move in
+         // Start overlapping with the previous animation
+    )
+    .fromTo(
+        ".icon-button",
+        { opacity: 0, y: 0 }, // Start invisible
+        { opacity: 1, y: 0, duration: 0.25, easeout: "power4.out", stagger: 0.1 },
+        "-=1" // Fade and move in
+         // Start overlapping with the previous animation
+    )
+/*     .fromTo(
+        ".icon-button",
+        { clipPath: "inset(100% 0 0 0)" },
+        { clipPath: "inset(0% 0 0 0)", duration: 1.2, ease: "power4.out" },
+        "-=2.5"
+    ) */
+    .fromTo(
+        ".main-title",
+        { clipPath: "inset(0 100% 0 0)" },
+        { clipPath: "inset(0 0% 0 0)", duration: 1.2, ease: "power4.out" },
+        "-=1"
+    )
+    .fromTo(
+        ".swiper-slide",
+        { opacity: 0, x: -300 }, // Start invisible and slightly below
+        { opacity: 1, x: 0, duration: 0.85, ease: "power4.out", stagger: 0.25 },
+        "=0" // Fade and move in
+         // Start overlapping with the previous animation
+    )
+    .fromTo(
+        ".main-subtitle",
+        { clipPath: "inset(100% 0 0 0)" },
+        { clipPath: "inset(0% 0 0 0)", duration: 1.2, ease: "power4.out" },
+        "-=1.20"
+    )
+    .fromTo(
+        ".title",
+        { clipPath: "inset(100% 0 0 0)" },
+        { clipPath: "inset(0% 0 0 0)", duration: 1.5, ease: "power4.out" },
+        "-=1.20" // Overlap animation
+    )
+    .fromTo(
+        ".subtitle",
+        { clipPath: "inset(100% 0 0 0)" },
+        { clipPath: "inset(0% 0 0 0)", duration: 1.5, ease: "power4.out" },
+        "-=1.20" // Overlap animation
+    )
+    .fromTo(
+        ".description",
+        { clipPath: "inset(100% 0 0 0)" },
+        { clipPath: "inset(0% 0 0 0)", duration: 1, ease: "power4.out"},
+        "-=1.75"
+    )
+    .fromTo(
+        ".control-container",
+        { opacity: 0, y: -200 }, // Start invisible and slightly below
+        { opacity: 1, y: -225, duration: 0.85, ease: "power4.out", stagger: 0.25 },
+        "-=2" // Fade and move in
+         // Start overlapping with the previous animation
+    )
+};
+
+
+
 const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
@@ -235,7 +313,7 @@ var swiper = new Swiper(".swiper", {
         prevEl: ".swiper-button-prev",
     },
     autoplay: {
-        delay: 80000,
+        delay: 8000,
         disableOnInteraction: false,
         reverseDirection: true,
     },
@@ -611,79 +689,5 @@ document.querySelectorAll(".swiper-slide").forEach((slide) => {
 init();
 animate();
 
-window.onload = function() {
-    icono.classList.add("brillo");
-    crearPalabra();
-}
 
-window.onload = () => {
-    // GSAP Timeline for Sequence
-    const timeline = gsap.timeline();
-
-    // Animate the main title
-    timeline
-    .fromTo(
-        "#canvas1",
-        { opacity: 0, y: 0 }, // Start invisible and slightly below
-        { opacity: 1, y: 0, duration: 1.75, easeout: "power4.out", stagger: 0.5 } // Fade and move in
-         // Start overlapping with the previous animation
-    )
-    .fromTo(
-        ".icon-button",
-        { opacity: 0, y: 0 }, // Start invisible
-        { opacity: 1, y: 0, duration: 0.25, easeout: "power4.out", stagger: 0.1 },
-        "-=1" // Fade and move in
-         // Start overlapping with the previous animation
-    )
-/*     .fromTo(
-        ".icon-button",
-        { clipPath: "inset(100% 0 0 0)" },
-        { clipPath: "inset(0% 0 0 0)", duration: 1.2, ease: "power4.out" },
-        "-=2.5"
-    ) */
-    .fromTo(
-        ".main-title",
-        { clipPath: "inset(0 100% 0 0)" },
-        { clipPath: "inset(0 0% 0 0)", duration: 1.2, ease: "power4.out" },
-        "-=1"
-    )
-    .fromTo(
-        ".swiper-slide",
-        { opacity: 0, x: -300 }, // Start invisible and slightly below
-        { opacity: 1, x: 0, duration: 0.85, ease: "power4.out", stagger: 0.25 },
-        "=0" // Fade and move in
-         // Start overlapping with the previous animation
-    )
-    .fromTo(
-        ".main-subtitle",
-        { clipPath: "inset(100% 0 0 0)" },
-        { clipPath: "inset(0% 0 0 0)", duration: 1.2, ease: "power4.out" },
-        "-=1.20"
-    )
-    .fromTo(
-        ".title",
-        { clipPath: "inset(100% 0 0 0)" },
-        { clipPath: "inset(0% 0 0 0)", duration: 1.5, ease: "power4.out" },
-        "-=1.20" // Overlap animation
-    )
-    .fromTo(
-        ".subtitle",
-        { clipPath: "inset(100% 0 0 0)" },
-        { clipPath: "inset(0% 0 0 0)", duration: 1.5, ease: "power4.out" },
-        "-=1.20" // Overlap animation
-    )
-    .fromTo(
-        ".description",
-        { clipPath: "inset(100% 0 0 0)" },
-        { clipPath: "inset(0% 0 0 0)", duration: 1, ease: "power4.out"},
-        "-=1.75"
-    )
-    .fromTo(
-        ".control-container",
-        { opacity: 0, y: -200 }, // Start invisible and slightly below
-        { opacity: 1, y: -225, duration: 0.85, ease: "power4.out", stagger: 0.25 },
-        "-=2" // Fade and move in
-         // Start overlapping with the previous animation
-    )
-};
     

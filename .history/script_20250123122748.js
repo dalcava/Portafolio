@@ -235,7 +235,7 @@ var swiper = new Swiper(".swiper", {
         prevEl: ".swiper-button-prev",
     },
     autoplay: {
-        delay: 80000,
+        delay: 8000,
         disableOnInteraction: false,
         reverseDirection: true,
     },

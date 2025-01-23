@@ -457,7 +457,7 @@ body {
 
 /* Bullet activo */
 .swiper-pagination-bullet-active {
-    background-color: var(--Magenta-claro); /* Color del bullet activo */
+    background-color: var(--Magenta); /* Color del bullet activo */
     transform: scale(1.2); /* Aumenta ligeramente el tamaño del bullet activo */
     opacity: 1; /* Totalmente visible */
     border-radius: 8px;

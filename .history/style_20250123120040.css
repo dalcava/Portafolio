@@ -66,7 +66,7 @@ body {
     overflow: hidden;
     flex-direction: column;
     cursor: none;
-    gap: 24px;
+    gap: 32px;
     overflow-x: hidden;
 }
 
@@ -90,7 +90,7 @@ body {
     border-radius: 4px;
     object-fit: cover;
     cursor: none;
-    background-color: var(--Transparente);
+    background-color: var(--Magenta);
     margin-left: 48px;
     transform: translateY(56px);
 }
@@ -209,24 +209,24 @@ body {
     font-weight: bold;
     color: var(--Magenta);
     line-height: 1.2;
-    width: 580px;
+    width: 433px;
 }
 
 .main-subtitle {
     font-size: var(--font-size-L);
     font-weight: normal;
-    color: var(--Magenta-claro);
+    color: var(--Azul-muy-oscuro);
     margin-top: 10px;
 }
 
-/* .description {
+.description {
     font-size: var(--font-size-S);
     font-weight: 300;
     color: var(--Azul-muy-oscuro);
     line-height: 1.5;
     margin-top: 20px;
     max-width: 600px;
-} */
+}
 
 
 /*----------------------- Ajustes del carrusel y sus botones --------------------------------------------- */
@@ -234,14 +234,14 @@ body {
     position: relative;
     width: 100%;
     height: 480px;
-/*     clip-path: polygon(
-            0% 0%, 0% calc(50% + 172px), /* Inicio de la izquierda /
-            27% calc(50% + 172px), 27% calc(50% + 72px + 180px), /* Fin del rectángulo izquierdo /
-            0% calc(50% + 72px + 180px), 100% 105%, /* Continúa normal /
-            100% 100%, 100% calc(50% + 72px + 180px), /* Inicio de la derecha /
-            calc(100% - 10%) calc(50% + 72px + 180px), calc(100% - 10%) calc(50% + 172px), /* Fin del rectángulo derecho/
-            100% calc(50% + 172px), 100% 0% /* Finaliza el clipping 
-        ); */
+    clip-path: polygon(
+        0% 0%, 0% calc(50% + 180px), /* Inicio de la izquierda */
+        22% calc(50% + 180px), 22% calc(50% + 72px + 180px), /* Fin del rectángulo izquierdo */
+        0% calc(50% + 72px + 180px), 100% 105%, /* Continúa normal */
+        100% 100%, 100% calc(50% + 72px + 180px), /* Inicio de la derecha */
+        calc(100% - 10%) calc(50% + 72px + 180px), calc(100% - 10%) calc(50% + 180px), /* Fin del rectángulo derecho */
+        100% calc(50% + 180px), 100% 0% /* Finaliza el clipping */
+    );
     border-radius: 4px; /* Aplica bordes redondeados globalmente */
     overflow: hidden; /* Asegura que el recorte respete el border-radius */
     transition: all 0.1s ease-out;
@@ -257,7 +257,6 @@ body {
     width: 1506px;
     aspect-ratio: 3/4;
     cursor: none;
-    transition: height 0.25s ease-in;
 }
 .swiper-slide img {
     display: block;
@@ -272,18 +271,16 @@ body {
     cursor: none;
 }
 
-.swiper-slide-prev {
-    z-index: 0;
-    height: 80%;
-    transform: translate3d(-190px, -70px, -855px) rotateX(0deg) rotateY(0deg) scale(1);
-    z-index: 0;
-    transition: height 0.1s ease-out;
-}
-
 .swiper-slide .imagen-contenida {
     position: relative;
     z-index: 1;
     display: block;
+}
+
+.swiper-slide-prev {
+    transition-duration: 0ms;
+    transform: translate3d(-190px, -70px, -855px) rotateX(0deg) rotateY(0deg) scale(1);
+    z-index: 0;
 }
 
 
@@ -322,7 +319,6 @@ body {
     transform: scale(1); /* Ajusta el zoom al 10% */
 }
 
-
 .distorted {
     filter: url(#wave-effect); /* Placeholder for SVG filter (to be added dynamically) */
 }
@@ -340,7 +336,7 @@ body {
     position: absolute;
     bottom: 5px;
     left: 50%;
-    transform: translate(-98%, -157%);
+    transform: translate(-98%, -117%);
     width: max-content;
     text-align: center;
     padding: 10px 18px;
@@ -366,7 +362,7 @@ body {
     position: absolute;
     bottom: 5px;
     left: 50%;
-    transform: translate(-219%, -228%);
+    transform: translate(-219%, -148%);
     width: max-content;
     text-align: center;
     padding: 10px 18px;
@@ -448,7 +444,7 @@ body {
 .swiper-pagination-bullet {
     width: 14px;
     height: 14px;
-    background-color: var(--Magenta-oscuro);
+    background-color: var(--Azul-muy-oscuro);
     border-radius: 50%;
     transition: transform 0.3s ease, opacity 0.3s ease;
     opacity: 1;
@@ -457,7 +453,7 @@ body {
 
 /* Bullet activo */
 .swiper-pagination-bullet-active {
-    background-color: var(--Magenta-claro); /* Color del bullet activo */
+    background-color: var(--Magenta); /* Color del bullet activo */
     transform: scale(1.2); /* Aumenta ligeramente el tamaño del bullet activo */
     opacity: 1; /* Totalmente visible */
     border-radius: 8px;
@@ -537,12 +533,11 @@ body {
 }
 
 .new-icon {
-    width: 24px;
+    width: 24px; /* Ensure SVG scales properly */
     height: auto;
     object-fit: contain;
     transition: transform 0.15s ease-in;
-    /* transform: scale(0.75); */
-    filter: brightness(8.5);
+    transform: scale(0.75);
 }
 .swiper-button-prev:hover .new-icon,
 .swiper-button-next:hover .new-icon {
@@ -579,10 +574,9 @@ body {
     height: 128px;
     border: 1px solid rgba(246, 246, 246, 0.10);
     background: linear-gradient(180deg, rgba(144, 144, 144, 0.00) 0%, rgba(246, 246, 246, 0.01) 37.15%);
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(3px);
     transform: translateY(-92px);
     z-index: 1;
-    transform: translateY(-120px);
 }
 
 
@@ -635,23 +629,17 @@ body {
         position: relative;
         width: 100%;
         height: 400px;
-/*         clip-path: polygon(
-            0% 0%, 0% calc(43% + 172px), /* Inicio de la izquierda /
-            22% calc(43% + 172px), 22% calc(43% + 72px + 172px), /* Fin del rectángulo izquierdo /
-            0% calc(43% + 72px + 180px), 100% 105%, /* Continúa normal /
-            100% 100%, 100% calc(43% + 72px + 172px), /* Inicio de la derecha /
-            calc(100% - 10%) calc(43% + 72px + 172px), calc(100% - 10%) calc(43% + 172px), /* Fin del rectángulo derecho /
-            100% calc(43% + 172px), 100% 0% /* Finaliza el clipping /
-        ); */
+        clip-path: polygon(
+            0% 0%, 0% calc(43% + 180px), /* Inicio de la izquierda */
+            19% calc(43% + 180px), 19% calc(43% + 72px + 180px), /* Fin del rectángulo izquierdo */
+            0% calc(43% + 72px + 180px), 100% 105%, /* Continúa normal */
+            100% 100%, 100% calc(43% + 72px + 180px), /* Inicio de la derecha */
+            calc(100% - 10%) calc(43% + 72px + 180px), calc(100% - 10%) calc(43% + 180px), /* Fin del rectángulo derecho */
+            100% calc(43% + 180px), 100% 0% /* Finaliza el clipping */
+        );
     }
     .blur {
-        transform: translateY(-105px);
-    }
-    .title {
-        transform: translate(-98%, -130%);
-    }
-    .subtitle {
-        transform: translate(-218%, -182%);
+        transform: translateY(-80px);
     }
 }
 @media (max-width: 1440px) {
@@ -666,20 +654,27 @@ body {
         position: relative;
         width: 100%;
         height: 400px;
-/*         clip-path: polygon(
-            0% 0%, 0% calc(43% + 172px), /* Inicio de la izquierda /
-            24% calc(43% + 172px), 24% calc(43% + 72px + 172px), /* Fin del rectángulo izquierdo /
-            0% calc(43% + 72px + 180px), 100% 105%, /* Continúa normal /
-            100% 100%, 100% calc(43% + 72px + 172px), /* Inicio de la derecha /
-            calc(100% - 10%) calc(43% + 72px + 172px), calc(100% - 10%) calc(43% + 172px), /* Fin del rectángulo derecho /
-            100% calc(43% + 172px), 100% 0% /* Finaliza el clipping /
-        ); */
+        clip-path: polygon(
+            0% 0%, 0% calc(43% + 180px), /* Inicio de la izquierda */
+            19% calc(43% + 180px), 19% calc(43% + 72px + 180px), /* Fin del rectángulo izquierdo */
+            0% calc(43% + 72px + 180px), 100% 105%, /* Continúa normal */
+            100% 100%, 100% calc(43% + 72px + 180px), /* Inicio de la derecha */
+            calc(100% - 10%) calc(43% + 72px + 180px), calc(100% - 10%) calc(43% + 180px), /* Fin del rectángulo derecho */
+            100% calc(43% + 180px), 100% 0% /* Finaliza el clipping */
+        );
     }
     .swiper-slide img {
         transform: translateX(389px);
     }
     .image-container {
         transform: translateX(389px);
+    }
+    
+    .title {
+        transform: translate(-84%, -24%);
+    }
+    .subtitle {
+        transform: translate(-188%, 4%);
     }
 
     .control-container {
@@ -704,12 +699,6 @@ body {
     }
     .next-project-btn {
         left: 37%;
-    }
-    .title {
-        transform: translate(-80%, -130%);
-    }
-    .subtitle {
-        transform: translate(-180%, -182%);
     }
 }
 
