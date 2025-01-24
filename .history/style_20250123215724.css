@@ -241,7 +241,7 @@ body {
 .swiper {
     position: relative;
     width: 100%;
-    height: 500px;
+    height: 480px;
 /*     clip-path: polygon(
             0% 0%, 0% calc(50% + 172px), /* Inicio de la izquierda /
             27% calc(50% + 172px), 27% calc(50% + 72px + 180px), /* Fin del rectángulo izquierdo /
@@ -282,7 +282,7 @@ body {
 
 .swiper-slide-prev {
     z-index: 0;
-    height: 80.5%;
+    height: 80%;
     transform: translate3d(-190px, -70px, -855px) rotateX(0deg) rotateY(0deg) scale(1);
     z-index: 0;
     transition: height 0.1s ease-out;
@@ -402,7 +402,6 @@ body {
     height: 100%;
     overflow: hidden;
     overflow: hidden; /* Ensure content within doesn't overflow */
-    top: 28px;
 }
 
 .custom-box-left,
@@ -592,7 +591,7 @@ body {
     backdrop-filter: blur(4px);
     transform: translateY(-92px);
     z-index: 1;
-    transform: translateY(-92px);
+    transform: translateY(-120px);
 }
 
 
@@ -614,12 +613,10 @@ body {
     z-index: 1; /* Ensure it appears above the canvas */
     background: linear-gradient(180deg, 
         rgba(246, 246, 246, 1) 0%, 
-        rgba(246, 246, 246, 0.1) 21%, 
+        rgba(246, 246, 246, 0.15) 21%, 
         rgba(153, 153, 153, 0.15) 74%, 
-        rgba(246, 246, 246, 0.15) 100%
-        
-        );
-    backdrop-filter: blur(1.5px); /* Apply the blur effect */
+        rgba(246, 246, 246, 0.15) 100%);
+    backdrop-filter: blur(5.3px); /* Apply the blur effect */
 }
 
 #canvas1 ::before {
@@ -658,20 +655,6 @@ body {
 
 
 @media (max-width: 1600px) {
-    .header-content {
-        display: flex
-    ;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px 40px;
-        background-color: var(--Transparente);
-        border-radius: 4px;
-        position: relative;
-        z-index: 10;
-        width: 66%;
-        height: 144px;
-    }
     .tittle-content {
         text-align: left;
         display: flex;
@@ -706,16 +689,13 @@ body {
         ); */
     }
     .blur {
-        transform: translateY(-77px);
+        transform: translateY(-105px);
     }
     .title {
         transform: translate(-98%, -130%);
     }
     .subtitle {
         transform: translate(-218%, -182%);
-    }
-    .control-container {
-        transform: translateY(-185px);
     }
 }
 @media (max-width: 1440px) {
@@ -747,7 +727,7 @@ body {
     }
 
     .control-container {
-        transform: translateY(-195px);
+        transform: translateY(-221px);
         padding-top: 7px;
     }
     .swiper-button-container {
@@ -758,11 +738,11 @@ body {
         cursor: none;
     }
     .swiper-button-prev, .swiper-button-next {
-        transform: scale(.75);
+        transform: scale(.5);
     }
-/*     .swiper-pause img {
+    .swiper-pause img {
         transform: scale(0.75) translateX(-2px) translateY(-3px);
-    } */
+    }
     .pagination-container {
         left: -12px;
     }

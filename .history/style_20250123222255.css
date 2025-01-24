@@ -619,7 +619,7 @@ body {
         rgba(246, 246, 246, 0.15) 100%
         
         );
-    backdrop-filter: blur(1.5px); /* Apply the blur effect */
+    backdrop-filter: blur(1.3px); /* Apply the blur effect */
 }
 
 #canvas1 ::before {

@@ -615,11 +615,11 @@ body {
     background: linear-gradient(180deg, 
         rgba(246, 246, 246, 1) 0%, 
         rgba(246, 246, 246, 0.1) 21%, 
-        rgba(153, 153, 153, 0.15) 74%, 
+        rgba(153, 153, 153, 0.1) 74%, 
         rgba(246, 246, 246, 0.15) 100%
         
         );
-    backdrop-filter: blur(1.5px); /* Apply the blur effect */
+    backdrop-filter: blur(1.3px); /* Apply the blur effect */
 }
 
 #canvas1 ::before {
