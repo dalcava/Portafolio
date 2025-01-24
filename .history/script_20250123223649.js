@@ -183,43 +183,18 @@ window.addEventListener('touchend', function() {
 var palabraFrente = document.querySelector("#nombreI");
 
 function crearPalabra() {
-    let palabras = [
-        "UI/UX Designer", "Experience Architect", "3D Artist", "Animator", 
-        "Motion Designer", "Digital Illustrator", "3D Modeler", "Impostor", 
-        "Interaction Designer", "Prototyper", "Interface Creator", "Visual Storyteller", 
-        "Graphic Designer", "Product Designer", "Obsessive Compulsive", "VFX Artist", 
-        "User", "Digital Experience Manager", "Experience Illustrator", 
-        "Motion Graphics Designer", "Visual Concept Developer", "Parametric Designer", 
-        "Responsive Design Specialist", "Loves Cats"
-    ];
-
+    let palabras = ["UI/UX Designer", "Experience Architect", "3D Artist", "Animator", "Motion Designer", "Digital Illustrator", "3D Modeler", "Impostor", "Interaction Designer", "Prototyper", "Interface Creator", "Visual Storyteller", "Graphic Designer", "Product Designer", "obsessive compulsive", "VFX Artist", "User", "Digital Experience Manager", "Experience Illustrator", "Motion Graphics Designer", "Visual Concept Developer", "Parametric Designer", "Responsive Design Specialist", "Loves Cats"];
     let palabraAleatoria = aleatorio(0, palabras.length - 1);
-
-    // Fade-out the text
-    gsap.to(palabraFrente, {
-        opacity: 0,
-        duration: 0.25,
-        onComplete: () => {
-            // Change the word after fade-out
-            palabraFrente.innerHTML = palabras[palabraAleatoria];
-
-            // Fade-in the new word
-            gsap.to(palabraFrente, {
-                opacity: 1,
-                duration: 0.1
-            });
-        }
-    });
+    palabraFrente.innerHTML = palabras[palabraAleatoria];
 }
 
 function aleatorio(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-// Start the word creation process
-crearPalabra();
 
-// Interval every 2.4 seconds
+crearPalabra();
+// Intervalo cada 2.4 seconds
 setInterval(crearPalabra, 2400);
 
 
@@ -239,7 +214,7 @@ var swiper = new Swiper(".swiper", {
     speed: 500,
     preventClicks: true,
     slidesPerView: "auto",
-    spaceBetween: 4,
+    spaceBetween: 8,
     pagination: {
         el: ".swiper-pagination",
         clickable: true,
@@ -363,7 +338,7 @@ document.querySelectorAll(".swiper-slide").forEach((slide) => {
 
             // Adjust circle size and position with sharp edges
             activeGif.style.maskImage = `radial-gradient(circle at ${x}% ${y}%, black 20%, transparent 21%)`;
-            activeGif.style.webkitMaskImage = `radial-gradient(circle at ${x}% ${y}%, black 31.25%, transparent 32%)`;
+            activeGif.style.webkitMaskImage = `radial-gradient(circle at ${x}% ${y}%, black 28%, transparent 28%)`;
 
             // Ensure the GIF is visible, and the static image stays visible in the background
             activeGif.style.opacity = "1";
@@ -765,7 +740,7 @@ window.onload = () => {
         .fromTo(
             ".control-container",
             { opacity: 0, y: -200 }, // Start invisible and slightly below
-            { opacity: 1, y: -195, duration: 0.85, ease: "power4.out", stagger: 0.25 },
+            { opacity: 1, y: -225, duration: 0.85, ease: "power4.out", stagger: 0.25 },
             "-=2" // Fade and move in
         );
 };

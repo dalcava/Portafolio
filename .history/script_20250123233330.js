@@ -206,7 +206,7 @@ function crearPalabra() {
             // Fade-in the new word
             gsap.to(palabraFrente, {
                 opacity: 1,
-                duration: 0.1
+                duration: 0.15
             });
         }
     });
@@ -239,7 +239,7 @@ var swiper = new Swiper(".swiper", {
     speed: 500,
     preventClicks: true,
     slidesPerView: "auto",
-    spaceBetween: 4,
+    spaceBetween: 8,
     pagination: {
         el: ".swiper-pagination",
         clickable: true,

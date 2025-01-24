@@ -159,21 +159,6 @@ body {
     margin-top: 5px;
 }
 
-.icon-button .icon-text {
-    position: absolute;
-    right: -100px; /* Hide the text outside the button */
-    opacity: 0; /* Invisible by default */
-    white-space: nowrap; /* Prevent text wrapping */
-    color: #fff; /* Adjust text color */
-    font-size: 14px; /* Adjust font size */
-    transition: all 0.3s ease; /* Smooth transition */
-}
-
-.icon-button:hover .icon-text {
-    right: 60px; /* Position to the right of the button */
-    opacity: 1; /* Make text visible */
-}
-
 .navigation-buttons {
     display: flex;
     justify-content: flex-start;

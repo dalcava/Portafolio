@@ -206,7 +206,7 @@ function crearPalabra() {
             // Fade-in the new word
             gsap.to(palabraFrente, {
                 opacity: 1,
-                duration: 0.1
+                duration: 0.15
             });
         }
     });

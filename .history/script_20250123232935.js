@@ -206,7 +206,7 @@ function crearPalabra() {
             // Fade-in the new word
             gsap.to(palabraFrente, {
                 opacity: 1,
-                duration: 0.1
+                duration: 0.15
             });
         }
     });
@@ -239,7 +239,7 @@ var swiper = new Swiper(".swiper", {
     speed: 500,
     preventClicks: true,
     slidesPerView: "auto",
-    spaceBetween: 4,
+    spaceBetween: 8,
     pagination: {
         el: ".swiper-pagination",
         clickable: true,
@@ -363,7 +363,7 @@ document.querySelectorAll(".swiper-slide").forEach((slide) => {
 
             // Adjust circle size and position with sharp edges
             activeGif.style.maskImage = `radial-gradient(circle at ${x}% ${y}%, black 20%, transparent 21%)`;
-            activeGif.style.webkitMaskImage = `radial-gradient(circle at ${x}% ${y}%, black 31.25%, transparent 32%)`;
+            activeGif.style.webkitMaskImage = `radial-gradient(circle at ${x}% ${y}%, black 29%, transparent 30%)`;
 
             // Ensure the GIF is visible, and the static image stays visible in the background
             activeGif.style.opacity = "1";
