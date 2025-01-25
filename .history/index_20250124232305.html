@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/7.2.4/pixi.min.js"></script>
+    <title>Portafolio</title>
+</head>
+<body>
+    <canvas id="canvas1"></canvas>
+    <div class="blur-layer"></div>
+
+    <section class="header-section">
+        <div class="personal-photo"></div>
+        <div class="header-content">
+            <div class="icon-buttons">
+                <div class="navigation-buttons">                   
+                    <div class="icon-button">
+                        <img src="./Slider/Recursos/Proyectos.svg" alt="Projects">
+                        <span>Projects</span>
+                    </div>
+                    <div class="icon-button">
+                        <img src="./Slider/Recursos/About me.svg" alt="About Me">
+                        <span>About Me</span>
+                    </div>
+                    <div class="icon-button">
+                        <img src="./Slider/Recursos/contact.svg" alt="Contact">
+                        <span>Contact</span>
+                    </div>
+                </div>
+                <div class="icon-button">
+                    <img src="./Slider/Recursos/Lighbulb.svg" alt="Lightbulb">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div class="boolean-container">
+        <div class="swiper">
+            <!-- Swiper content -->
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="image-container static-img">
+                        <img src="./Slider/Recursos/Kinetic rush-static.jpg" alt="Static Image 1" class="imagen-contenida">
+                    </div>
+                    <img src="./Slider/Recursos/Kinetic rush-active.gif" alt="Active GIF 1" class="active-gif">
+                    <div class="title">
+                        <span>Nombre del proyecto</span>
+                    </div>
+                    <div class="subtitle">
+                        <span>Subtítulo del proyecto</span>
+                    </div>
+                    <div class="blur"></div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="image-container static-img">
+                        <img src="./Slider/Recursos/Control-static.png" alt="Static Image 2" class="imagen-contenida">
+                    </div>
+                    <img src="./Slider/Recursos/Control-active.gif" alt="Active GIF 2" class="active-gif">
+                    <div class="title">
+                        <span>Nombre del proyecto</span>
+                    </div>
+                    <div class="subtitle">
+                        <span>Subtítulo del proyecto</span>
+                    </div>
+                    <div class="blur"></div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="image-container static-img">
+                        <img src="./Slider/Recursos/Portada.png" alt="Static Image 3" class="imagen-contenida">
+                    </div>
+                    <img src="./Slider/Recursos/AvalPay-Active.gif" alt="Active GIF 3" class="active-gif">
+                    <div class="title">
+                        <span>Nombre del proyecto</span>
+                    </div>
+                    <div class="subtitle">
+                        <span>Subtítulo del proyecto</span>
+                    </div>
+                    <div class="blur"></div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="image-container static-img">
+                        <img src="./Slider/Recursos/Duraznos intro.gif" alt="Static Image 3" class="imagen-contenida">
+                    </div>
+                    <img src="./Slider/Recursos/Duraznos active.gif" alt="Active GIF 3" class="active-gif">
+                    <div class="title">
+                        <span>Nombre del proyecto</span>
+                    </div>
+                    <div class="subtitle">
+                        <span>Subtítulo del proyecto</span>
+                    </div>
+                    <div class="blur"></div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="image-container static-img">
+                        <img src="./Slider/Recursos/Portada.png" alt="Static Image 4" class="imagen-contenida">
+                    </div>
+                    <img src="./Slider/Recursos/AvalPay-Active.gif" alt="Active GIF 4" class="active-gif">
+                    <div class="title">
+                        <span>Nombre del proyecto</span>
+                    </div>
+                    <div class="subtitle">
+                        <span>Subtítulo del proyecto</span>
+                    </div>
+                    <div class="blur"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- If we need pagination -->
+    <div class="control-container">
+        <!-- Navigation buttons -->
+        <div class="swiper-button-container">
+            <!-- Left Arrow -->
+            <div class="swiper-button-prev">
+                <img src="./Slider/Recursos/arrow-left.svg" alt="Previous" class="new-icon">
+            </div>
+        
+            <!-- Right Arrow -->
+            <div class="swiper-button-next">
+                <img src="./Slider/Recursos/arrow-right.svg" alt="Next" class="new-icon">
+            </div>
+        </div>
+        <!-- Pagination and "Next project" button -->
+        <div class="pagination-container">
+            <div class="swiper-pagination"></div>
+<!--             <button class="next-project-btn">Open project</button> -->
+        </div> 
+    
+    </div>
+    
+    
+    <!-- If we need scrollbar -->
+    <div class="swiper-scrollbar"></div>
+    </div>
+
+    <section class="tittle-section">
+        <div class="tittle-content">
+            <div class="main-text masked-element">
+                <h2 class="main-subtitle"><span id="nombreI"></span></h2>
+                <h1 class="main-title">David López</h1>
+            </div>
+<!--             <p class="description masked-element">
+                Lorem ipsum dolor sit amet consectetur. Rhoncus a quis feugiat cursus fusce viverra sodales. Sem ad fusce nec et mollis praesent at vel. Sit non eget congue integer nunc erat quis aliquam.
+            </p> -->
+        </div>
+        <div class="">
+            <img src="./Slider/Recursos/Museum.png" alt="">
+        </div>
+    </section>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+    
+</body>
+</html>
