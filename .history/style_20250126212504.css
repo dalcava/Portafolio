@@ -95,6 +95,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     position: relative;
     z-index: 5;
     cursor: none;
+    position: sticky;
 }
 
 .personal-photo {
@@ -220,7 +221,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     display: flex;
     flex-direction: row;
     gap: 0px;
-    transform: translateY(100px);
+    transform: translateY(20px);
     flex-wrap: nowrap;
     justify-content: space-between;
 }
@@ -230,7 +231,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     display: flex;
     gap: 33%;
     width: 486px;
-    transform: translateX(-8px) translateY(24px);
+    transform: translateX(-8px);
 }
 .main-text {
     display: flex;
@@ -465,7 +466,6 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     height: 100%;
     overflow: hidden;
     overflow: hidden;
-    top: 80px;
 }
 
 .custom-box-left,

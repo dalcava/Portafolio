@@ -669,24 +669,27 @@ const toggleOverflow = (enable) => {
 
 // Function to handle wheel events
 const handleWheelScroll = (e) => {
-    // Prevent default scrolling behavior
-    e.preventDefault();
+    const direction = Math.sign(e.deltaY); // Determine scroll direction (+1 or -1)
+    const scrollTop = window.scroll; // Get the vertical scroll position
+    const scrollHeight = document.documentElement.scrollHeight; // Total scrollable height
+    const clientHeight = window.innerHeight; // Viewport height
 
-    const direction = Math.sign(e.deltaY); // +1 for scroll down, -1 for scroll up
-    const scrollTop = window.scrollY || document.documentElement.scrollTop; // Get current scroll position
+    // Accumulate scroll value within range
+    scrollValue += direction * 10; // Adjust step size (10 in this case)
+    scrollValue = Math.max(0, Math.min(scrollValue, scrollLimit)); // Clamp to 0 – scollLimit
 
-    // Adjust scrollValue based on wheel direction
-    scrollValue += direction * 10; // Increase/decrease by 10
-    scrollValue = Math.max(0, Math.min(scrollValue, scrollLimit)); // Clamp to range [0, scrollLimit]
 
-    // Logic to lock or unlock scrolling
-    if (scrollValue >= scrollLimit || scrollTop > 0) {
-        toggleOverflow(true); // Allow scrolling
-    } else if (scrollValue < scrollLimit && scrollTop === 0) {
+    if (scrollValue >= scrollLimit || scrollTop>0) {
+        toggleOverflow(true); // Unlock scrolling beyond the range
+    }
+    else if (scrollTop === 0) {
+        toggleOverflow(false); // Lock scrolling
+    }
+    else if (scrollValue < scrollLimit) {
         toggleOverflow(false); // Lock scrolling
     }
 
-    // Debugging
+    // Debug: Log the current scrollValue
     console.log("Scroll Value:", scrollValue);
     console.log("Scroll Position:", scrollTop);
 };
@@ -704,8 +707,8 @@ window.addEventListener("wheel", handleWheelScroll, { passive: false });
 
 window.onload = () => {
     scrollValue = 0;
-    window.scrollTo(0, 0); // Reset scroll to top
-    document.documentElement.scrollTop = 0;
+    window.scrollTo(0, 0); // Ensures scroll position starts at the top
+    document.documentElement.scrollTop = 0; // Alternative for certain browsers  
   
     // Add the "brillo" class to the icono element (if it exists)
     const icono = document.querySelector(".icon-button");
