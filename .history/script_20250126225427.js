@@ -771,8 +771,8 @@ window.onload = () => {
         )
         .fromTo(
             ".control-container",
-            { opacity: 0, y: 200, x: 0 }, // Start invisible and slightly below
-            { opacity: 1, y: 62, x:0, duration: 0.85, ease: "power4.out", stagger: 0.25 },
+            { opacity: 0, y: -200, x: 0 }, // Start invisible and slightly below
+            { opacity: 1, y: -62, x:0, duration: 0.85, ease: "power4.out", stagger: 0.25 },
             "-=2" // Fade and move in
         )
         .fromTo(
