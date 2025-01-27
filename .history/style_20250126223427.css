@@ -220,7 +220,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     display: flex;
     flex-direction: row;
     gap: 0px;
-    transform: translateY(140px);
+    transform: translateY(100px);
     flex-wrap: nowrap;
     justify-content: space-between;
 }
@@ -230,7 +230,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     display: flex;
     gap: 33%;
     width: 486px;
-    transform: translateX(-8px) translateY(16px);
+    transform: translateX(-8px) translateY(24px);
 }
 .main-text {
     display: flex;
@@ -465,7 +465,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     height: 100%;
     overflow: hidden;
     overflow: hidden;
-    top: 120px;
+    top: 160px;
 }
 
 .custom-box-left,
