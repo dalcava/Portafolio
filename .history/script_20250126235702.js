@@ -670,28 +670,31 @@ const toggleOverflow = (enable) => {
 };
 
 // Function to handle wheel events
-const handleWheelScroll = (e) => {
-    const direction = Math.sign(e.deltaY); // Determine scroll direction (+1 or -1)
-    const scrollTop = window.scrollY; // Get the vertical scroll position
-    const scrollHeight = document.documentElement.scrollHeight; // Total scrollable height
-    const clientHeight = window.innerHeight; // Viewport height
+const handleScroll = (e) => {
+    e.preventDefault(); // Prevent default scroll behavior
 
-    // Accumulate scroll value within range
-    scrollValue += direction * 10; // Adjust step size (10 in this case)
-    scrollValue = Math.max(0, Math.min(scrollValue, scrollLimit)); // Clamp to 0 – scollLimit
+    // Determine scroll direction
+    const direction = Math.sign(e.deltaY);
+    scrollValue += direction * 10; // Update scrollValue
+    scrollValue = Math.max(0, Math.min(scrollValue, scrollLimit)); // Clamp within [0, scrollLimit]
 
-/*     if (scrollValue === 0) { */
-        toggleOverflow(false); // Lock scrolling when at the top
-    if (scrollValue >= scrollLimit || scrollTop>0) {
-        toggleOverflow(true); // Unlock scrolling beyond the range
+    // Navigate Swiper slides based on scroll direction
+    if (direction !== 0) {
+        navigateSwiper(direction);
     }
-    else if (scrollTop === 0) {
+
+    // Toggle body overflow based on scroll value
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    if (scrollValue >= scrollLimit || scrollTop > 0) {
+        toggleOverflow(true); // Allow scrolling
+    } else {
         toggleOverflow(false); // Lock scrolling
     }
 
-    // Debug: Log the current scrollValue
+    // Debugging
     console.log("Scroll Value:", scrollValue);
     console.log("Scroll Position:", scrollTop);
+    console.log("Overflow State:", document.body.style.overflow);
 };
 
 // Add wheel event listener

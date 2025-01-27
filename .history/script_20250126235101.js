@@ -634,6 +634,7 @@ animate();
 gsap.registerPlugin(ScrollTrigger);
 
 let isAnimating = false;
+let scrollThrottle = 0; // Introduce a throttle to control the speed
 
 // Function to navigate Swiper slides
 const navigateSwiper = (direction) => {
@@ -667,31 +668,32 @@ const toggleOverflow = (enable) => {
     const state = enable ? "auto" : "hidden";
     document.body.style.overflow = state;
     document.documentElement.style.overflow = state;
+    return state; // Return the current state for logging/debugging
 };
 
 // Function to handle wheel events
 const handleWheelScroll = (e) => {
-    const direction = Math.sign(e.deltaY); // Determine scroll direction (+1 or -1)
-    const scrollTop = window.scrollY; // Get the vertical scroll position
-    const scrollHeight = document.documentElement.scrollHeight; // Total scrollable height
-    const clientHeight = window.innerHeight; // Viewport height
+    // Prevent default scrolling behavior
+    e.preventDefault();
 
-    // Accumulate scroll value within range
-    scrollValue += direction * 10; // Adjust step size (10 in this case)
-    scrollValue = Math.max(0, Math.min(scrollValue, scrollLimit)); // Clamp to 0 – scollLimit
+    const direction = Math.sign(e.deltaY); // +1 for scroll down, -1 for scroll up
+    const scrollTop = window.scrollY || document.documentElement.scrollTop; // Get current scroll position
 
-/*     if (scrollValue === 0) { */
-        toggleOverflow(false); // Lock scrolling when at the top
-    if (scrollValue >= scrollLimit || scrollTop>0) {
-        toggleOverflow(true); // Unlock scrolling beyond the range
-    }
-    else if (scrollTop === 0) {
+    // Adjust scrollValue based on wheel direction
+    scrollValue += direction * 10; // Change value by 10 per scroll step
+    scrollValue = Math.max(0, Math.min(scrollValue, scrollLimit)); // Clamp value within [0, scrollLimit]
+
+    // Lock or unlock scrolling based on scrollValue and scrollTop
+    if (scrollValue >= scrollLimit || scrollTop > 0) {
+        toggleOverflow(true); // Allow scrolling
+    } else {
         toggleOverflow(false); // Lock scrolling
     }
 
-    // Debug: Log the current scrollValue
+    // Debugging output
     console.log("Scroll Value:", scrollValue);
     console.log("Scroll Position:", scrollTop);
+    console.log("Overflow State:", document.body.style.overflow);
 };
 
 // Add wheel event listener
