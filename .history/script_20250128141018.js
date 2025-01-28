@@ -425,10 +425,10 @@ customCursor.classList.add("custom-cursor");
 document.body.appendChild(customCursor);
 
 const interactiveElements = document.querySelectorAll(
-  ".next-project-btn, .swiper-button-next, .swiper-button-prev, .swiper-pagination-bullet, .Lightbulb, .menu, .icon-buttons"
+  ".next-project-btn, .swiper-button-next, .swiper-button-prev, .swiper-pagination-bullet, .Lightbulb, .menu, .icon-button"
 );
 
-const proximityRadius = 300; // Adjust as needed
+const proximityRadius = 100; // Adjust as needed
 
 // Utility function to update cursor styles
 function updateCursorStyles(styles) {
@@ -484,107 +484,76 @@ document.addEventListener("mousemove", (e) => {
   }
 });
 
-// Add or remove the pointer effect based on hovered elements
+// Event listener for hover effect
 document.addEventListener("mouseover", (e) => {
-    const target = e.target;
+  const target = e.target;
 
-    // Check if the element has a pointer cursor
-    const isPointer = getComputedStyle(target).cursor === "pointer";
-
-    if (isPointer) {
-        customCursor.classList.add("pointer"); // Add pointer effect
-    } else {
-        customCursor.classList.remove("pointer"); // Remove pointer effect
-    }
+  // Custom hover effects based on classes or tag names
+  if (target.classList.contains("swiper-pagination-bullet")) {
+    updateCursorStyles({
+      transform: `translate(-50%, -50%) scale(1.5)`,
+      backgroundColor: "#BC244A",
+      borderRadius: "24px",
+      transition: "transform 0.15s ease-out, background-color 0.3s ease, border-radius 0.3s ease",
+      zIndex: "2",
+    });
+  } else if (
+    target.classList.contains("Lightbulb") ||
+    target.classList.contains("menu") ||
+    target.classList.contains("icon-button")
+  ) {
+    updateCursorStyles({
+      transform: `translate(-50%, -50%) scale(2.5)`,
+      backgroundColor: "#BC244A",
+      borderRadius: "24px",
+      transition: "transform 0.15s ease-out, background-color 0.3s ease, border-radius 0.3s ease",
+      zIndex: "2",
+    });
+  } else if (
+    target.classList.contains("active-gif") ||
+    target.classList.contains("imagen-contenida")
+  ) {
+    updateCursorStyles({
+      backgroundColor: "rgba(188, 36, 74, 0.0)",
+      borderRadius: "50%",
+      border: "1px solid rgba(188, 36, 74, 0.5)",
+      scale: "2",
+      transition: "transform 0.15s ease-out, background-color 0.3s ease, border-radius 0.3s ease",
+    });
+  } else if (window.getComputedStyle(target).cursor === "pointer") {
+    updateCursorStyles({
+      transform: `translate(-50%, -50%) scale(2.5)`,
+      backgroundColor: "#BC244A",
+      borderRadius: "24px",
+      zIndex: "2",
+      transition: "transform 0.15s ease-out, background-color 0.3s ease, border-radius 0.3s ease",
+    });
+  } else if (
+    window.getComputedStyle(target).cursor === "text" ||
+    ["P", "SPAN", "H1", "H2", "H3", "H4", "H5", "H6"].includes(target.tagName)
+  ) {
+    updateCursorStyles({
+      width: "4px",
+      height: "58px",
+      backgroundColor: "rgba(188, 36, 74, 0.15)",
+      borderRadius: "8px",
+      border: "1px solid rgba(188, 36, 74, 0.5)",
+      zIndex: "1",
+    });
+  } else {
+    // Reset styles for non-interactive elements
+    updateCursorStyles({
+      transform: `translate(-50%, -50%) scale(1)`,
+      backgroundColor: "rgba(188, 36, 74, 0.15)",
+      borderRadius: "50%",
+      width: "20px",
+      height: "20px",
+      zIndex: "1000",
+      border: "1px solid rgba(188, 36, 74, 0.5)",
+    });
+  }
 });
 
-document.addEventListener("mousemove", (e) => {
-    const target = e.target;
-
-    if (!customCursor) return;
-
-    // Update cursor position
-    customCursor.style.left = `${e.clientX}px`;
-    customCursor.style.top = `${e.clientY}px`;
-
-    // Check if the target is "Next Project" button
-    // Check if the target is a pagination bullet
-    if (target.classList.contains("swiper-pagination-bullet")) {
-        const rect = target.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-
-        // Adjust cursor position and appearance
-        customCursor.style.left = `${centerX}px`;
-        customCursor.style.top = `${centerY}px`;
-        customCursor.style.transform = `translate(-50%, -50%) scale(1.5)`;
-        customCursor.style.backgroundColor = "#BC244A";
-        customCursor.style.borderRadius = "24px";
-        customCursor.style.transition = "transform 0.15s ease-out, width 0.1s ease, background-color 0.3s ease, border-radius 0.3s ease";
-        customCursor.style.zIndex = "2";
-        customCursor.style.scale = "1.2";
-        
-    }
-    // Check if the target is a swiper slide
-    else if (target.classList.contains("active-gif" || "imagen-contenida")) {
-        const rect = target.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-
-        // Adjust cursor position and appearance
-        customCursor.style.backgroundColor = "rgba(188, 36, 74, 0.0)";
-        customCursor.style.borderRadius = "50%";
-        customCursor.style.border = "1px solid rgba(188, 36, 74, 0.5)";
-        customCursor.style.transition = "transform 0.15s ease-out, width 0.1s ease, background-color 0.3s ease, border-radius 0.3s ease";
-        customCursor.style.scale = "2";
-    }
-    // Check if the element has a pointer cursor
-    else if (window.getComputedStyle(target).cursor === "pointer") {
-        const rect = target.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-
-        // Adjust cursor appearance for pointer elements
-        customCursor.style.transform = `translate(-50%, -50%) scale(3.5)`;
-        customCursor.style.left = `${centerX}px`;
-        customCursor.style.top = `${centerY}px`;
-        customCursor.style.backgroundColor = "#BC244A";
-        customCursor.style.borderRadius = "24px";
-        customCursor.style.transition = "transform 0.15s ease-out, background-color 0.3s ease, border-radius 0.3s ease";
-        customCursor.style.zIndex = "2";
-    } 
-    else if (
-        window.getComputedStyle(target).cursor === "text" || // Check if the cursor is set to "text"
-        ["P", "SPAN", "H1", "H2", "H3", "H4", "H5", "H6"].includes(target.tagName) // Check for text elements
-    ) {
-        const rect = target.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-    
-        // Adjust cursor appearance for text elements
-        customCursor.style.transform = `translate(-50%, -50%)`; // Slightly smaller for text
-        customCursor.style.width = "4px";
-        customCursor.style.height = "58px";
-        customCursor.style.backgroundColor = "rgba(188, 36, 74, 0.15)"; // Different color for text
-        customCursor.style.borderRadius = "8px"; // Slightly rounded for text
-        customCursor.style.transition = "transform 0.15s ease-out, width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-radius 0.3s ease";
-        customCursor.style.zIndex = "1"; // Ensure it appears above background
-        customCursor.style.border = "1px solid rgba(188, 36, 74, 0.5)";
-    }
-    
-    else {
-        // Reset the cursor for non-interactive elements
-        customCursor.style.transform = `translate(-50%, -50%) scale(1)`;
-        customCursor.style.backgroundColor = "rgba(188, 36, 74, 0.15)"; // Default color
-        customCursor.style.borderRadius = "50%"; // Default shape
-        customCursor.style.width = "16px";
-        customCursor.style.height = "16px";
-        customCursor.style.zIndex = "1000";
-        customCursor.style.transition = "transform 0.25s ease-out, width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-radius 0.3s ease, z-index 0.3s ease";
-        customCursor.style.scale = "1";        
-        customCursor.style.border = "1px solid rgba(188, 36, 74, 0.5)";
-    }
-});
 
 
 // Ensure the pointer effect is removed on mouse leave

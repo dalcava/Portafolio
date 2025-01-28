@@ -425,7 +425,7 @@ customCursor.classList.add("custom-cursor");
 document.body.appendChild(customCursor);
 
 const interactiveElements = document.querySelectorAll(
-  ".next-project-btn, .swiper-button-next, .swiper-button-prev, .swiper-pagination-bullet, .Lightbulb, .menu, .icon-buttons"
+  ".next-project-btn, .swiper-button-next, .swiper-button-prev, .swiper-pagination-bullet, .Lightbulb, .menu, .icon-button"
 );
 
 const proximityRadius = 300; // Adjust as needed
@@ -522,8 +522,20 @@ document.addEventListener("mousemove", (e) => {
         customCursor.style.borderRadius = "24px";
         customCursor.style.transition = "transform 0.15s ease-out, width 0.1s ease, background-color 0.3s ease, border-radius 0.3s ease";
         customCursor.style.zIndex = "2";
-        customCursor.style.scale = "1.2";
-        
+    }
+    else if (target.classList.contains("Lightbulb") || target.classList.contains("menu") || target.classList.contains("icon-button")) {
+        const rect = target.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+
+        // Adjust cursor appearance for pointer elements
+        customCursor.style.transform = `translate(-50%, -50%) scale(2.5)`;
+        customCursor.style.left = `${centerX}px`;
+        customCursor.style.top = `${centerY}px`;
+        customCursor.style.backgroundColor = "#BC244A";
+        customCursor.style.borderRadius = "24px";
+        customCursor.style.transition = "transform 0.15s ease-out, background-color 0.3s ease, border-radius 0.3s ease";
+        customCursor.style.zIndex = "2";
     }
     // Check if the target is a swiper slide
     else if (target.classList.contains("active-gif" || "imagen-contenida")) {
@@ -545,7 +557,7 @@ document.addEventListener("mousemove", (e) => {
         const centerY = rect.top + rect.height / 2;
 
         // Adjust cursor appearance for pointer elements
-        customCursor.style.transform = `translate(-50%, -50%) scale(3.5)`;
+        customCursor.style.transform = `translate(-50%, -50%) scale(2.5)`;
         customCursor.style.left = `${centerX}px`;
         customCursor.style.top = `${centerY}px`;
         customCursor.style.backgroundColor = "#BC244A";
@@ -577,8 +589,8 @@ document.addEventListener("mousemove", (e) => {
         customCursor.style.transform = `translate(-50%, -50%) scale(1)`;
         customCursor.style.backgroundColor = "rgba(188, 36, 74, 0.15)"; // Default color
         customCursor.style.borderRadius = "50%"; // Default shape
-        customCursor.style.width = "16px";
-        customCursor.style.height = "16px";
+        customCursor.style.width = "20px";
+        customCursor.style.height = "20px";
         customCursor.style.zIndex = "1000";
         customCursor.style.transition = "transform 0.25s ease-out, width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-radius 0.3s ease, z-index 0.3s ease";
         customCursor.style.scale = "1";        

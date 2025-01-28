@@ -63,7 +63,8 @@
 }
 
 body {
-    /* display: flex; */
+    display: flex;
+    justify-content: start;
     align-items: center;
     min-height: 100vh;
     background-color: var(--blanco);
@@ -72,20 +73,6 @@ body {
     flex-direction: column;
     cursor: none;
     overflow-x: hidden;
-    align-items: flex-start;
-    justify-content: flex-start;
-}
-.hero {
-    display: flex;
-    /* min-height: 100vh; */
-    background-color: var(--blanco);
-    color: var(--blanco);
-    /* overflow: hidden; */
-    flex-direction: column;
-    cursor: none;
-    /* overflow-x: hidden; */
-    gap: 0px;
-    justify-content: flex-start;
 }
 
 html, body {
@@ -102,28 +89,23 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* background-color: #f6f6f6; */
+    background-color: var(--Transparente);
     width: 100%;
-    height: 128px;
+    height: 144px;
     position: relative;
-    z-index: 3;
+    z-index: 5;
     cursor: none;
-    position: fixed;
-    background: linear-gradient(0deg, rgba(246, 246, 246, 0) 0%, rgba(246, 246, 246, 0.5) 40%, rgba(246, 246, 246, .75) 100%);
-    backdrop-filter: blur(3px);
-    border-bottom: 1px solid var(--blanco);
-    opacity: 1;
 }
 
 .personal-photo {
-    width: 64px;
-    height: 64px;
+    width: 124px;
+    height: 124px;
     border-radius: 1px;
     object-fit: cover;
     cursor: none;
     background-color: var(--Transparente);
-    margin-left: 80px;
-    /* transform: translateY(56px); */
+    margin-left: 48px;
+    transform: translateY(56px);
 }
 
 .header-content {
@@ -136,7 +118,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     border-radius: 1px;
     position: relative;
     z-index: 10;
-    width: 63%;
+    width: 66%;
     height: 136px;
 }
 
@@ -155,31 +137,28 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.2s ease-out;
-    z-index: 3;
 }
 
 .icon-button:hover img{
     transform: scale(1.1);
     filter: saturate(0) brightness(8.2);
-    z-index: 10;
 }
 
 /* Image inside the button */
 .icon-button .menu img {
     width: 24px;
     height: 24px;
-    z-index: 3; /* Ensure it's above the tooltip */
+    z-index: 1; /* Ensure it's above the tooltip */
 }
 .icon-button .Lightbulb img {
     width: 48px;
     height: 48px;
-    z-index: 3; /* Ensure it's above the tooltip */
-    cursor: none;
+    z-index: 1; /* Ensure it's above the tooltip */
 }
 
 /* Tooltip (span) styling */
@@ -199,14 +178,12 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     scale: .75;
     font-weight: 100;
     clip-path: inset(10px 20px 30px 40px);
-    pointer-events: none;
-    
 }
 
 /* Tooltip appears when hovering over the button */
 .icon-button:hover span {
     opacity: 1;
-    transform: translateX(-50%) translateY(4px); /* Slight upward animation */
+    transform: translateX(-50%) translateY(0px); /* Slight upward animation */
     z-index: 10; /* Ensure visibility */
     scale: 1;
     clip-path: inset(0px 0px 0px 0px);
@@ -480,7 +457,6 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     height: 100%;
     overflow: hidden;
     overflow: hidden;
-    padding-top: 160px;
 }
 
 .custom-box-left,

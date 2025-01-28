@@ -421,67 +421,57 @@ document.querySelectorAll(".swiper-slide").forEach((slide) => {
 
 // Create the custom cursor element
 const customCursor = document.createElement("div");
+
 customCursor.classList.add("custom-cursor");
 document.body.appendChild(customCursor);
 
-const interactiveElements = document.querySelectorAll(
-  ".next-project-btn, .swiper-button-next, .swiper-button-prev, .swiper-pagination-bullet, .Lightbulb, .menu, .icon-buttons"
-);
+const interactiveElements = document.querySelectorAll(".next-project-btn, .swiper-button-next, .swiper-button-prev, .swiper-pagination-bullet, .Lightbulb, .menu, .icon-buttons");
 
-const proximityRadius = 300; // Adjust as needed
 
-// Utility function to update cursor styles
-function updateCursorStyles(styles) {
-  Object.assign(customCursor.style, styles);
-}
-
-// Event listener for mouse movement
 document.addEventListener("mousemove", (e) => {
-  let closestElement = null;
-  let closestDistance = proximityRadius;
+    let isNearInteractive = false;
 
-  // Find the closest interactive element
-  interactiveElements.forEach((element) => {
-    const rect = element.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    const distance = Math.sqrt(
-      Math.pow(e.clientX - centerX, 2) + Math.pow(e.clientY - centerY, 2)
-    );
+    interactiveElements.forEach((element) => {
+        const rect = element.getBoundingClientRect();
 
-    if (distance < closestDistance) {
-      closestDistance = distance;
-      closestElement = element;
+        // Check proximity to the element (adjust radius for "magnetic" effect)
+        const proximityRadius = 1200; // Large radius for detection
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const distance = Math.sqrt(
+            Math.pow(e.clientX - centerX, 2) + Math.pow(e.clientY - centerY, 2)
+        );
+
+        if (distance < proximityRadius) {
+            isNearInteractive = true;
+
+            // Stronger pull effect near the element
+            const pullStrength = Math.min(150, 1 - distance / proximityRadius); // Stronger near the center
+            const targetX = centerX + (e.clientX - centerX) * pullStrength;
+            const targetY = centerY + (e.clientY - centerY) * pullStrength;
+
+            customCursor.style.left = `${targetX}px`;
+            customCursor.style.top = `${targetY}px`;
+            customCursor.style.transform = `translate(-50%, -50%) scale(1.5)`;
+            customCursor.style.backgroundColor = "rgba(246, 246, 246, 0.1)";
+            customCursor.style.transition = "transform 0.2s ease-out, background-color 0.3s ease";
+        }
+    });
+
+    if (!isNearInteractive) {
+        // Reset cursor to default behavior
+        customCursor.style.left = `${e.clientX}px`;
+        customCursor.style.top = `${e.clientY}px`;
+        customCursor.style.transform = `translate(-50%, -50%) scale(1)`;
+        customCursor.style.backgroundColor = "#BC244A"; // Default color
+        customCursor.style.transition = "transform 0.2s ease-out, background-color 0.3s ease";
     }
-  });
+});
 
-  if (closestElement) {
-    const rect = closestElement.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-
-    // Magnetic effect
-    const pullStrength = Math.min(0.2, 1 - closestDistance / proximityRadius);
-    const targetX = centerX + (e.clientX - centerX) * pullStrength;
-    const targetY = centerY + (e.clientY - centerY) * pullStrength;
-
-    updateCursorStyles({
-      left: `${targetX}px`,
-      top: `${targetY}px`,
-      transform: `translate(-50%, -50%) scale(1.5)`,
-      backgroundColor: "rgba(246, 246, 246, 0.1)",
-      transition: "transform 0.2s ease-out, background-color 0.3s ease",
-    });
-  } else {
-    // Default cursor behavior
-    updateCursorStyles({
-      left: `${e.clientX}px`,
-      top: `${e.clientY}px`,
-      transform: `translate(-50%, -50%) scale(1)`,
-      backgroundColor: "#BC244A",
-      transition: "transform 0.2s ease-out, background-color 0.3s ease",
-    });
-  }
+// Update the position of the custom cursor
+document.addEventListener("mousemove", (e) => {
+    customCursor.style.left = `${e.clientX}px`;
+    customCursor.style.top = `${e.clientY}px`;
 });
 
 // Add or remove the pointer effect based on hovered elements
@@ -522,8 +512,20 @@ document.addEventListener("mousemove", (e) => {
         customCursor.style.borderRadius = "24px";
         customCursor.style.transition = "transform 0.15s ease-out, width 0.1s ease, background-color 0.3s ease, border-radius 0.3s ease";
         customCursor.style.zIndex = "2";
-        customCursor.style.scale = "1.2";
-        
+    }
+    else if (target.classList.contains("Lightbulb") || target.classList.contains("menu") || target.classList.contains("icon-buttons")) {
+        const rect = target.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+
+        // Adjust cursor appearance for pointer elements
+        customCursor.style.transform = `translate(-50%, -50%) scale(2.5)`;
+        customCursor.style.left = `${centerX}px`;
+        customCursor.style.top = `${centerY}px`;
+        customCursor.style.backgroundColor = "#BC244A";
+        customCursor.style.borderRadius = "24px";
+        customCursor.style.transition = "transform 0.15s ease-out, background-color 0.3s ease, border-radius 0.3s ease";
+        customCursor.style.zIndex = "2";
     }
     // Check if the target is a swiper slide
     else if (target.classList.contains("active-gif" || "imagen-contenida")) {
@@ -545,7 +547,7 @@ document.addEventListener("mousemove", (e) => {
         const centerY = rect.top + rect.height / 2;
 
         // Adjust cursor appearance for pointer elements
-        customCursor.style.transform = `translate(-50%, -50%) scale(3.5)`;
+        customCursor.style.transform = `translate(-50%, -50%) scale(2.5)`;
         customCursor.style.left = `${centerX}px`;
         customCursor.style.top = `${centerY}px`;
         customCursor.style.backgroundColor = "#BC244A";
@@ -577,8 +579,8 @@ document.addEventListener("mousemove", (e) => {
         customCursor.style.transform = `translate(-50%, -50%) scale(1)`;
         customCursor.style.backgroundColor = "rgba(188, 36, 74, 0.15)"; // Default color
         customCursor.style.borderRadius = "50%"; // Default shape
-        customCursor.style.width = "16px";
-        customCursor.style.height = "16px";
+        customCursor.style.width = "20px";
+        customCursor.style.height = "20px";
         customCursor.style.zIndex = "1000";
         customCursor.style.transition = "transform 0.25s ease-out, width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-radius 0.3s ease, z-index 0.3s ease";
         customCursor.style.scale = "1";        
