@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/7.2.4/pixi.min.js"></script>
+    <title>Portafolio</title>
+      <!-- Also include vecteur for simple vector math -->
+  <script type="module">
+    import { vec2 } from "https://esm.sh/vecteur";
+    import { MagneticCursor } from "./cursor.js"; // your cursor class
+
+    // Example usage
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1) Create the visible cursor element in your HTML or dynamically:
+      // <div class="cursor"></div>
+      const cursorEl = document.querySelector(".cursor");
+      
+      // 2) Instantiate the class
+      const cursor = new MagneticCursor(cursorEl);
+
+      // 3) Animate continuously using GSAP’s ticker
+      gsap.ticker.add(() => cursor.update());
+      
+      // 4) Track pointer move to update cursor position
+      window.addEventListener("pointermove", (e) => {
+        cursor.updateTargetPosition(e.clientX, e.clientY);
+      });
+    });
+  </script>
+  
+  <style>
+    body {
+      margin: 0;
+      height: 200vh; /* Just to allow some scrolling */
+      background: #f0f0f0;
+    }
+
+    .cursor {
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      width: 40px;
+      height: 40px;
+      background: #bc244a; /* default color */
+      border-radius: 50%;
+      pointer-events: none; /* so it never blocks clicks */
+      transform: translate(-50%, -50%);
+    }
+
+    /* Example hover elements */
+    .magnet {
+      display: inline-block;
+      margin: 80px;
+      padding: 20px 40px;
+      background: #fff;
+      cursor: pointer;
+      border: 1px solid #ddd;
+      transition: box-shadow 0.3s;
+    }
+    .magnet:hover {
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    /* We’ll wrap them in data-hover for the code below */
+  </style>
+</head>
+<body>
+    
+    <canvas id="canvas1"></canvas>
+    <div class="blur-layer"></div>
+
+    <section class="header-section">
+        <div class="personal-photo"></div>
+        <div class="header-content">
+            <div class="icon-buttons">
+                <div class="navigation-buttons">                   
+                    <div class="icon-button">
+                        <img src="./Slider/Recursos/Proyectos.svg" alt="Projects">
+                        <span>Projects</span>
+                    </div>
+                    <div class="icon-button">
+                        <img src="./Slider/Recursos/About me.svg" alt="About Me">
+                        <span>About Me</span>
+                    </div>
+                    <div class="icon-button">
+                        <img src="./Slider/Recursos/contact.svg" alt="Contact">
+                        <span>Contact</span>
+                    </div>
+                </div>
+                <div class="icon-button">
+                    <img src="./Slider/Recursos/Lighbulb.svg" alt="Lightbulb">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div class="boolean-container">
+        <div class="swiper">
+            <!-- Swiper content -->
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="image-container static-img">
+                        <img src="./Slider/Recursos/Kinetic rush-static.webp" alt="Static Image 1" class="imagen-contenida">
+                        <div class="grid">
+                            <div class="grid-collumn"></div>
+                            <div class="grid-collumn"></div>
+                            <div class="grid-collumn"></div>
+                            <div class="grid-collumn"></div>
+                        </div>
+                    </div>
+                    <img src="./Slider/Recursos/Kinetic rush-active.gif" alt="Active GIF 1" class="active-gif">
+                    <div class="title">
+                        <span>Nombre del proyecto</span>
+                    </div>
+                    <div class="subtitle">
+                        <span>Subtítulo del proyecto</span>
+                    </div>
+                    <div class="blur"></div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="image-container static-img">
+                        <img src="./Slider/Recursos/Control-static.webp" alt="Static Image 2" class="imagen-contenida">
+                        <div class="grid">
+                            <div class="grid-collumn"></div>
+                            <div class="grid-collumn"></div>
+                            <div class="grid-collumn"></div>
+                            <div class="grid-collumn"></div>
+                        </div>
+                    </div>
+                    <img src="./Slider/Recursos/Control-active.gif" alt="Active GIF 2" class="active-gif">
+                    <div class="title">
+                        <span>Nombre del proyecto</span>
+                    </div>
+                    <div class="subtitle">
+                        <span>Subtítulo del proyecto</span>
+                    </div>
+                    <div class="blur"></div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="image-container static-img">
+                        <img src="./Slider/Recursos/Portada.webp" alt="Static Image 3" class="imagen-contenida">
+                        <div class="grid">
+                            <div class="grid-collumn"></div>
+                            <div class="grid-collumn"></div>
+                            <div class="grid-collumn"></div>
+                            <div class="grid-collumn"></div>
+                        </div>
+                    </div>
+                    <img src="./Slider/Recursos/AvalPay-Active.gif" alt="Active GIF 3" class="active-gif">
+                    <div class="title">
+                        <span>Nombre del proyecto</span>
+                    </div>
+                    <div class="subtitle">
+                        <span>Subtítulo del proyecto</span>
+                    </div>
+                    <div class="blur"></div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="image-container static-img">
+                        <img src="./Slider/Recursos/Duraznos intro.gif" alt="Static Image 3" class="imagen-contenida">
+                        <div class="grid">
+                            <div class="grid-collumn"></div>
+                            <div class="grid-collumn"></div>
+                            <div class="grid-collumn"></div>
+                            <div class="grid-collumn"></div>
+                        </div>
+                    </div>
+                    <img src="./Slider/Recursos/Duraznos active.gif" alt="Active GIF 3" class="active-gif">
+                    <div class="title">
+                        <span>Nombre del proyecto</span>
+                    </div>
+                    <div class="subtitle">
+                        <span>Subtítulo del proyecto</span>
+                    </div>
+                    <div class="blur"></div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="image-container static-img">
+                        <img src="./Slider/Recursos/CR.webp" alt="Static Image 4" class="imagen-contenida">
+                        <div class="grid">
+                            <div class="grid-collumn"></div>
+                            <div class="grid-collumn"></div>
+                            <div class="grid-collumn"></div>
+                            <div class="grid-collumn"></div>
+                        </div>
+                    </div>
+                    <img src="./Slider/Recursos/AvalPay-Active.gif" alt="Active GIF 4" class="active-gif">
+                    <div class="title">
+                        <span>Nombre del proyecto</span>
+                    </div>
+                    <div class="subtitle">
+                        <span>Subtítulo del proyecto</span>
+                    </div>
+                    <div class="blur"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- If we need pagination -->
+    <div class="control-container">
+        <!-- Navigation buttons -->
+        <div class="swiper-button-container">
+            <!-- Left Arrow -->
+            <div class="swiper-button-prev">
+                <img src="./Slider/Recursos/arrow-left.svg" alt="Previous" class="new-icon">
+            </div>
+        
+            <!-- Right Arrow -->
+            <div class="swiper-button-next">
+                <img src="./Slider/Recursos/arrow-right.svg" alt="Next" class="new-icon">
+            </div>
+        </div>
+        <!-- Pagination and "Next project" button -->
+        <div class="pagination-container">
+            <div class="swiper-pagination"></div>
+        <!--             <button class="next-project-btn">Open project</button> -->
+        </div> 
+    
+    </div>
+    
+    
+    <!-- If we need scrollbar -->
+    <div class="swiper-scrollbar"></div>
+    </div>
+
+    <section class="tittle-section">
+        <div class="tittle-content">
+            <div class="main-text masked-element">
+                <h2 class="main-subtitle"><span id="nombreI"></span></h2>
+                <h1 class="main-title">David López</h1>
+            </div>
+        </div>
+        <div class="about-me-compliment">
+            <img src="./Slider/Recursos/Museum.webp" alt="">
+        </div>
+    </section>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+    
+
+</body>
+</html>
