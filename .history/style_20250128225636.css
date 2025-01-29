@@ -760,9 +760,6 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
         width: 66%;
         height: 144px;
     }
-    .personal-photo {
-        margin-left: 3%;
-    }
     .tittle-content {
         display: flex;
         gap: 24%;
@@ -858,9 +855,6 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     .navigation-buttons {
         width: fit-content;
     }
-    .personal-photo {
-        margin-left: 40px;
-    }
     .swiper {
         width: 95%;
     }
@@ -875,12 +869,8 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 
 @media (max-width: 1000px) {
     .header-section {
-        padding: 0% 3%;
-        justify-content: space-around;
         gap: 0%;
-    }
-    .header-content {
-        padding: 0px 0px;
+        justify-content: center;
     }
     .swiper {
         width: 95%;
@@ -951,7 +941,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     .personal-photo {
         width: 48px;
         height: 48px;
-        margin-left: 4px;
+        margin-left: 12px;
     }
     .personal-photo img{
         width: 48px;
@@ -962,11 +952,11 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
         width: 40px;
         height: 40px;
     }
-    .icon-button img{
+    .icon-button .menu img {
         width: 24px;
         height: 24px;
     }
-    .Lightbulb img {
+    .icon-button .Lighbulb img {
         width: 48px;
         height: 48px;
     }
@@ -975,13 +965,12 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 @media (max-width: 550px) {
     .header-section {
         height: 100px;
-        gap: 0;
     }
     .navigation-buttons {
         justify-content: center;
         align-items: center;
         width: 100%;
-        gap: 12%;
+        gap: 25%;
     }
     .boolean-container {
         padding-top: 100px;
@@ -994,15 +983,14 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     }
     .header-content {
         width: 100%;
-        padding: 0 16px 0 0;
     }
     .icon-button img{
         width: 20px;
         height: 20px;
     }
     .Lightbulb img {
-        width: 48px;
-        height: 48px;
+        width: 32px;
+        height: 32px;
     }
     .swiper-slide img {
         transform: translateX(0px);

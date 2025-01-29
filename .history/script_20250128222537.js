@@ -278,7 +278,7 @@ var swiper = new Swiper(".swiper", {
     },
     1001: {
       // >= 1000px
-      slidesPerView: "1",
+      slidesPerView: ".9",
     },
     1201: {
       // >= 1200px

@@ -278,11 +278,11 @@ var swiper = new Swiper(".swiper", {
     },
     1001: {
       // >= 1000px
-      slidesPerView: "1",
+      slidesPerView: ".95",
     },
     1201: {
       // >= 1200px
-      slidesPerView: "1.1",
+      slidesPerView: "1",
     },
     1441: {
       // >= 1440px

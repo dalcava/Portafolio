@@ -760,9 +760,6 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
         width: 66%;
         height: 144px;
     }
-    .personal-photo {
-        margin-left: 3%;
-    }
     .tittle-content {
         display: flex;
         gap: 24%;
@@ -876,8 +873,6 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 @media (max-width: 1000px) {
     .header-section {
         padding: 0% 3%;
-        justify-content: space-around;
-        gap: 0%;
     }
     .header-content {
         padding: 0px 0px;
@@ -975,7 +970,6 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 @media (max-width: 550px) {
     .header-section {
         height: 100px;
-        gap: 0;
     }
     .navigation-buttons {
         justify-content: center;

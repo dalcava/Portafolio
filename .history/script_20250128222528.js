@@ -270,7 +270,7 @@ var swiper = new Swiper(".swiper", {
   breakpoints: {
     551: {
       // >= 500px
-      slidesPerView: "1",
+      slidesPerView: ".6",
     },
     701: {
       // >= 500px
@@ -278,7 +278,7 @@ var swiper = new Swiper(".swiper", {
     },
     1001: {
       // >= 1000px
-      slidesPerView: "1",
+      slidesPerView: ".9",
     },
     1201: {
       // >= 1200px

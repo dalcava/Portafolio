@@ -760,9 +760,6 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
         width: 66%;
         height: 144px;
     }
-    .personal-photo {
-        margin-left: 3%;
-    }
     .tittle-content {
         display: flex;
         gap: 24%;
