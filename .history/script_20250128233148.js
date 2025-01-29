@@ -179,7 +179,7 @@ window.addEventListener('touchend', function() {
  * If >= 550px, show the canvas, init, and start the animation.
  */
 function checkCanvasSize() {
-    if (window.innerWidth < 551) {
+    if (window.innerWidth < 550) {
         // Stop drawing and hide the canvas
         cancelAnimationFrame(animationFrameId);
         canvas.style.display = 'none';
