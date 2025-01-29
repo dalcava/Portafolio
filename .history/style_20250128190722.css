@@ -857,11 +857,11 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     }
     .swiper-pagination-bullet-active {
         background-color: var(--Magenta-claro);
-        transform: scaleX(1.5) scaleY(1.5) translateX(2px);
+        transform: scaleX(1.5) scaleY(1.5) translateX(2px); /* Aumenta ligeramente el tamaño del bullet activo */
     }
     .swiper-pagination-bullet:hover {
-        background-color: none;
-        transform: initial;
+        background-color: var(--Magenta-claro);
+        transform: scaleX(1.5) scaleY(1.5) translateX(2px); /* Aumenta ligeramente el tamaño del bullet activo */
     }
 }
 
@@ -900,28 +900,6 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
         justify-content: center;
     }
-    .personal-photo {
-        width: 48px;
-        height: 48px;
-        margin-left: 12px;
-    }
-    .personal-photo img{
-        width: 48px;
-        height: 48px;
-        margin-left: 12px;
-    }
-    .icon-button {
-        width: 40px;
-        height: 40px;
-    }
-    .icon-button .menu img {
-        width: 20px;
-        height: 20px;
-    }
-    .icon-button .Lighbulb img {
-        width: 32px;
-        height: 32px;
-    }
 }
 
 @media (max-width: 550px) {
@@ -930,10 +908,6 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     }
     .blur {
         transform: translateY(447px);
-    }
-    .icon-button {
-        width: 32px;
-        height: 32px;
     }
 }
 

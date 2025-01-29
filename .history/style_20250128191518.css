@@ -918,10 +918,6 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
         width: 20px;
         height: 20px;
     }
-    .icon-button .Lighbulb img {
-        width: 32px;
-        height: 32px;
-    }
 }
 
 @media (max-width: 550px) {

@@ -855,14 +855,6 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     .boolean-container {
         padding-top: 120px;
     }
-    .swiper-pagination-bullet-active {
-        background-color: var(--Magenta-claro);
-        transform: scaleX(1.5) scaleY(1.5) translateX(2px);
-    }
-    .swiper-pagination-bullet:hover {
-        background-color: none;
-        transform: initial;
-    }
 }
 
 @media (max-width: 700px) {
@@ -900,40 +892,11 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
         justify-content: center;
     }
-    .personal-photo {
-        width: 48px;
-        height: 48px;
-        margin-left: 12px;
-    }
-    .personal-photo img{
-        width: 48px;
-        height: 48px;
-        margin-left: 12px;
-    }
-    .icon-button {
-        width: 40px;
-        height: 40px;
-    }
-    .icon-button .menu img {
-        width: 20px;
-        height: 20px;
-    }
-    .icon-button .Lighbulb img {
-        width: 32px;
-        height: 32px;
-    }
 }
 
 @media (max-width: 550px) {
     .boolean-container {
         padding-top: 100px;
-    }
-    .blur {
-        transform: translateY(447px);
-    }
-    .icon-button {
-        width: 32px;
-        height: 32px;
     }
 }
 
@@ -946,9 +909,6 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     }
     .swiper {
         height: 560px;
-    }
-    .blur {
-        transform: translateY(367px);
     }
 }
 

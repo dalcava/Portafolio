@@ -777,6 +777,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
         margin-top: 10px;
     }
     .swiper {
+        position: relative;
         height: 520px;
     }
     .blur {
@@ -811,9 +812,6 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     .control-container {
         transform: translateY(-171px);
         padding-top: 7px;
-    }
-    .swiper {
-        height: 480px;
     }
     .swiper-button-container {
         gap: 48px;
@@ -852,17 +850,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 }
 
 @media (max-width: 900px) {
-    .boolean-container {
-        padding-top: 120px;
-    }
-    .swiper-pagination-bullet-active {
-        background-color: var(--Magenta-claro);
-        transform: scaleX(1.5) scaleY(1.5) translateX(2px);
-    }
-    .swiper-pagination-bullet:hover {
-        background-color: none;
-        transform: initial;
-    }
+
 }
 
 @media (max-width: 700px) {
@@ -900,41 +888,10 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
         justify-content: center;
     }
-    .personal-photo {
-        width: 48px;
-        height: 48px;
-        margin-left: 12px;
-    }
-    .personal-photo img{
-        width: 48px;
-        height: 48px;
-        margin-left: 12px;
-    }
-    .icon-button {
-        width: 40px;
-        height: 40px;
-    }
-    .icon-button .menu img {
-        width: 20px;
-        height: 20px;
-    }
-    .icon-button .Lighbulb img {
-        width: 32px;
-        height: 32px;
-    }
 }
 
 @media (max-width: 550px) {
-    .boolean-container {
-        padding-top: 100px;
-    }
-    .blur {
-        transform: translateY(447px);
-    }
-    .icon-button {
-        width: 32px;
-        height: 32px;
-    }
+    
 }
 
 @media (max-width: 390px) {
@@ -943,12 +900,6 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     }
     .subtitle {
         transform: translate(-50%, -234%);
-    }
-    .swiper {
-        height: 560px;
-    }
-    .blur {
-        transform: translateY(367px);
     }
 }
 

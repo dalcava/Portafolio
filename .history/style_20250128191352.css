@@ -900,16 +900,6 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
         justify-content: center;
     }
-    .personal-photo {
-        width: 48px;
-        height: 48px;
-        margin-left: 12px;
-    }
-    .personal-photo img{
-        width: 48px;
-        height: 48px;
-        margin-left: 12px;
-    }
     .icon-button {
         width: 40px;
         height: 40px;
@@ -917,10 +907,6 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     .icon-button .menu img {
         width: 20px;
         height: 20px;
-    }
-    .icon-button .Lighbulb img {
-        width: 32px;
-        height: 32px;
     }
 }
 

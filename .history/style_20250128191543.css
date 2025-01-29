@@ -914,13 +914,9 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
         width: 40px;
         height: 40px;
     }
-    .icon-button .menu img {
+    .icon-button img {
         width: 20px;
         height: 20px;
-    }
-    .icon-button .Lighbulb img {
-        width: 32px;
-        height: 32px;
     }
 }
 
