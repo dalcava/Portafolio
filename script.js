@@ -709,6 +709,75 @@ window.addEventListener("wheel", (e) => {
     navigateSwiper(direction);
 });
 
+document.querySelectorAll(".image-container, .imagen-contenida, .active-gif").forEach(element => {
+    element.addEventListener("click", function () {
+        // Find the closest swiper-slide and get its data-url
+        const slide = this.closest(".swiper-slide");
+        const nextPage = slide.getAttribute("data-url");
+
+        if (!nextPage) return; // Prevent errors if no URL is set
+
+        // Find the static image to animate
+        const image = slide.querySelector(".imagen-contenida");
+        if (!image) return;
+
+        // Get image position
+        const rect = image.getBoundingClientRect();
+
+        // Clone the clicked image
+        const clone = image.cloneNode(true);
+        document.body.appendChild(clone);
+
+        // Create the white transition overlay
+        const whiteOverlay = document.createElement("div");
+        whiteOverlay.classList.add("white-overlay");
+        document.body.appendChild(whiteOverlay);
+
+        // Set clone's initial position
+        gsap.set(clone, {
+            position: "fixed",
+            top: rect.top + "px",
+            left: rect.left + "px",
+            width: rect.width + "px",
+            height: rect.height + "px",
+            zIndex: 1000,
+            objectFit: "cover",
+            borderRadius: "16px",
+            clipPath: "inset(0% 0% 0% 0%)" // Initially fully visible
+        });
+
+        // Animate the clone to fullscreen
+        gsap.to(clone, {
+            top: "0px",
+            left: "0px",
+            width: "100vw",
+            height: "100vh",
+            duration: 0.8,
+            ease: "power2.inOut",
+            borderRadius: "0px"
+        });
+
+        // Animate the clip-path to reveal the white background
+        gsap.to(clone, {
+            clipPath: "inset(100% 0% 0% 0%)", // Moves up, revealing white
+            duration: 0.8,
+            delay: 0.5, // Wait for the fullscreen effect
+            ease: "power2.inOut",
+            onComplete: () => {
+                window.location.href = nextPage; // Redirect after animation
+            }
+        });
+
+        // Animate the white background to stay after transition
+        gsap.to(whiteOverlay, {
+            opacity: 1,
+            duration: 0.5,
+            delay: 0,
+            ease: "power2.inOut"
+        });
+    });
+});
+
 
 
 

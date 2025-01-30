@@ -9,35 +9,10 @@
     <title>Dalc Portfolio</title>
 </head>
 <body>
+    <div class="white-overlay"></div>
     <canvas id="canvas1"></canvas>
     <div class="blur-layer"></div>
-
-    <section class="header-section">
-        <div class="personal-photo">
-            <img src="./Slider/Recursos/personal-photo.svg" alt="Personal photo">
-        </div>
-        <div class="header-content">
-            <div class="icon-buttons">
-                <div class="navigation-buttons">                   
-                    <div class="icon-button menu">
-                        <img src="./Slider/Recursos/Proyectos.svg" alt="Projects">
-                        <span>Projects</span>
-                    </div>
-<!--                     <div class="icon-button menu">
-                        <img src="./Slider/Recursos/About me.svg" alt="About Me">
-                        <span>About Me</span>
-                    </div> -->
-                    <div class="icon-button menu">
-                        <img src="./Slider/Recursos/contact.svg" alt="Contact">
-                        <span>Contact</span>
-                    </div>
-                </div>
-                <div class="icon-button Lightbulb">
-                    <img src="./Slider/Recursos/Lighbulb.svg" alt="Lightbulb">
-                </div>
-            </div>
-        </div>
-    </section>
+    
     <div class="hero">
         <div class="boolean-container">
             <div class="swiper">
@@ -81,7 +56,7 @@
                         </div>
                         <div class="blur"></div>
                     </div>
-                    <div class="swiper-slide">
+                    <div class="swiper-slide" data-url="./Aval_pay_center.html">
                         <div class="image-container static-img">
                             <img src="./Slider/Recursos/Portada.webp" alt="Static Image 3" class="imagen-contenida">
                             <div class="grid">
@@ -185,6 +160,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Load the header
+            fetch("../../header.html") // Adjust the path based on your directory structure
+                .then(response => {
+                    if (!response.ok) throw new Error("Failed to load header");
+                    return response.text();
+                })
+                .then(data => {
+                    document.body.insertAdjacentHTML("afterbegin", data); // Insert header at the top of <body>
+                })
+                .catch(error => console.error("Error loading header:", error));
+        });
+    </script>
     
 
 </body>
