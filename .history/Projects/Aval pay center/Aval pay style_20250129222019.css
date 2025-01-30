@@ -1,3 +1,30 @@
+/* Definición de las fuentes Publica Sans */
+@font-face {
+    font-family: 'Funnel Display';
+    src: url('./Slider/Recursos/Fuentes/Funnel_Display/FunnelDisplay-VariableFont_wght.ttf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Publica Sans';
+    src: url('./Slider/Recursos/Fuentes/Publica/PublicaSans-Medium.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Publica Sans';
+    src: url('./Slider/Recursos/Fuentes/Publica/PublicaSans-Bold.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Publica Sans';
+    src: url('./Slider/Recursos/Fuentes/Publica/PublicaSans-UltraLight.otf') format('opentype');
+    font-weight: 100;
+}
+
 *,
 *::before,
 *::after {
@@ -11,7 +38,7 @@ body {
     /* display: flex; */
     align-items: center;
     min-height: 100vh;
-    background-color: var(--Azul-claro);
+    background-color: var(--blanco);
     color: var(--blanco);
     overflow: auto;
     flex-direction: column;

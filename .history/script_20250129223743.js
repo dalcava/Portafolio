@@ -591,7 +591,7 @@ document.addEventListener("mousemove", (e) => {
     else {
         // Reset the cursor for non-interactive elements
         customCursor.style.transform = `translate(-50%, -50%) scale(1)`;
-        customCursor.style.backgroundColor = "rgba(188, 36, 74, 1)"; // Default color
+        customCursor.style.backgroundColor = "rgba(188, 36, 74, 0.15)"; // Default color
         customCursor.style.borderRadius = "50%"; // Default shape
         customCursor.style.width = "16px";
         customCursor.style.height = "16px";

@@ -62,12 +62,8 @@
     --desktopXL: 1920px;
 }
 ::selection {
-    background-color: var(--Azul-claro);
-    color: var(--Magenta-claro);
-}
-::-moz-selection {
-    background-color: var(--Azul-claro);
-    color: var(--Magenta-claro);
+    background-color: var(--Azul-claro); /* Cambia el fondo de la selección */
+    color: var(--blanco); /* Cambia el color del texto seleccionado */
 }
 body {
     /* display: flex; */

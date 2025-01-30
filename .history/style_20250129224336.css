@@ -62,12 +62,13 @@
     --desktopXL: 1920px;
 }
 ::selection {
-    background-color: var(--Azul-claro);
-    color: var(--Magenta-claro);
+    background-color: var(--Magenta-claro);
+    color: var(--blanco);
+    font-style: italic;
 }
 ::-moz-selection {
-    background-color: var(--Azul-claro);
-    color: var(--Magenta-claro);
+    background-color: var(--Magenta-claro);
+    color: var(--blanco);
 }
 body {
     /* display: flex; */

@@ -61,14 +61,7 @@
     --desktop: 1440px;
     --desktopXL: 1920px;
 }
-::selection {
-    background-color: var(--Azul-claro);
-    color: var(--Magenta-claro);
-}
-::-moz-selection {
-    background-color: var(--Azul-claro);
-    color: var(--Magenta-claro);
-}
+
 body {
     /* display: flex; */
     align-items: center;

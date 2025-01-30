@@ -32,6 +32,9 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Publica Sans";
+    text-decoration: underline;
+    text-decoration-color: var(--Magenta); /* Cambia el color globalmente */
+    text-decoration-thickness: 2px; /* Ajusta el grosor */
 }
 
 :root {
@@ -61,14 +64,7 @@
     --desktop: 1440px;
     --desktopXL: 1920px;
 }
-::selection {
-    background-color: var(--Azul-claro);
-    color: var(--Magenta-claro);
-}
-::-moz-selection {
-    background-color: var(--Azul-claro);
-    color: var(--Magenta-claro);
-}
+
 body {
     /* display: flex; */
     align-items: center;

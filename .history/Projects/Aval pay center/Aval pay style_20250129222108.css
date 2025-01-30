@@ -11,7 +11,7 @@ body {
     /* display: flex; */
     align-items: center;
     min-height: 100vh;
-    background-color: var(--Azul-claro);
+    background-color: var(--blanco);
     color: var(--blanco);
     overflow: auto;
     flex-direction: column;

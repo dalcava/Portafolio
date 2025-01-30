@@ -61,14 +61,7 @@
     --desktop: 1440px;
     --desktopXL: 1920px;
 }
-::selection {
-    background-color: var(--Azul-claro);
-    color: var(--Magenta-claro);
-}
-::-moz-selection {
-    background-color: var(--Azul-claro);
-    color: var(--Magenta-claro);
-}
+
 body {
     /* display: flex; */
     align-items: center;
@@ -142,12 +135,6 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     background-color: var(--Transparente);
     margin-left: 80px;
     /* transform: translateY(56px); */
-    pointer-events: all !important;
-}
-.personal-photo:hover img{
-    scale: 1.1;
-    transition: all 0.2s ease-out;
-    pointer-events: all !important;
 }
 
 .header-content {
@@ -198,15 +185,12 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     height: 24px;
     z-index: 3; /* Ensure it's above the tooltip */
 }
-.Lightbulb img {
-    width: 64px;
-    height: 64px;
+.icon-button .Lightbulb img {
+    width: 48px;
+    height: 48px;
     z-index: 3; /* Ensure it's above the tooltip */
     cursor: none;
-}
-.Lightbulb:hover img {
-    filter: none;    
-    transition: all 0.2s ease-out;
+    scale: .1;
 }
 
 /* Tooltip (span) styling */

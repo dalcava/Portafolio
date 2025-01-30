@@ -1,3 +1,30 @@
+/* Definición de las fuentes Publica Sans */
+@font-face {
+    font-family: 'Funnel Display';
+    src: url('./Slider/Recursos/Fuentes/Funnel_Display/FunnelDisplay-VariableFont_wght.ttf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Publica Sans';
+    src: url('./Slider/Recursos/Fuentes/Publica/PublicaSans-Medium.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Publica Sans';
+    src: url('./Slider/Recursos/Fuentes/Publica/PublicaSans-Bold.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Publica Sans';
+    src: url('./Slider/Recursos/Fuentes/Publica/PublicaSans-UltraLight.otf') format('opentype');
+    font-weight: 100;
+}
+
 *,
 *::before,
 *::after {
@@ -7,11 +34,39 @@
     font-family: "Publica Sans";
 }
 
+:root {
+    --Azul-claro: #95DEFF;
+    --Azul-oscuro: #004B6B;
+    --Azul-muy-oscuro: #052240;
+    --blanco: #F6F6F6;
+    --Magenta-claro: #FD3567;
+    --Magenta: #BC244A;
+    --Magenta-oscuro: #750037;
+    --Transparente: #00000000;
+
+    --font-size-XS: 14px;
+    /*Parrafos*/
+    --font-size-S: 16px;
+    --font-size-M: 18px;
+    --font-size-L: 28px;
+    /*Suvtítulos*/
+    --font-size-XL: 40px;
+    /*Títulos*/
+    --font-size-XXL: 72px;
+    --font-size-XXXL: 96px;
+
+    /* media queries */ 
+    --mobile: 768px;
+    --tablet: 1024px;
+    --desktop: 1440px;
+    --desktopXL: 1920px;
+}
+
 body {
     /* display: flex; */
     align-items: center;
     min-height: 100vh;
-    background-color: var(--Azul-claro);
+    background-color: var(--blanco);
     color: var(--blanco);
     overflow: auto;
     flex-direction: column;

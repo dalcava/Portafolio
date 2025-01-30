@@ -61,14 +61,7 @@
     --desktop: 1440px;
     --desktopXL: 1920px;
 }
-::selection {
-    background-color: var(--Azul-claro);
-    color: var(--Magenta-claro);
-}
-::-moz-selection {
-    background-color: var(--Azul-claro);
-    color: var(--Magenta-claro);
-}
+
 body {
     /* display: flex; */
     align-items: center;
@@ -142,12 +135,9 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     background-color: var(--Transparente);
     margin-left: 80px;
     /* transform: translateY(56px); */
-    pointer-events: all !important;
 }
-.personal-photo:hover img{
+.personal-photo:hover {
     scale: 1.1;
-    transition: all 0.2s ease-out;
-    pointer-events: all !important;
 }
 
 .header-content {
@@ -205,8 +195,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     cursor: none;
 }
 .Lightbulb:hover img {
-    filter: none;    
-    transition: all 0.2s ease-out;
+    filter: none;
 }
 
 /* Tooltip (span) styling */

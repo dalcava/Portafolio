@@ -591,14 +591,14 @@ document.addEventListener("mousemove", (e) => {
     else {
         // Reset the cursor for non-interactive elements
         customCursor.style.transform = `translate(-50%, -50%) scale(1)`;
-        customCursor.style.backgroundColor = "rgba(188, 36, 74, 1)"; // Default color
+        customCursor.style.backgroundColor = "rgba(188, 36, 74, 0.15)"; // Default color
         customCursor.style.borderRadius = "50%"; // Default shape
         customCursor.style.width = "16px";
         customCursor.style.height = "16px";
         customCursor.style.zIndex = "1000";
         customCursor.style.transition = "transform 0.25s ease-out, width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-radius 0.3s ease, z-index 0.3s ease";
         customCursor.style.scale = "1";        
-        customCursor.style.border = "1px solid rgba(188, 36, 74, 1)";
+        customCursor.style.border = "1px solid rgba(188, 36, 74, 0.5)";
     }
 });
 
