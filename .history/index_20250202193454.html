@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/7.2.4/pixi.min.js"></script>
+    <title>Dalc Portfolio</title>
+</head>
+<body>
+    
+    <div class="background">
+        <div class="hero">
+            <div class="white-overlay"></div>
+            <canvas id="canvas1"></canvas>
+            <div class="blur-layer"></div>
+            <div class="boolean-container">
+                <div class="swiper">
+                    <!-- Swiper content -->
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="image-container static-img">
+                                <img src="./Slider/Recursos/Kinetic rush-static.webp" alt="Static Image 1" class="imagen-contenida">
+                                <div class="grid">
+                                    <div class="grid-collumn"></div>
+                                    <div class="grid-collumn"></div>
+                                    <div class="grid-collumn"></div>
+                                    <div class="grid-collumn"></div>
+                                </div>
+                            </div>
+                            <img src="./Slider/Recursos/Kinetic rush-active.gif" alt="Active GIF 1" class="active-gif">
+                            <div class="title">
+                                <span>Nombre del proyecto</span>
+                            </div>
+                            <div class="subtitle">
+                                <span>Subtítulo del proyecto</span>
+                            </div>
+                            <div class="blur"></div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="image-container static-img">
+                                <img src="./Slider/Recursos/Control-static.webp" alt="Static Image 2" class="imagen-contenida">
+                                <div class="grid">
+                                    <div class="grid-collumn"></div>
+                                    <div class="grid-collumn"></div>
+                                    <div class="grid-collumn"></div>
+                                    <div class="grid-collumn"></div>
+                                </div>
+                            </div>
+                            <img src="./Slider/Recursos/Control-active.gif" alt="Active GIF 2" class="active-gif">
+                            <div class="title">
+                                <span>Nombre del proyecto</span>
+                            </div>
+                            <div class="subtitle">
+                                <span>Subtítulo del proyecto</span>
+                            </div>
+                            <div class="blur"></div>
+                        </div>
+                        <div class="swiper-slide" data-url="./Aval_pay_center.html">
+                            <div class="image-container static-img">
+                                <img src="./Slider/Recursos/Portada.webp" alt="Static Image 3" class="imagen-contenida">
+                                <div class="grid">
+                                    <div class="grid-collumn"></div>
+                                    <div class="grid-collumn"></div>
+                                    <div class="grid-collumn"></div>
+                                    <div class="grid-collumn"></div>
+                                </div>
+                            </div>
+                            <img src="./Slider/Recursos/AvalPay-Active.gif" alt="Active GIF 3" class="active-gif">
+                            <div class="title">
+                                <span>Nombre del proyecto</span>
+                            </div>
+                            <div class="subtitle">
+                                <span>Subtítulo del proyecto</span>
+                            </div>
+                            <div class="blur"></div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="image-container static-img">
+                                <img src="./Slider/Recursos/Duraznos intro.gif" alt="Static Image 3" class="imagen-contenida">
+                                <div class="grid">
+                                    <div class="grid-collumn"></div>
+                                    <div class="grid-collumn"></div>
+                                    <div class="grid-collumn"></div>
+                                    <div class="grid-collumn"></div>
+                                </div>
+                            </div>
+                            <img src="./Slider/Recursos/Duraznos active.gif" alt="Active GIF 3" class="active-gif">
+                            <div class="title">
+                                <span>Nombre del proyecto</span>
+                            </div>
+                            <div class="subtitle">
+                                <span>Subtítulo del proyecto</span>
+                            </div>
+                            <div class="blur"></div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="image-container static-img">
+                                <img src="./Slider/Recursos/CR.webp" alt="Static Image 4" class="imagen-contenida">
+                                <div class="grid">
+                                    <div class="grid-collumn"></div>
+                                    <div class="grid-collumn"></div>
+                                    <div class="grid-collumn"></div>
+                                    <div class="grid-collumn"></div>
+                                </div>
+                            </div>
+                            <img src="./Slider/Recursos/AvalPay-Active.gif" alt="Active GIF 4" class="active-gif">
+                            <div class="title">
+                                <span>Nombre del proyecto</span>
+                            </div>
+                            <div class="subtitle">
+                                <span>Subtítulo del proyecto</span>
+                            </div>
+                            <div class="blur"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- If we need pagination -->
+            <div class="control-container">
+                <!-- Navigation buttons -->
+                <div class="swiper-button-container">
+                    <!-- Left Arrow -->
+                    <div class="swiper-button-prev">
+                        <img src="./Slider/Recursos/arrow-left.svg" alt="Previous" class="new-icon">
+                    </div>
+                
+                    <!-- Right Arrow -->
+                    <div class="swiper-button-next">
+                        <img src="./Slider/Recursos/arrow-right.svg" alt="Next" class="new-icon">
+                    </div>
+                </div>
+                <!-- Pagination and "Next project" button -->
+                <div class="pagination-container">
+                    <div class="swiper-pagination"></div>
+                <!--             <button class="next-project-btn">Open project</button> -->
+                </div> 
+            
+            </div>
+            
+            
+            <!-- If we need scrollbar -->
+            <div class="swiper-scrollbar"></div>
+            
+            
+            <!-- Existing hero content -->
+            <div class="tittle-section">
+                <div class="tittle-content">
+                    <div class="main-text masked-element">
+                        <h2 class="main-subtitle"><span id="nombreI"></span></h2>
+                        <h1 class="main-title">David López</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Load the header
+            fetch("../../header.html") // Adjust the path based on your directory structure
+                .then(response => {
+                    if (!response.ok) throw new Error("Failed to load header");
+                    return response.text();
+                })
+                .then(data => {
+                    document.body.insertAdjacentHTML("afterbegin", data); // Insert header at the top of <body>
+                })
+                .catch(error => console.error("Error loading header:", error));
+        });
+    </script>
+    
+
+</body>
+</html>

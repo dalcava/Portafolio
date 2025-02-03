@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pro Controller</title>
+  <!-- Carga de estilos globales y específicos -->
+  <link rel="stylesheet" href="../../style.css"> <!-- Global styles -->
+  <link rel="stylesheet" href="./Projects/Control/Control.css"> <!-- Page-specific styles -->
+  <!-- GSAP Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+</head>
+<body>
+  <!-- Capa de transición (si se usa para efectos adicionales) -->
+  <div class="white-overlay"></div>
+  
+  <!-- El header se cargará dinámicamente desde header.html -->
+  
+  <!-- Sección Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <button class="tag-btn">Passion Project</button>
+        <h1 class="main-title">Pro Controller</h1>
+        <p class="main-subtitle">
+          Unofficial Motion Graphics Presentation Inspired by Nintendo's Iconic Designs.
+        </p>
+      </div>
+      <div class="hero-image">
+        <iframe 
+          id="vimeoPlayer"
+          src="https://player.vimeo.com/video/1041647005?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;controls=0" 
+          frameborder="0"
+          allow="autoplay; picture-in-picture"
+          allowfullscreen
+          sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms allow-popups">
+        </iframe>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Nuestro script con toda la lógica personalizada -->
+  <script src="./Projects/Control/Control-script.js" defer></script>
+  
+  <!-- Script para cargar el header dinámicamente -->
+  <script defer>
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch("../../header.html")
+        .then(response => {
+          if (!response.ok) {
+            console.error("Error al cargar el header:", response.status, response.statusText);
+            throw new Error("Header fetch failed");
+          }
+          return response.text();
+        })
+        .then(data => {
+          // Inserta el header al inicio del body
+          document.body.insertAdjacentHTML("afterbegin", data);
+        })
+        .catch(error => console.error("Error loading header:", error));
+    });
+  </script>
+</body>
+</html>

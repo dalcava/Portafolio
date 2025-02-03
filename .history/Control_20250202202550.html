@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../style.css"> <!-- Global styles -->
+    <link rel="stylesheet" href="./Projects/Aval pay center/Aval pay style.css"> <!-- Page-specific styles -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script> <!-- GSAP -->
+    <title>Aval Pay Center</title>
+</head>
+<body>
+    <div class="white-overlay"></div>
+
+    <!-- Header will be dynamically loaded -->
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <button class="tag-btn">NTT Data</button>
+                <h1 class="main-title">Pro Controller</h1>
+                <p class="main-subtitle">A seamless payment experience inspired by cutting-edge design principles.</p>
+            </div>
+            <div class="hero-image">
+                <img src="./Projects/Aval pay center/Recursos proyecto/Portada.webp" alt="Design cover" />
+            </div>
+        </div>
+    </section>
+    
+
+    <script src="./Projects/Aval pay center/Aval-Pay-script.js"></script> <!-- Shared JS -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("../../header.html")
+                .then(response => {
+                    if (!response.ok) {
+                        console.error("Failed to load header:", response.status, response.statusText);
+                        throw new Error("Header fetch failed");
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    document.body.insertAdjacentHTML("afterbegin", data);
+                })
+                .catch(error => console.error("Error loading header:", error));
+        });
+    </script>
+</body>
+</html>

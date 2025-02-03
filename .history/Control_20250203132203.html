@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../style.css"> <!-- Global styles -->
+    <link rel="stylesheet" href="./Projects/Control/Control.css"> <!-- Page-specific styles -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script> <!-- GSAP -->
+    <title>Pro Controller</title>
+</head>
+<body>
+    <div class="white-overlay"></div>
+
+    <!-- Header will be dynamically loaded -->
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <button class="tag-btn">Passion Project</button>
+                <h1 class="main-title">Pro Controller</h1>
+                <p class="main-subtitle">Unofficial Motion Graphics Presentation Inspired by Nintendo's Iconic Designs.</p>
+            </div>
+            <div class="hero-image">
+                <iframe 
+                    id="vimeoPlayer"
+                    src="https://player.vimeo.com/video/1041647005?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;controls=0" 
+                    frameborder="0"
+                    allow="autoplay; picture-in-picture"
+                    allowfullscreen
+                    sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms allow-popups">
+                </iframe>
+            </div>
+        </div>
+    </section>
+    
+
+    <script src="./Projects/Control/Control-script.js"></script> <!-- Shared JS -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const header = document.querySelector('.header-section');
+            let lastScroll = window.pageYOffset || document.documentElement.scrollTop;
+        
+            window.addEventListener("scroll", () => {
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Si se ha hecho scroll hacia abajo y se ha superado la altura del header...
+            if (currentScroll > lastScroll && currentScroll > header.offsetHeight) {
+                // Oculta el header (se desliza hacia arriba)
+                gsap.to(header, { y: "-100%", duration: 0.3, ease: "power2.out" });
+            } else {
+                // Si se hace scroll hacia arriba, muéstralo
+                gsap.to(header, { y: "0%", duration: 0.3, ease: "power2.out" });
+            }
+            lastScroll = currentScroll <= 0 ? 0 : currentScroll; // Asegura que no se vuelva negativo
+            });
+        });
+    </script>
+</body>
+</html>
