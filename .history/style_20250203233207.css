@@ -212,9 +212,9 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 }
 
 /* Image inside the button */
-.menu img {
-    width: 24px;
-    height: 24px;
+.icon-button .menu img {
+    width: 16px;
+    height: 16px;
     z-index: 3; /* Ensure it's above the tooltip */
 }
 .icon-button.Lightbulb img {
@@ -270,7 +270,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     justify-content: center;
     align-items: center;
     width: 100%;
-    max-width: 320;
+    max-width: 400px;
     gap: 0px;
 }
 

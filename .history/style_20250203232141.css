@@ -20,7 +20,7 @@
 
 @font-face {
     font-family: 'Publica Sans Bold';
-    src: url('./Slider/Recursos/Fuentes/Publica/PublicaSans-Medium.otf') format('opentype');
+    src: url('./Slider/Recursos/Fuentes/Publica/PublicaSans-Bold.otf') format('opentype');
     font-weight: bold;
     font-style: normal;
 }
@@ -212,7 +212,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 }
 
 /* Image inside the button */
-.menu img {
+.icon-button .menu img {
     width: 24px;
     height: 24px;
     z-index: 3; /* Ensure it's above the tooltip */
@@ -230,47 +230,34 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 
 /* Tooltip (span) styling */
 .icon-button span {
-    position: absolute;
-    bottom: -16px; /* Place tooltip below the icon */
-    left: 50%;
-    transform: translateX(-55%);
-    opacity: 0; /* Initially hidden */
-    white-space: nowrap; /* Prevent text wrapping */
-    color: var(--Verde);
-    padding: 4px 8px; /* Add padding for tooltip box */
-    border-radius: 6px; /* Rounded corners */
-    font-size: 0.8rem; /* Adjust font size */
-    pointer-events: none; /* Prevent mouse events on tooltip */
-    transition: all 0.2s ease;
-    scale: .75;
-    font-weight: 100;
-    clip-path: inset(10px 20px 30px 40px);
+    font-family: "Publica Sans bold";
+    font-size: var(--font-size-XS);
+    font-weight: 500;
+    white-space: nowrap;
+    color: var(--Gris);
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.8rem;
     pointer-events: none;
-    
+    transition: all 0.2s ease;
+    pointer-events: none;
 }
 
 /* Tooltip appears when hovering over the button */
-.icon-button:hover span {
+/* .icon-button:hover span {
     opacity: 1;
     transform: translateX(-50%) translateY(4px); /* Slight upward animation */
-    z-index: 10; /* Ensure visibility */
-    scale: 1;
+/*     z-index: 10; /* Ensure visibility */
+/*     scale: 1;
     clip-path: inset(0px 0px 0px 0px);
-}
-
-.work {
-    color: var(--Verde-claro);
-}
-.contact{
-    color: var(--Gris-claro);
-}
+} */ 
 
 .navigation-buttons {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    max-width: 320;
+    max-width: 400px;
     gap: 0px;
 }
 
@@ -327,8 +314,9 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 }
 
 .main-subtitle {
-    font-family: "Publica Sans";
+    font-family: "Publica Sans bold";
     font-size: var(--font-size-XS);
+    font-weight: 600;
     color: var(--blanco);
     /* background-color: var(--Verde-claro); */
     border-radius: 16px;

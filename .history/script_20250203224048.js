@@ -405,23 +405,18 @@ document.querySelectorAll(".swiper-slide").forEach((slide) => {
 
     if (!activeGif || !staticImg) return; // Ensure both elements exist
 
-    let lastX = 100; // Default X position (center)
-    let lastY = 100; // Default Y position (center)
+    let lastX = 100; // Default X position
+    let lastY = 100; // Default Y position
     let isInside = false;
-
-    // Function to remove effect immediately
-    function removeEffect() {
-        activeGif.style.maskImage = "none";
-        activeGif.style.webkitMaskImage = "none";
-        activeGif.style.opacity = "0"; // Hide the GIF
-        staticImg.style.opacity = "1"; // Show static image
-    }
+    let scale = 0; // Start scale at 0 for smooth entry
 
     // Listen for mouse movement globally
     window.addEventListener("mousemove", (e) => {
-        // Skip effect on elements with .swiper-slide-prev
+        // If the slide has the class "swiper-slide-prev", remove effect
         if (slide.classList.contains("swiper-slide-prev")) {
-            removeEffect();
+            activeGif.style.maskImage = "none";
+            activeGif.style.webkitMaskImage = "none";
+            activeGif.style.opacity = "0"; // Hide the GIF
             return;
         }
 
@@ -435,60 +430,59 @@ document.querySelectorAll(".swiper-slide").forEach((slide) => {
         if (isCursorInsideSlide) {
             isInside = true;
 
-            // Shift the X position 50px to the right
-            let offsetX = e.clientX - rect.left - 250; // Adjust X offset
+            // Shift the X position slightly
+            let offsetX = e.clientX - rect.left - 250;
             let offsetXPercentage = (offsetX / rect.width) * 100;
-            
-            // Prevent the offset from going outside the container
             lastX = Math.min(100, Math.max(0, offsetXPercentage));
+            lastY = ((e.clientY - rect.top) / rect.height) * 100;
 
-            lastY = ((e.clientY - rect.top) / rect.height) * 100; // Store last Y position
-
-            // Adjust circle size and position with sharp edges
-            activeGif.style.maskImage = `radial-gradient(circle at ${lastX}% ${lastY}%, black 36.5%, transparent 37%)`;
-            activeGif.style.webkitMaskImage = `radial-gradient(circle at ${lastX}% ${lastY}%, black 37%, transparent 37%)`;
-
-            // Ensure the GIF is visible, and the static image stays visible in the background
-            activeGif.style.opacity = "1";
-            staticImg.style.opacity = "1";
+            // Scale IN Effect (Enters)
+            let enterScale = 0;
+            let enterInterval = setInterval(() => {
+                if (!isInside || enterScale >= 36.5) {
+                    clearInterval(enterInterval);
+                } else {
+                    enterScale += 2; // Gradually increase scale
+                    activeGif.style.maskImage = `radial-gradient(circle at ${lastX}% ${lastY}%, black ${enterScale}%, transparent ${enterScale + 1}%)`;
+                    activeGif.style.webkitMaskImage = `radial-gradient(circle at ${lastX}% ${lastY}%, black ${enterScale}%, transparent ${enterScale + 1}%)`;
+                    activeGif.style.opacity = "1";
+                    staticImg.style.opacity = "1";
+                }
+            }, 20);
         }
     });
 
-    // Reset the mask on slide leave with gradual shrinking effect
-    slide.addEventListener("mouseleave", () => {
-        // Skip effect on elements with .swiper-slide-prev
+    // Reset effect when slide gets .swiper-slide-prev dynamically
+    const observer = new MutationObserver(() => {
         if (slide.classList.contains("swiper-slide-prev")) {
-            removeEffect();
-            return;
+            activeGif.style.maskImage = "none";
+            activeGif.style.webkitMaskImage = "none";
+            activeGif.style.opacity = "0"; // Hide the GIF
         }
+    });
 
-        if (!activeGif) return;
+    observer.observe(slide, { attributes: true, attributeFilter: ["class"] });
+
+    // Scale OUT Effect (Leaves)
+    slide.addEventListener("mouseleave", () => {
+        if (slide.classList.contains("swiper-slide-prev")) return;
 
         isInside = false;
-        let scale = 36.5; // Start with the last used scale
+        let scaleOut = 36.5; // Start from current scale
         let interval = setInterval(() => {
-            if (isInside || scale <= 0) {
+            if (isInside || scaleOut <= 0) {
                 clearInterval(interval);
-                removeEffect();
+                activeGif.style.maskImage = "none";
+                activeGif.style.webkitMaskImage = "none";
+                activeGif.style.opacity = "0"; // Hide the GIF
+                staticImg.style.opacity = "1"; // Show static image
             } else {
-                scale -= 24; // Gradually decrease the scale
-                activeGif.style.maskImage = `radial-gradient(circle at ${lastX}% ${lastY}%, black ${scale}%, transparent ${scale + 1}%)`;
-                activeGif.style.webkitMaskImage = `radial-gradient(circle at ${lastX}% ${lastY}%, black ${scale}%, transparent ${scale + 1}%)`;
+                scaleOut -= 2; // Gradually decrease scale
+                activeGif.style.maskImage = `radial-gradient(circle at ${lastX}% ${lastY}%, black ${scaleOut}%, transparent ${scaleOut + 1}%)`;
+                activeGif.style.webkitMaskImage = `radial-gradient(circle at ${lastX}% ${lastY}%, black ${scaleOut}%, transparent ${scaleOut + 1}%)`;
             }
-        }, 30); // Decrease every 30ms for a smooth effect
+        }, 20); // Smooth shrinking effect
     });
-
-    // Use MutationObserver to detect class changes
-    const observer = new MutationObserver((mutationsList) => {
-        mutationsList.forEach((mutation) => {
-            if (mutation.type === "attributes" && slide.classList.contains("swiper-slide-prev")) {
-                removeEffect(); // Remove the effect immediately
-            }
-        });
-    });
-
-    // Observe changes in class attributes
-    observer.observe(slide, { attributes: true, attributeFilter: ["class"] });
 });
 
 

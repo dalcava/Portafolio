@@ -405,26 +405,8 @@ document.querySelectorAll(".swiper-slide").forEach((slide) => {
 
     if (!activeGif || !staticImg) return; // Ensure both elements exist
 
-    let lastX = 100; // Default X position (center)
-    let lastY = 100; // Default Y position (center)
-    let isInside = false;
-
-    // Function to remove effect immediately
-    function removeEffect() {
-        activeGif.style.maskImage = "none";
-        activeGif.style.webkitMaskImage = "none";
-        activeGif.style.opacity = "0"; // Hide the GIF
-        staticImg.style.opacity = "1"; // Show static image
-    }
-
     // Listen for mouse movement globally
     window.addEventListener("mousemove", (e) => {
-        // Skip effect on elements with .swiper-slide-prev
-        if (slide.classList.contains("swiper-slide-prev")) {
-            removeEffect();
-            return;
-        }
-
         const rect = slide.getBoundingClientRect();
         const isCursorInsideSlide =
             e.clientX >= rect.left &&
@@ -433,20 +415,12 @@ document.querySelectorAll(".swiper-slide").forEach((slide) => {
             e.clientY <= rect.bottom;
 
         if (isCursorInsideSlide) {
-            isInside = true;
-
-            // Shift the X position 50px to the right
-            let offsetX = e.clientX - rect.left - 250; // Adjust X offset
-            let offsetXPercentage = (offsetX / rect.width) * 100;
-            
-            // Prevent the offset from going outside the container
-            lastX = Math.min(100, Math.max(0, offsetXPercentage));
-
-            lastY = ((e.clientY - rect.top) / rect.height) * 100; // Store last Y position
+            const x = ((e.clientX - rect.left) / rect.width) * 100 - 20; // Mouse X percentage
+            const y = ((e.clientY - rect.top) / rect.height) * 75 + 5; // Mouse Y percentage
 
             // Adjust circle size and position with sharp edges
-            activeGif.style.maskImage = `radial-gradient(circle at ${lastX}% ${lastY}%, black 36.5%, transparent 37%)`;
-            activeGif.style.webkitMaskImage = `radial-gradient(circle at ${lastX}% ${lastY}%, black 37%, transparent 37%)`;
+            activeGif.style.maskImage = `radial-gradient(circle at ${x}% ${y}%, black 20%, transparent 21%)`;
+            activeGif.style.webkitMaskImage = `radial-gradient(circle at ${x}% ${y}%, black 36%, transparent 37%)`;
 
             // Ensure the GIF is visible, and the static image stays visible in the background
             activeGif.style.opacity = "1";
@@ -454,52 +428,21 @@ document.querySelectorAll(".swiper-slide").forEach((slide) => {
         }
     });
 
-    // Reset the mask on slide leave with gradual shrinking effect
+    // Reset the mask on slide leave
     slide.addEventListener("mouseleave", () => {
-        // Skip effect on elements with .swiper-slide-prev
-        if (slide.classList.contains("swiper-slide-prev")) {
-            removeEffect();
-            return;
-        }
-
         if (!activeGif) return;
 
-        isInside = false;
-        let scale = 36.5; // Start with the last used scale
-        let interval = setInterval(() => {
-            if (isInside || scale <= 0) {
-                clearInterval(interval);
-                removeEffect();
-            } else {
-                scale -= 24; // Gradually decrease the scale
-                activeGif.style.maskImage = `radial-gradient(circle at ${lastX}% ${lastY}%, black ${scale}%, transparent ${scale + 1}%)`;
-                activeGif.style.webkitMaskImage = `radial-gradient(circle at ${lastX}% ${lastY}%, black ${scale}%, transparent ${scale + 1}%)`;
-            }
-        }, 30); // Decrease every 30ms for a smooth effect
+        // Smooth reset transition
+        activeGif.style.transition = "mask-image 1s ease-out, -webkit-mask-image 1s ease-out";
+        activeGif.style.maskImage = "none";
+        activeGif.style.webkitMaskImage = "none";
+        activeGif.style.opacity = "0"; // Hide the GIF
+        staticImg.style.opacity = "1"; // Show static image
     });
-
-    // Use MutationObserver to detect class changes
-    const observer = new MutationObserver((mutationsList) => {
-        mutationsList.forEach((mutation) => {
-            if (mutation.type === "attributes" && slide.classList.contains("swiper-slide-prev")) {
-                removeEffect(); // Remove the effect immediately
-            }
-        });
-    });
-
-    // Observe changes in class attributes
-    observer.observe(slide, { attributes: true, attributeFilter: ["class"] });
 });
 
 
-
-
-
-
-//---------------------------------------------------------------------------------------------------------------------------------
-//------------------------------------------------------ Create the custom cursor element------------------------------------------
-//---------------------------------------------------------------------------------------------------------------------------------
-
+// Create the custom cursor element
 const customCursor = document.createElement("div");
 customCursor.classList.add("custom-cursor");
 document.body.appendChild(customCursor);
@@ -816,37 +759,107 @@ document.addEventListener("DOMContentLoaded", () => {
       lastScroll = currentScroll <= 0 ? 0 : currentScroll; // Asegura que no se vuelva negativo
     });
   });
+  
 
-
-  /* -------------------------------------------------green-blob---------------------------------------------------
+  /* -------------------------------------------------green blob---------------------------------------------------
   ------------------------------------------------------------------------------------------------------------------ */
 
   document.addEventListener("DOMContentLoaded", function () {
-    const greenBlob = document.querySelector(".green-blob");
+    let blobElement = document.querySelector(".green-blob");
+    
+    class Blob {
+        constructor(element) {
+            this.element = element;
+            this.numPoints = 32;
+            this.points = [];
+            this.radius = 180; // Adjusted for better size
+            this.elasticity = 0.02;
+            this.friction = 0.09;
+            this.mousePos = { x: 0, y: 0 };
+            this.init();
+            this.render();
+        }
+        
+        init() {
+            for (let i = 0; i < this.numPoints; i++) {
+                let point = new Point(this.divisional * (i + 1), this);
+                this.points.push(point);
+            }
+        }
 
-    greenBlob.addEventListener("mousemove", (e) => {
-        const rect = greenBlob.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width - 0.5;
-        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        render() {
+            this.points.forEach((point, i) => {
+                point.solveWith(this.points[i - 1] || this.points[this.numPoints - 1], this.points[i + 1] || this.points[0]);
+            });
 
-        gsap.to(greenBlob, {
-            scaleX: 1.15 - Math.abs(x) * 0.3, // Slight stretch
-            scaleY: 1.15 - Math.abs(y) * 0.3, // Slight squish
-            duration: 0.2,
-            ease: "power2.out"
-        });
-    });
+            this.updateBlobShape();
+            requestAnimationFrame(this.render.bind(this));
+        }
 
-    greenBlob.addEventListener("mouseleave", () => {
-        gsap.to(greenBlob, {
-            scaleX: 1,
-            scaleY: 1,
-            duration: 0.5,
-            ease: "elastic.out(1, 0.6)" // Smooth bounce-back
+        updateBlobShape() {
+            let path = "";
+            let centerX = window.innerWidth / 2;
+            let centerY = window.innerHeight / 3; // Adjusted position for better visibility
+            let scaleFactor = 1.2;
+
+            this.points.forEach((point, index) => {
+                let x = centerX + point.components.x * (this.radius + point.radialEffect) * scaleFactor;
+                let y = centerY + point.components.y * (this.radius + point.radialEffect) * scaleFactor;
+
+                if (index === 0) {
+                    path += `M ${x} ${y}`;
+                } else {
+                    path += ` L ${x} ${y}`;
+                }
+            });
+
+            path += " Z"; // Close path
+
+            this.element.style.clipPath = `path('${path}')`;
+        }
+
+        get divisional() {
+            return (Math.PI * 2) / this.numPoints;
+        }
+    }
+
+    class Point {
+        constructor(azimuth, parent) {
+            this.parent = parent;
+            this.azimuth = Math.PI - azimuth;
+            this.components = { 
+                x: Math.cos(this.azimuth),
+                y: Math.sin(this.azimuth)
+            };
+            this.acceleration = -0.3 + Math.random() * 0.6;
+            this.speed = 0;
+            this.radialEffect = 0;
+        }
+
+        solveWith(leftPoint, rightPoint) {
+            this.acceleration = (-0.3 * this.radialEffect + (leftPoint.radialEffect - this.radialEffect) + (rightPoint.radialEffect - this.radialEffect)) * this.parent.elasticity - this.speed * this.parent.friction;
+            this.speed += this.acceleration * 2;
+            this.radialEffect += this.speed * 5;
+        }
+    }
+
+    let blob = new Blob(blobElement);
+
+    // Mouse Interaction
+    document.addEventListener("pointermove", (e) => {
+        let centerX = window.innerWidth / 2;
+        let centerY = window.innerHeight / 3;
+        let dx = e.clientX - centerX;
+        let dy = e.clientY - centerY;
+        let dist = Math.sqrt(dx * dx + dy * dy);
+        
+        blob.points.forEach((point) => {
+            let angle = Math.atan2(dy, dx);
+            let strength = Math.exp(-dist / 300) * 50; // Decreases effect with distance
+            point.acceleration = strength * (Math.cos(angle - point.azimuth) * -1);
         });
     });
 });
-
 
 
 

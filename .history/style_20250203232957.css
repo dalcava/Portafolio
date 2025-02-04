@@ -212,7 +212,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 }
 
 /* Image inside the button */
-.menu img {
+.icon-button .menu img {
     width: 24px;
     height: 24px;
     z-index: 3; /* Ensure it's above the tooltip */
@@ -236,7 +236,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     transform: translateX(-55%);
     opacity: 0; /* Initially hidden */
     white-space: nowrap; /* Prevent text wrapping */
-    color: var(--Verde);
+    color: var(--Magenta-oscuro);
     padding: 4px 8px; /* Add padding for tooltip box */
     border-radius: 6px; /* Rounded corners */
     font-size: 0.8rem; /* Adjust font size */
@@ -259,18 +259,24 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 }
 
 .work {
-    color: var(--Verde-claro);
+    color: var(--Verde-claro) !important;
 }
-.contact{
-    color: var(--Gris-claro);
-}
+
+/* Tooltip appears when hovering over the button */
+/* .icon-button:hover span {
+    opacity: 1;
+    transform: translateX(-50%) translateY(4px); /* Slight upward animation */
+/*     z-index: 10; /* Ensure visibility */
+/*     scale: 1;
+    clip-path: inset(0px 0px 0px 0px);
+} */ 
 
 .navigation-buttons {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    max-width: 320;
+    max-width: 400px;
     gap: 0px;
 }
 

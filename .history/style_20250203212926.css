@@ -20,14 +20,14 @@
 
 @font-face {
     font-family: 'Publica Sans Bold';
-    src: url('./Slider/Recursos/Fuentes/Publica/PublicaSans-Medium.otf') format('opentype');
+    src: url('./Slider/Recursos/Fuentes/Publica/PublicaSans-Bold.otf') format('opentype');
     font-weight: bold;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Publica Sans';
-    src: url('./Slider/Recursos/Fuentes/Publica/PublicaSans-Light.otf') format('opentype');
+    src: url('./Slider/Recursos/Fuentes/Publica/PublicaSans-UltraLight.otf') format('opentype');
     font-weight: 100;
 }
 
@@ -145,13 +145,12 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     position: relative;
     z-index: 3;
     cursor: none;
-    position: fixed;
-    /* border-bottom: 1px solid var(--blanco); */
+    position: fixed;/* 
+    border-bottom: 1px solid var(--blanco); */
     opacity: 1;
     gap: 25%;
     top: 32px;
     transition: transform 0.3s ease-out;
-    padding: 0px 80px;
 }
 
 .personal-photo {
@@ -161,6 +160,8 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     object-fit: cover;
     cursor: none;
     background-color: var(--Transparente);
+    margin-left: 80px;
+    /* transform: translateY(56px); */
     pointer-events: all !important;
 }
 .personal-photo:hover img{
@@ -174,35 +175,35 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    padding: 20px 100px;
     background-color: var(--Transparente);
     border-radius: 1px;
     position: relative;
     z-index: 10;
-    width: 100%;
+    width: 63%;
+    height: 136px;
 }
 
 /* Icon Buttons */
 .icon-buttons {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
 }
 
 .icon-button {
-    position: relative;
+    position: relative; /* Establish a containing block for the tooltip */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 60px;
     height: 60px;
     border-radius: 50%;
     cursor: pointer;
-    transition: 0.2s ease-out;
+    transition: all 0.2s ease-out;
     z-index: 3;
-}
-.icon-button.menu {
-    width: 100%;
 }
 
 .icon-button:hover img{
@@ -212,12 +213,12 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 }
 
 /* Image inside the button */
-.menu img {
+.icon-button .menu img {
     width: 24px;
     height: 24px;
     z-index: 3; /* Ensure it's above the tooltip */
 }
-.icon-button.Lightbulb img {
+.Lightbulb img {
     width: 64px;
     height: 64px;
     z-index: 3; /* Ensure it's above the tooltip */
@@ -236,7 +237,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     transform: translateX(-55%);
     opacity: 0; /* Initially hidden */
     white-space: nowrap; /* Prevent text wrapping */
-    color: var(--Verde);
+    color: var(--Verde-oscuro);
     padding: 4px 8px; /* Add padding for tooltip box */
     border-radius: 6px; /* Rounded corners */
     font-size: 0.8rem; /* Adjust font size */
@@ -258,20 +259,13 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     clip-path: inset(0px 0px 0px 0px);
 }
 
-.work {
-    color: var(--Verde-claro);
-}
-.contact{
-    color: var(--Gris-claro);
-}
-
 .navigation-buttons {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    max-width: 320;
-    gap: 0px;
+    max-width: 490px;
+    gap: 64px;
 }
 
 
@@ -301,11 +295,6 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     flex-direction: column;
 }
 
-.blob-container{
-    transform: translateX(-290px);
-    z-index: 2;
-}
-
 .green-blob {
     position: absolute;
     width: 640px;
@@ -313,8 +302,57 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     background-color: var(--Verde-claro);
     z-index: 0;
     border-radius: 50%;
-    transform: translate(-5%, -92.5%);
+    transform: translate(0%, -92.5%);
     overflow: hidden; /* Ensure effect stays within the shape */
+}
+
+/* Add ripple effect on hover */
+.green-blob::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+}
+
+.green-blob:hover::after {
+    transform: translate(-50%, -50%) scale(10);
+    opacity: 1;
+}
+
+.green-blob {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple {
+    position: absolute;
+    width: 20px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    transform: scale(1);
+    opacity: 1;
+    pointer-events: none;
+    animation: ripple-animation 0.8s ease-out;
+}
+
+@keyframes ripple-animation {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(10);
+        opacity: 0;
+    }
 }
 
 .main-title {
@@ -324,20 +362,21 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     color: var(--Verde-claro);
     line-height: 1.2;
     width: 580px;
+    transform: translateY(-559px);
 }
 
 .main-subtitle {
-    font-family: "Publica Sans";
+    font-family: "Publica Sans bold";
     font-size: var(--font-size-XS);
+    font-weight: 600;
     color: var(--blanco);
-    /* background-color: var(--Verde-claro); */
+    background-color: var(--Verde-claro);
     border-radius: 16px;
     padding: 4px 16px;
-    width: auto;
-    /* justify-content: center; */
-    text-align: center;
-    pointer-events: none;
+    width: fit-content;
+    transform: translateY(-556px);
 }
+
 .about-me-compliment {
     width: 100%;
     transform: translateY(-18px);

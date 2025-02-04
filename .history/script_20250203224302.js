@@ -408,20 +408,16 @@ document.querySelectorAll(".swiper-slide").forEach((slide) => {
     let lastX = 100; // Default X position (center)
     let lastY = 100; // Default Y position (center)
     let isInside = false;
-
-    // Function to remove effect immediately
-    function removeEffect() {
-        activeGif.style.maskImage = "none";
-        activeGif.style.webkitMaskImage = "none";
-        activeGif.style.opacity = "0"; // Hide the GIF
-        staticImg.style.opacity = "1"; // Show static image
-    }
+    let isFirstEnter = true; // Track if it's the first time entering after leaving
 
     // Listen for mouse movement globally
     window.addEventListener("mousemove", (e) => {
-        // Skip effect on elements with .swiper-slide-prev
+        // If the element is now .swiper-slide-prev, hide the effect
         if (slide.classList.contains("swiper-slide-prev")) {
-            removeEffect();
+            activeGif.style.maskImage = "none";
+            activeGif.style.webkitMaskImage = "none";
+            activeGif.style.opacity = "0"; // Hide the GIF
+            staticImg.style.opacity = "1"; // Show static image
             return;
         }
 
@@ -444,6 +440,21 @@ document.querySelectorAll(".swiper-slide").forEach((slide) => {
 
             lastY = ((e.clientY - rect.top) / rect.height) * 100; // Store last Y position
 
+            if (isFirstEnter) {
+                // Gradually scale in the effect when entering for the first time
+                let scale = 0;
+                let interval = setInterval(() => {
+                    if (!isInside || scale >= 36.5) {
+                        clearInterval(interval);
+                    } else {
+                        scale += 2; // Gradually increase scale
+                        activeGif.style.maskImage = `radial-gradient(circle at ${lastX}% ${lastY}%, black ${scale}%, transparent ${scale + 1}%)`;
+                        activeGif.style.webkitMaskImage = `radial-gradient(circle at ${lastX}% ${lastY}%, black ${scale}%, transparent ${scale + 1}%)`;
+                    }
+                }, 20); // Increase every 20ms for smooth effect
+                isFirstEnter = false; // Reset first enter state
+            }
+
             // Adjust circle size and position with sharp edges
             activeGif.style.maskImage = `radial-gradient(circle at ${lastX}% ${lastY}%, black 36.5%, transparent 37%)`;
             activeGif.style.webkitMaskImage = `radial-gradient(circle at ${lastX}% ${lastY}%, black 37%, transparent 37%)`;
@@ -456,12 +467,6 @@ document.querySelectorAll(".swiper-slide").forEach((slide) => {
 
     // Reset the mask on slide leave with gradual shrinking effect
     slide.addEventListener("mouseleave", () => {
-        // Skip effect on elements with .swiper-slide-prev
-        if (slide.classList.contains("swiper-slide-prev")) {
-            removeEffect();
-            return;
-        }
-
         if (!activeGif) return;
 
         isInside = false;
@@ -469,26 +474,18 @@ document.querySelectorAll(".swiper-slide").forEach((slide) => {
         let interval = setInterval(() => {
             if (isInside || scale <= 0) {
                 clearInterval(interval);
-                removeEffect();
+                activeGif.style.maskImage = "none";
+                activeGif.style.webkitMaskImage = "none";
+                activeGif.style.opacity = "0"; // Hide the GIF
+                staticImg.style.opacity = "1"; // Show static image
+                isFirstEnter = true; // Reset for next time the mouse enters
             } else {
-                scale -= 24; // Gradually decrease the scale
+                scale -= 2; // Gradually decrease the scale
                 activeGif.style.maskImage = `radial-gradient(circle at ${lastX}% ${lastY}%, black ${scale}%, transparent ${scale + 1}%)`;
                 activeGif.style.webkitMaskImage = `radial-gradient(circle at ${lastX}% ${lastY}%, black ${scale}%, transparent ${scale + 1}%)`;
             }
-        }, 30); // Decrease every 30ms for a smooth effect
+        }, 20); // Decrease every 20ms for a smooth effect
     });
-
-    // Use MutationObserver to detect class changes
-    const observer = new MutationObserver((mutationsList) => {
-        mutationsList.forEach((mutation) => {
-            if (mutation.type === "attributes" && slide.classList.contains("swiper-slide-prev")) {
-                removeEffect(); // Remove the effect immediately
-            }
-        });
-    });
-
-    // Observe changes in class attributes
-    observer.observe(slide, { attributes: true, attributeFilter: ["class"] });
 });
 
 

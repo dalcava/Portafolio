@@ -471,7 +471,7 @@ document.querySelectorAll(".swiper-slide").forEach((slide) => {
                 clearInterval(interval);
                 removeEffect();
             } else {
-                scale -= 24; // Gradually decrease the scale
+                scale -= 10; // Gradually decrease the scale
                 activeGif.style.maskImage = `radial-gradient(circle at ${lastX}% ${lastY}%, black ${scale}%, transparent ${scale + 1}%)`;
                 activeGif.style.webkitMaskImage = `radial-gradient(circle at ${lastX}% ${lastY}%, black ${scale}%, transparent ${scale + 1}%)`;
             }

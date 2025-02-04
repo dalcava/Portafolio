@@ -409,22 +409,8 @@ document.querySelectorAll(".swiper-slide").forEach((slide) => {
     let lastY = 100; // Default Y position (center)
     let isInside = false;
 
-    // Function to remove effect immediately
-    function removeEffect() {
-        activeGif.style.maskImage = "none";
-        activeGif.style.webkitMaskImage = "none";
-        activeGif.style.opacity = "0"; // Hide the GIF
-        staticImg.style.opacity = "1"; // Show static image
-    }
-
     // Listen for mouse movement globally
     window.addEventListener("mousemove", (e) => {
-        // Skip effect on elements with .swiper-slide-prev
-        if (slide.classList.contains("swiper-slide-prev")) {
-            removeEffect();
-            return;
-        }
-
         const rect = slide.getBoundingClientRect();
         const isCursorInsideSlide =
             e.clientX >= rect.left &&
@@ -436,7 +422,7 @@ document.querySelectorAll(".swiper-slide").forEach((slide) => {
             isInside = true;
 
             // Shift the X position 50px to the right
-            let offsetX = e.clientX - rect.left - 250; // Adjust X offset
+            let offsetX = e.clientX - rect.left - 250; // Add 50px offset
             let offsetXPercentage = (offsetX / rect.width) * 100;
             
             // Prevent the offset from going outside the container
@@ -456,12 +442,6 @@ document.querySelectorAll(".swiper-slide").forEach((slide) => {
 
     // Reset the mask on slide leave with gradual shrinking effect
     slide.addEventListener("mouseleave", () => {
-        // Skip effect on elements with .swiper-slide-prev
-        if (slide.classList.contains("swiper-slide-prev")) {
-            removeEffect();
-            return;
-        }
-
         if (!activeGif) return;
 
         isInside = false;
@@ -469,29 +449,18 @@ document.querySelectorAll(".swiper-slide").forEach((slide) => {
         let interval = setInterval(() => {
             if (isInside || scale <= 0) {
                 clearInterval(interval);
-                removeEffect();
+                activeGif.style.maskImage = "none";
+                activeGif.style.webkitMaskImage = "none";
+                activeGif.style.opacity = "0"; // Hide the GIF
+                staticImg.style.opacity = "1"; // Show static image
             } else {
-                scale -= 24; // Gradually decrease the scale
+                scale -= 10; // Gradually decrease the scale
                 activeGif.style.maskImage = `radial-gradient(circle at ${lastX}% ${lastY}%, black ${scale}%, transparent ${scale + 1}%)`;
                 activeGif.style.webkitMaskImage = `radial-gradient(circle at ${lastX}% ${lastY}%, black ${scale}%, transparent ${scale + 1}%)`;
             }
         }, 30); // Decrease every 30ms for a smooth effect
     });
-
-    // Use MutationObserver to detect class changes
-    const observer = new MutationObserver((mutationsList) => {
-        mutationsList.forEach((mutation) => {
-            if (mutation.type === "attributes" && slide.classList.contains("swiper-slide-prev")) {
-                removeEffect(); // Remove the effect immediately
-            }
-        });
-    });
-
-    // Observe changes in class attributes
-    observer.observe(slide, { attributes: true, attributeFilter: ["class"] });
 });
-
-
 
 
 
