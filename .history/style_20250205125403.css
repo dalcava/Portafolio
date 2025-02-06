@@ -50,18 +50,17 @@
     --Verde-oscuro: #044338;
     --Gris-claro: #D1D1D6;
     --Gris: #8E8E93;
-    --Gris-oscuro: #6D6D6D;
     --Transparente: #00000000;
 
     --font-size-XS: 14px;
     /*Parrafos*/
     --font-size-S: 16px;
-    --font-size-M: 20px;
+    --font-size-M: 18px;
     --font-size-L: 28px;
     /*Suvtítulos*/
     --font-size-XL: 40px;
     /*Títulos*/
-    --font-size-XXL: 64px;
+    --font-size-XXL: 72px;
     --font-size-XXXL: 96px;
 
     /* media queries */ 
