@@ -294,9 +294,8 @@ border: none;
   border: none;
   border-radius: 16px;
 }
-.gallery-item:hover iframe{
+.gallery-item iframe:hover{
   transform: scale(1.1);
-  transition: all 0.5s ease;
 }
 .giphy-embed {
   pointer-events: none;

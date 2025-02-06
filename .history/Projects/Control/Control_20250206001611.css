@@ -294,17 +294,13 @@ border: none;
   border: none;
   border-radius: 16px;
 }
-.gallery-item:hover iframe{
-  transform: scale(1.1);
-  transition: all 0.5s ease;
-}
 .giphy-embed {
   pointer-events: none;
 }
 
 
 .gallery-item img:hover {
-  transform: scale(1.1);
+  transform: scale(1.1); /* Zoom effect on hover */
   transition: all 0.3s ease;
 }
 
