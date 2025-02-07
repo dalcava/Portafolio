@@ -255,7 +255,7 @@ var swiper = new Swiper(".swiper", {
   grabCursor: false,
   centeredSlides: true,
   initialSlide: 1,
-  speed: 800,
+  speed: 500,
   preventClicks: true,
   loop: true,
   /* 
@@ -315,70 +315,57 @@ var swiper = new Swiper(".swiper", {
 });
 
 //--------------------------------------- Initialize slide transforms to prevent leftover styles --------------------------------
-
 function updateSlidePositions(smooth = true) {
     const activeIndex = swiper.activeIndex;
-  
+    
     document.querySelectorAll('.swiper-slide').forEach((slide, index) => {
-      const image = slide.querySelector('.imagen-contenida');
-      if (!image) return;
-  
-      // Hint the browser for optimal 2D transform performance
-      image.style.willChange = 'transform, clip-path, filter';
-  
-      // For the active or non-adjacent slides, center the image and remove extra effects.
-      if (
-        slide.classList.contains('swiper-slide-active') ||
-        (!slide.classList.contains('swiper-slide-prev') && !slide.classList.contains('swiper-slide-next'))
-      ) {
-        gsap.to(image, {
-          duration: smooth ? 0.8 : 0,
-          ease: 'power3.out',
-          x: 0, // Center the image
-          clipPath: 'inset(0% 0% 0% 0%)' // No clipping
-        });
-      } else {
-        // For adjacent slides (prev or next):
-        // - Calculate a small base offset.
-        // - Add a very subtle parallax offset based on the slide's progress.
-        const baseOffset = (index - activeIndex) * -2.5;
-        const parallaxOffset = (slide.progress || 0) * 1; // A slight parallax effect
-        const finalOffset = baseOffset + parallaxOffset;
-  
-        gsap.to(image, {
-          duration: smooth ? 1 : 0,
-          ease: 'power3.out',
-          x: `${finalOffset}%`, // Combine base offset with subtle parallax
-          clipPath: 'inset(5% 5% 5% 5%)' // Soft clipping for a refined look
-        });
-      }
+        const image = slide.querySelector('.imagen-contenida');
+        if (!image) return;
+
+        // Enable GPU acceleration and smoother rendering
+        image.style.willChange = 'transform';
+        image.style.backfaceVisibility = 'hidden';
+        image.style.transformStyle = 'preserve-3d';
+
+        // If the slide is active or neither prev nor next, center it
+        if (
+            slide.classList.contains('swiper-slide-active') ||
+            (!slide.classList.contains('swiper-slide-prev') && !slide.classList.contains('swiper-slide-next'))
+        ) {
+            image.style.transition = smooth
+                ? 'all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1)'
+                : 'none';
+            image.style.transform = 'translate3d(0, 0, 0)'; // Center the image
+        } else {
+            // For adjacent slides (prev or next), apply a smooth offset transition
+            const offset = (index - activeIndex) * -10;
+            image.style.transition = smooth
+                ? 'all 0.8s cubic-bezier(0.215, 0.61, 0.355, 1)'
+                : 'none';
+            image.style.transform = `translate3d(${offset}%, 0, 0)`;
+        }
     });
-  }
-  
-  // Update positions during key Swiper events for continuous, smooth motion:
-  swiper.on('slideChangeTransitionStart', () => updateSlidePositions(true));
-  swiper.on('slideChangeTransitionEnd', () => updateSlidePositions(true));
-  
-  // Continuously update while dragging for real-time fluidity.
-  swiper.on('sliderMove', () => {
-    requestAnimationFrame(() => updateSlidePositions(false));
-  });
-  
-  // Ensure a final smooth correction shortly after touch/drag ends.
-  let correctionTimeout;
-  swiper.on('touchEnd', () => {
+}
+
+// Update positions during key Swiper events for continuous smooth motion
+swiper.on('slideChangeTransitionStart', () => updateSlidePositions(true));
+swiper.on('slideChangeTransitionEnd', () => updateSlidePositions(true));
+swiper.on('sliderMove', () => {
+    requestAnimationFrame(() => updateSlidePositions(true));
+});
+
+// Ensure a final correction shortly after touch ends
+let correctionTimeout;
+swiper.on('touchEnd', () => {
     clearTimeout(correctionTimeout);
     correctionTimeout = setTimeout(() => updateSlidePositions(true), 100);
-  });
-  
-  // Optionally, use a MutationObserver to catch any class changes and reapply transitions.
-  const observer = new MutationObserver(() => updateSlidePositions(true));
-  document.querySelectorAll('.swiper-slide').forEach((slide) => {
+});
+
+// Observe any class changes on slides and update accordingly for absolute smoothness
+const observer = new MutationObserver(() => updateSlidePositions(true));
+document.querySelectorAll('.swiper-slide').forEach((slide) => {
     observer.observe(slide, { attributes: true, attributeFilter: ['class'] });
-  });
-  
-    
-      
+});
 
 
 
@@ -564,7 +551,7 @@ document.addEventListener("mousemove", (e) => {
         customCursor.style.left = `${centerX}px`;
         customCursor.style.top = `${centerY}px`;
         customCursor.style.transform = `translate(-50%, -50%) scale(1.5)`;
-        customCursor.style.backgroundColor = "var(--Verde-claro)";
+        customCursor.style.backgroundColor = "#077E69";
         customCursor.style.borderRadius = "24px";
         customCursor.style.transition = "transform 0.15s ease-out, width 0.1s ease, background-color 0.3s ease, border-radius 0.3s ease";
         customCursor.style.zIndex = "1";
@@ -572,7 +559,7 @@ document.addEventListener("mousemove", (e) => {
         
     }
     // Check if the target is a swiper slide
-    else if (target.classList.contains("active-gif") || target.classList.contains("imagen-contenida")) {    
+    else if (target.classList.contains("active-gif" || "imagen-contenida")) {
         const rect = target.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
@@ -594,7 +581,7 @@ document.addEventListener("mousemove", (e) => {
         customCursor.style.transform = `translate(-50%, -50%) scale(3.5)`;
         customCursor.style.left = `${centerX}px`;
         customCursor.style.top = `${centerY}px`;
-        customCursor.style.backgroundColor = "var(--Verde-claro)";
+        customCursor.style.backgroundColor = "#077E69";
         customCursor.style.borderRadius = "24px";
         customCursor.style.transition = "transform 0.15s ease-out, background-color 0.3s ease, border-radius 0.3s ease";
         customCursor.style.zIndex = "2";
@@ -621,14 +608,14 @@ document.addEventListener("mousemove", (e) => {
     else {
         // Reset the cursor for non-interactive elements
         customCursor.style.transform = `translate(-50%, -50%) scale(1)`;
-        customCursor.style.backgroundColor = "var(--Verde-claro)"; // Default color
+        customCursor.style.backgroundColor = "rgba(7, 126, 105, 1)"; // Default color
         customCursor.style.borderRadius = "50%"; // Default shape
         customCursor.style.width = "16px";
         customCursor.style.height = "16px";
         customCursor.style.zIndex = "1000";
         customCursor.style.transition = "transform 0.25s ease-out, width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-radius 0.3s ease, z-index 0.3s ease";
         customCursor.style.scale = "1";        
-        customCursor.style.border = "1px solid var(--Verde-claro)";
+        customCursor.style.border = "1px solid rgba(7, 126, 105, 1)";
     }
 });
 
@@ -649,129 +636,139 @@ gsap.registerPlugin(ScrollTrigger);
 
 let isAnimating = false;
 
-// Function to navigate Swiper slides with a smooth transition
+// Function to navigate Swiper slides
 const navigateSwiper = (direction) => {
-  if (direction > 0) {
-    swiper.slideNext(); // Scroll down → Next slide
-  } else if (direction < 0) {
-    swiper.slidePrev(); // Scroll up → Previous slide
-  }
-  isAnimating = true;
-  // Use GSAP.delayedCall for a smooth delay before allowing another interaction
-  gsap.delayedCall(0, () => {
-    isAnimating = false;
-  });
+
+
+    if (direction > 0) {
+        swiper.slideNext(); // Scroll down → Next slide
+    } else if (direction < 0) {
+        swiper.slidePrev(); // Scroll up → Previous slide
+    }
+
+    // Allow animations to complete before the next interaction
+    setTimeout(() => (isAnimating = false), 1200); // Increased duration for slower interaction
 };
 
-// Scroll Event Listener with improved throttling for silky smooth slide navigation
+// Scroll Event Listener with Throttling
 window.addEventListener("wheel", (e) => {
-  const now = Date.now();
-  if (now - scrollThrottle < 0) return; // Adjust this delay as needed
-  scrollThrottle = now;
-  const direction = Math.sign(e.deltaY);
-  navigateSwiper(direction);
+    const now = Date.now();
+    if (now - scrollThrottle < 200) return; // Adjust the time delay here
+    scrollThrottle = now;
+
+    const direction = Math.sign(e.deltaY); // Determine scroll direction
+    navigateSwiper(direction);
 });
 
-// --------------------------------------------- Transition on Click -----------------------------------------------------
-// This section handles the page transition when a user clicks on any target element.
-// The animation clones the clicked image, animates it fullscreen, applies a clip-path
-// effect to reveal a white overlay, and finally redirects to the new URL.
-document.querySelectorAll(".image-container, .imagen-contenida, .active-gif").forEach((element) => {
-  element.addEventListener("click", function () {
-    const slide = this.closest(".swiper-slide");
-    const nextPage = slide.getAttribute("data-url");
-    if (!nextPage) return;
-    
-    const image = slide.querySelector(".imagen-contenida");
-    if (!image) return;
-    
-    const rect = image.getBoundingClientRect();
-    const clone = image.cloneNode(true);
-    document.body.appendChild(clone);
-    
-    const whiteOverlay = document.createElement("div");
-    whiteOverlay.classList.add("white-overlay");
-    document.body.appendChild(whiteOverlay);
-    
-    // Set the clone’s initial fixed position
-    gsap.set(clone, {
-      position: "fixed",
-      top: rect.top + "px",
-      left: rect.left + "px",
-      width: rect.width + "px",
-      height: rect.height + "px",
-      zIndex: 1000,
-      objectFit: "cover",
-      borderRadius: "16px",
-      clipPath: "inset(0% 0% 0% 0%)"
+document.querySelectorAll(".image-container, .imagen-contenida, .active-gif").forEach(element => {
+    element.addEventListener("click", function () {
+        // Find the closest swiper-slide and get its data-url
+        const slide = this.closest(".swiper-slide");
+        const nextPage = slide.getAttribute("data-url");
+
+        if (!nextPage) return; // Prevent errors if no URL is set
+
+        // Find the static image to animate
+        const image = slide.querySelector(".imagen-contenida");
+        if (!image) return;
+
+        // Get image position
+        const rect = image.getBoundingClientRect();
+
+        // Clone the clicked image
+        const clone = image.cloneNode(true);
+        document.body.appendChild(clone);
+
+        // Create the white transition overlay
+        const whiteOverlay = document.createElement("div");
+        whiteOverlay.classList.add("white-overlay");
+        document.body.appendChild(whiteOverlay);
+
+        // Set clone's initial position
+        gsap.set(clone, {
+            position: "fixed",
+            top: rect.top + "px",
+            left: rect.left + "px",
+            width: rect.width + "px",
+            height: rect.height + "px",
+            zIndex: 1000,
+            objectFit: "cover",
+            borderRadius: "16px",
+            clipPath: "inset(0% 0% 0% 0%)" // Initially fully visible
+        });
+
+        // Animate the clone to fullscreen
+        gsap.to(clone, {
+            top: "0px",
+            left: "0px",
+            width: "100vw",
+            height: "100vh",
+            duration: 0.8,
+            ease: "power2.inOut",
+            borderRadius: "16px"
+        });
+
+        // Animate the clip-path to reveal the white background
+        gsap.to(clone, {
+            clipPath: "inset(100% 0% 0% 0%)", // Moves up, revealing white
+            duration: 0.8,
+            delay: 0.5, // Wait for the fullscreen effect
+            ease: "power2.inOut",
+            onComplete: () => {
+                window.location.href = nextPage; // Redirect after animation
+            }
+        });
+
+        // Animate the white background to stay after transition
+        gsap.to(whiteOverlay, {
+            opacity: 1,
+            duration: 0.5,
+            delay: 0,
+            ease: "power2.inOut"
+        });
     });
-    
-    // Animate the clone to fullscreen
-    gsap.to(clone, {
-      top: "0px",
-      left: "0px",
-      width: "100vw",
-      height: "100vh",
-      duration: 0.8,
-      ease: "power2.inOut",
-      borderRadius: "16px"
-    });
-    
-    // Animate the clip-path to reveal a white background before navigating
-    gsap.to(clone, {
-      clipPath: "inset(100% 0% 0% 0%)",
-      duration: 0.8,
-      delay: 0.5,
-      ease: "power2.inOut",
-      onComplete: () => {
-        window.location.href = nextPage;
-      }
-    });
-    
-    // Fade in the white overlay
-    gsap.to(whiteOverlay, {
-      opacity: 1,
-      duration: 0.5,
-      ease: "power2.inOut"
-    });
-  });
 });
 
-// --- Personal Photo Navigation ---
-// Clicking on the element with the ".projects" class navigates to the URL in its data-url attribute.
-document.addEventListener("DOMContentLoaded", () => {
-  const personalPhoto = document.querySelector('.projects');
-  if (personalPhoto) {
-    personalPhoto.addEventListener('click', function () {
-      const url = personalPhoto.getAttribute('data-url');
-      console.log("Navigating to:", url);
-      if (url) {
-        window.location.href = url;
-      } else {
-        console.error("No data-url found!");
-      }
-    });
-  }
-});
 
-// --- Smooth Header Animation on Scroll ---
-// As the user scrolls, the header slides up or down smoothly.
-// This uses GSAP tweens with a natural ease.
-document.addEventListener("DOMContentLoaded", () => {
-  const header = document.querySelector('.header-section');
-  let lastScroll = window.pageYOffset || document.documentElement.scrollTop;
-  
-  window.addEventListener("scroll", () => {
-    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-    
-    if (currentScroll > lastScroll && currentScroll > header.offsetHeight) {
-      gsap.to(header, { y: "-100%", duration: 0.3, ease: "power2.out" });
+document.addEventListener("DOMContentLoaded", function () {
+    const personalPhoto = document.querySelector('.projects');
+
+    if (personalPhoto) {
+        personalPhoto.addEventListener('click', function() {
+            const url = personalPhoto.getAttribute('data-url');
+            console.log("Navigating to:", url); // Debugging message
+
+            if (url) {
+                window.location.href = url;
+            } else {
+                console.error("No data-url found!");
+            }
+        });
     } else {
-      gsap.to(header, { y: "0%", duration: 0.3, ease: "power2.out" });
+        console.error("Element .personal-photo not found!");
     }
-    lastScroll = currentScroll <= 0 ? 0 : currentScroll;
-  });
 });
+
+
+// Asegúrate de que GSAP esté cargado y que el DOM esté listo
+document.addEventListener("DOMContentLoaded", () => {
+    const header = document.querySelector('.header-section');
+    let lastScroll = window.pageYOffset || document.documentElement.scrollTop;
+  
+    window.addEventListener("scroll", () => {
+      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+      
+      // Si se ha hecho scroll hacia abajo y se ha superado la altura del header...
+      if (currentScroll > lastScroll && currentScroll > header.offsetHeight) {
+        // Oculta el header (se desliza hacia arriba)
+        gsap.to(header, { y: "-100%", duration: 0.3, ease: "power2.out" });
+      } else {
+        // Si se hace scroll hacia arriba, muéstralo
+        gsap.to(header, { y: "0%", duration: 0.3, ease: "power2.out" });
+      }
+      lastScroll = currentScroll <= 0 ? 0 : currentScroll; // Asegura que no se vuelva negativo
+    });
+  });
 
 
   /* -------------------------------------------------green-blob---------------------------------------------------

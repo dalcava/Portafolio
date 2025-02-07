@@ -3,7 +3,6 @@ const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-let scrollThrottle = 0;
 let scrollValue = 0;
 let particlesArray;
 let animationFrameId; // We'll store requestAnimationFrame's ID here
@@ -255,7 +254,7 @@ var swiper = new Swiper(".swiper", {
   grabCursor: false,
   centeredSlides: true,
   initialSlide: 1,
-  speed: 800,
+  speed: 500,
   preventClicks: true,
   loop: true,
   /* 
@@ -564,7 +563,7 @@ document.addEventListener("mousemove", (e) => {
         customCursor.style.left = `${centerX}px`;
         customCursor.style.top = `${centerY}px`;
         customCursor.style.transform = `translate(-50%, -50%) scale(1.5)`;
-        customCursor.style.backgroundColor = "var(--Verde-claro)";
+        customCursor.style.backgroundColor = "#077E69";
         customCursor.style.borderRadius = "24px";
         customCursor.style.transition = "transform 0.15s ease-out, width 0.1s ease, background-color 0.3s ease, border-radius 0.3s ease";
         customCursor.style.zIndex = "1";
@@ -572,7 +571,7 @@ document.addEventListener("mousemove", (e) => {
         
     }
     // Check if the target is a swiper slide
-    else if (target.classList.contains("active-gif") || target.classList.contains("imagen-contenida")) {    
+    else if (target.classList.contains("active-gif" || "imagen-contenida")) {
         const rect = target.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
@@ -594,7 +593,7 @@ document.addEventListener("mousemove", (e) => {
         customCursor.style.transform = `translate(-50%, -50%) scale(3.5)`;
         customCursor.style.left = `${centerX}px`;
         customCursor.style.top = `${centerY}px`;
-        customCursor.style.backgroundColor = "var(--Verde-claro)";
+        customCursor.style.backgroundColor = "#077E69";
         customCursor.style.borderRadius = "24px";
         customCursor.style.transition = "transform 0.15s ease-out, background-color 0.3s ease, border-radius 0.3s ease";
         customCursor.style.zIndex = "2";
@@ -621,14 +620,14 @@ document.addEventListener("mousemove", (e) => {
     else {
         // Reset the cursor for non-interactive elements
         customCursor.style.transform = `translate(-50%, -50%) scale(1)`;
-        customCursor.style.backgroundColor = "var(--Verde-claro)"; // Default color
+        customCursor.style.backgroundColor = "rgba(7, 126, 105, 1)"; // Default color
         customCursor.style.borderRadius = "50%"; // Default shape
         customCursor.style.width = "16px";
         customCursor.style.height = "16px";
         customCursor.style.zIndex = "1000";
         customCursor.style.transition = "transform 0.25s ease-out, width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-radius 0.3s ease, z-index 0.3s ease";
         customCursor.style.scale = "1";        
-        customCursor.style.border = "1px solid var(--Verde-claro)";
+        customCursor.style.border = "1px solid rgba(7, 126, 105, 1)";
     }
 });
 
@@ -658,7 +657,7 @@ const navigateSwiper = (direction) => {
   }
   isAnimating = true;
   // Use GSAP.delayedCall for a smooth delay before allowing another interaction
-  gsap.delayedCall(0, () => {
+  gsap.delayedCall(-1, () => {
     isAnimating = false;
   });
 };

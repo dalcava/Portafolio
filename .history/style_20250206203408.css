@@ -369,6 +369,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     border-radius: 24px;
     overflow: hidden;
     transition: all 0.1s ease-out;
+    cursor: none;
 }
 
 .swiper-3d {
@@ -379,6 +380,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     position: relative;
     width: 1506px;
     aspect-ratio: 3/4;
+    cursor: none;
     transition: height 0.25s ease-in;
     border-radius: 16px;
 }
@@ -392,6 +394,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     transform: translateX(312px);
     transition: mask-image 0.5s ease-out, -webkit-mask-image 0.5s ease-out, transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); /* Smooth transition */
     will-change: mask-image, -webkit-mask-image, filter, transform; /* Optimize for frequent changes */
+    cursor: none;
 }
 
 .swiper-slide-prev {
@@ -593,6 +596,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     top: var(--swiper-pagination-top, auto);
     left: 0;
     width: 100%;
+    cursor: none;
     justify-content: end;
     height: 100%;
 }
@@ -604,17 +608,19 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     border-radius: 50%;
     transition: transform 0.3s ease, opacity 0.3s ease;
     opacity: 1;
+    cursor: none;
     position: relative;
     overflow: hidden;
 }
 
 /* Bullet activo */
 .swiper-pagination-bullet-active {
-    background-color: var(--Verde-claro); /* Color del bullet activo */
+    background-color: var(--Verde); /* Color del bullet activo */
     transform: scale(1.2); /* Aumenta ligeramente el tamaño del bullet activo */
     opacity: 1; /* Totalmente visible */
     border-radius: 8px;
     transition: transform 0.4s ease-out;
+    cursor: none;
 }
 .swiper-pagination-bullet-active::before {
     content: '';
@@ -635,6 +641,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     opacity: 1; /* Totalmente visible */
     transition: transform 0.24s ease-out background-color 0.24 ease-in;
     border-radius: 50%px;
+    cursor: none;
 }
 
 /* .next-project-btn {
@@ -645,6 +652,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     font-size: var(--font-size-S);
     font-weight: 400;
     line-height: 1.5;
+    cursor: none;
     text-transform: capitalize;
     transition: color 0.3s ease;
     pointer-events: auto;
@@ -674,6 +682,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     background: none;
     border: none;
     color: rgb(255, 255, 255, 0);
+    cursor: none;
     width: 40px;
     height: 24px;
     display: block;
@@ -787,17 +796,14 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 
 .custom-cursor {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 16px;
-    height: 16px;
-    background-color: var(--Verde-claro);
-    border: 1px solid var(--Verde-claro);
+    width: 24px;
+    height: 24px;
+    background-color: #BC244A; /* Default color */
     border-radius: 50%;
-    transform: translate(-50%, -50%) scale(1);
     pointer-events: none;
-    z-index: 1000;
-    transition: transform 0.25s ease-out, width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-radius 0.3s ease;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease-out, background-color 0.2s ease;
 }
 
 
@@ -898,6 +904,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     }
     .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
         transform: scale(0.65);
+        cursor: none;
     }
     .swiper-button-prev, .swiper-button-next {
         transform: scale(.75);

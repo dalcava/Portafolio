@@ -255,7 +255,7 @@ var swiper = new Swiper(".swiper", {
   grabCursor: false,
   centeredSlides: true,
   initialSlide: 1,
-  speed: 800,
+  speed: 500,
   preventClicks: true,
   loop: true,
   /* 
@@ -564,7 +564,7 @@ document.addEventListener("mousemove", (e) => {
         customCursor.style.left = `${centerX}px`;
         customCursor.style.top = `${centerY}px`;
         customCursor.style.transform = `translate(-50%, -50%) scale(1.5)`;
-        customCursor.style.backgroundColor = "var(--Verde-claro)";
+        customCursor.style.backgroundColor = "#077E69";
         customCursor.style.borderRadius = "24px";
         customCursor.style.transition = "transform 0.15s ease-out, width 0.1s ease, background-color 0.3s ease, border-radius 0.3s ease";
         customCursor.style.zIndex = "1";
@@ -572,7 +572,7 @@ document.addEventListener("mousemove", (e) => {
         
     }
     // Check if the target is a swiper slide
-    else if (target.classList.contains("active-gif") || target.classList.contains("imagen-contenida")) {    
+    else if (target.classList.contains("active-gif" || "imagen-contenida")) {
         const rect = target.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
@@ -594,7 +594,7 @@ document.addEventListener("mousemove", (e) => {
         customCursor.style.transform = `translate(-50%, -50%) scale(3.5)`;
         customCursor.style.left = `${centerX}px`;
         customCursor.style.top = `${centerY}px`;
-        customCursor.style.backgroundColor = "var(--Verde-claro)";
+        customCursor.style.backgroundColor = "#077E69";
         customCursor.style.borderRadius = "24px";
         customCursor.style.transition = "transform 0.15s ease-out, background-color 0.3s ease, border-radius 0.3s ease";
         customCursor.style.zIndex = "2";
@@ -621,14 +621,14 @@ document.addEventListener("mousemove", (e) => {
     else {
         // Reset the cursor for non-interactive elements
         customCursor.style.transform = `translate(-50%, -50%) scale(1)`;
-        customCursor.style.backgroundColor = "var(--Verde-claro)"; // Default color
+        customCursor.style.backgroundColor = "rgba(7, 126, 105, 1)"; // Default color
         customCursor.style.borderRadius = "50%"; // Default shape
         customCursor.style.width = "16px";
         customCursor.style.height = "16px";
         customCursor.style.zIndex = "1000";
         customCursor.style.transition = "transform 0.25s ease-out, width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-radius 0.3s ease, z-index 0.3s ease";
         customCursor.style.scale = "1";        
-        customCursor.style.border = "1px solid var(--Verde-claro)";
+        customCursor.style.border = "1px solid rgba(7, 126, 105, 1)";
     }
 });
 
@@ -657,20 +657,20 @@ const navigateSwiper = (direction) => {
     swiper.slidePrev(); // Scroll up → Previous slide
   }
   isAnimating = true;
-  // Use GSAP.delayedCall for a smooth delay before allowing another interaction
-  gsap.delayedCall(0, () => {
+  // Lock out further interactions for 5 seconds to enforce a slow pace
+  gsap.delayedCall(5, () => {
     isAnimating = false;
   });
 };
 
-// Scroll Event Listener with improved throttling for silky smooth slide navigation
+// Scroll Event Listener without throttle—only the isAnimating flag is used
 window.addEventListener("wheel", (e) => {
-  const now = Date.now();
-  if (now - scrollThrottle < 0) return; // Adjust this delay as needed
-  scrollThrottle = now;
+  if (isAnimating) return; // Do nothing if a transition is already in progress
   const direction = Math.sign(e.deltaY);
   navigateSwiper(direction);
 });
+
+
 
 // --------------------------------------------- Transition on Click -----------------------------------------------------
 // This section handles the page transition when a user clicks on any target element.

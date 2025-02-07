@@ -564,7 +564,7 @@ document.addEventListener("mousemove", (e) => {
         customCursor.style.left = `${centerX}px`;
         customCursor.style.top = `${centerY}px`;
         customCursor.style.transform = `translate(-50%, -50%) scale(1.5)`;
-        customCursor.style.backgroundColor = "var(--Verde-claro)";
+        customCursor.style.backgroundColor = "#077E69";
         customCursor.style.borderRadius = "24px";
         customCursor.style.transition = "transform 0.15s ease-out, width 0.1s ease, background-color 0.3s ease, border-radius 0.3s ease";
         customCursor.style.zIndex = "1";
@@ -594,7 +594,7 @@ document.addEventListener("mousemove", (e) => {
         customCursor.style.transform = `translate(-50%, -50%) scale(3.5)`;
         customCursor.style.left = `${centerX}px`;
         customCursor.style.top = `${centerY}px`;
-        customCursor.style.backgroundColor = "var(--Verde-claro)";
+        customCursor.style.backgroundColor = "#077E69";
         customCursor.style.borderRadius = "24px";
         customCursor.style.transition = "transform 0.15s ease-out, background-color 0.3s ease, border-radius 0.3s ease";
         customCursor.style.zIndex = "2";
@@ -628,7 +628,7 @@ document.addEventListener("mousemove", (e) => {
         customCursor.style.zIndex = "1000";
         customCursor.style.transition = "transform 0.25s ease-out, width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-radius 0.3s ease, z-index 0.3s ease";
         customCursor.style.scale = "1";        
-        customCursor.style.border = "1px solid var(--Verde-claro)";
+        customCursor.style.border = "1px solid rgba(7, 126, 105, 1)";
     }
 });
 
